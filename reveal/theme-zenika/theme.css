@@ -1,0 +1,412 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url("fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Roboto Light';
+  src: url("fonts/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Architect's Daughter";
+  src: url("fonts/ArchitectsDaughter.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url("fonts/Inconsolata-Regular.ttf") format("truetype");
+}
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+body {
+  background: white;
+}
+
+.reveal {
+  font-family: "Arial", sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+  color: #333333;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section,
+.reveal .slides section section {
+  box-shadow: 0 0 5px 1px #cccccc;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 40px;
+}
+
+.reveal .slides section section {
+  margin-left: -40px;
+}
+
+.reveal.overview .slides section {
+  height: 650px;
+}
+
+.reveal .slides h2:after {
+  content: url("images/zenika-logo-small.png");
+  float: right;
+  margin-top: -14px;
+  margin-right: 20px;
+}
+
+.reveal .slide-background {
+  background-size: contain;
+}
+
+::selection {
+  color: white;
+  background: #333333;
+  text-shadow: none;
+}
+
+.reveal .slides table {
+  border: 1px solid #696969; 
+  border-collapse: collapse;
+}
+
+.reveal .slides table th, .reveal .slides table td {
+  padding: 0px 10px
+;}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1 {
+  margin-top: 35%;
+  width: 400px;
+  float: right;
+  color: #b30c37;
+  text-align: right;
+  font-family: "Roboto Light", sans-serif; 
+  font-size: 40px;
+  line-height: 130%;
+}
+
+.reveal h2,
+.reveal h3 {
+  margin: 0 -40px 20px -40px;
+  padding: 40px 0 40px 20px;
+  background: #b30c37;
+  color: white;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+.reveal h2 small,
+.reveal h3 small {
+  vertical-align: bottom;
+}
+
+/*********************************************
+ * CONTENT
+ *********************************************/
+.reveal em {
+  color: #b30c37;
+  font-style: normal;
+}
+
+.reveal strong {
+  color: #b30c37;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.reveal li {
+  margin: 0.8em 0;
+}
+
+.reveal code {
+  color: #b30c37;
+}
+
+.reveal blockquote p:first-child, .reveal blockquote p:last-child {
+  display: block;
+}
+ 
+.reveal blockquote {
+  background: rgba(230, 230, 230, 1);
+}
+
+
+/*********************************************
+ * CODE
+ *********************************************/
+.reveal pre {
+  margin: 15px 0;
+  box-shadow: none; 
+  border: 1px solid #b30c37; 
+  border-left: 5px solid #b30c37;
+}
+
+.reveal h2 + pre,
+.reveal h3 + pre { /* Whole-slide code block */
+  border: none;
+}
+
+.reveal pre > code, .reveal .code {
+  color: black; 
+  max-height: none;
+  font-family: "Inconsolata", monospace;
+  font-size: 24px; 
+  line-height: normal;
+}
+
+/*********************************************
+ * SPECIALS PAGES
+ *********************************************/
+
+.reveal section.page-title {
+  background: transparent center center/100% no-repeat url('./images/title-background.png')
+}
+
+.reveal section.page-questions {
+  background: transparent center center/30% no-repeat url('./images/questions.png')
+}
+
+.reveal section.page-tp1 {
+  background: transparent center center/50% no-repeat url('./images/tp1.png')
+}
+
+.reveal section.page-tp2 {
+  background: transparent center center/50% no-repeat url('./images/tp2.png')
+}
+
+.reveal section.page-tp3 {
+  background: transparent center center/50% no-repeat url('./images/tp3.png')
+}
+
+.reveal section.page-tp4 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp5 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp6 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp7 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp8 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp9 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp10 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp11 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp12 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp13 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp14 {
+  background: transparent center center/50% no-repeat url('./images/tp4.png')
+}
+
+.reveal section.page-tp15 {
+  background: transparent center center/50% no-repeat url('./images/tp15.png')
+}
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a:not(.image) {
+  color: #b30c37;
+  text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  -ms-transition: color .15s ease;
+  -o-transition: color .15s ease;
+  transition: color .15s ease;
+}
+
+.reveal a:not(.image):hover {
+  color: #b30c37;
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: white;
+  background: #b30c37;
+}
+
+.reveal .slides .toc a {
+  color: inherit;
+}
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+.reveal section img {
+  display: block;
+  margin: 30px auto;
+}
+
+.reveal section img.with-border {
+  border: 1px solid black;
+}
+
+.reveal section img #questions {
+  margin-top: 100px;
+}
+
+.reveal figcaption {
+  text-align: center;
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls div.navigate-left,
+.reveal .controls div.navigate-left.enabled {
+  border-right-color: #b30c37;
+}
+
+.reveal .controls div.navigate-right,
+.reveal .controls div.navigate-right.enabled {
+  border-left-color: #b30c37;
+}
+
+.reveal .controls div.navigate-up,
+.reveal .controls div.navigate-up.enabled {
+  border-bottom-color: #b30c37;
+}
+
+.reveal .controls div.navigate-down,
+.reveal .controls div.navigate-down.enabled {
+  border-top-color: #b30c37;
+}
+
+.reveal .controls div.navigate-left.enabled:hover {
+  border-right-color: #b30c37;
+}
+
+.reveal .controls div.navigate-right.enabled:hover {
+  border-left-color: #b30c37;
+}
+
+.reveal .controls div.navigate-up.enabled:hover {
+  border-bottom-color: #b30c37;
+}
+
+.reveal .controls div.navigate-down.enabled:hover {
+  border-top-color: #b30c37;
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.reveal .progress span {
+  background: #b30c37;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+}
+
+/*********************************************
+ * FOOTER (style copied from reveal.css -> .reveal .slide-number)
+ *********************************************/
+.reveal footer, .reveal .slides footer {
+  position: absolute;
+  bottom: 15px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.reveal .master-toc-return {
+  left: 15px;
+  bottom: 15px;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+.reveal .copyright {
+  left: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.reveal .slide-number {
+  right: 30px;
+}
+
+/*********************************************
+ * ALERTS (taken from bootstrap)
+ * Copyright (c) 2011-2014 Twitter, Inc
+ *********************************************/
+.reveal .alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px; 
+  font-size: 24px;
+}
+
+.reveal .alert em {
+  color: inherit; 
+  font-weight: bold;
+}
+
+.reveal .alert code {
+  color: inherit;
+}
+
+.reveal .alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.reveal .alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.reveal .alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.reveal .alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}

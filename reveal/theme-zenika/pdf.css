@@ -1,0 +1,29 @@
+body {
+  height: 210mm !important;
+}
+
+@page {
+  size: A4 landscape;
+}
+
+.reveal .slides section section {
+  height: 210mm !important;
+  min-height: 210mm !important;
+  padding: 0 40px !important;
+}
+
+.reveal .slides section {
+  padding: 0 !important;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides pre > code {
+  font-family: "Inconsolata" !important;
+}
+
+.reveal .master-toc-return {
+  display: none;
+}
