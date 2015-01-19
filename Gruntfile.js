@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
 
     var port = grunt.option('port') || 8000;
+    var name = grunt.config('zenika.formation.name') || null;
 
     grunt.initConfig({
         connect: {
@@ -54,7 +55,7 @@ module.exports = function (grunt) {
 
         var markdownpdf = require("markdown-pdf");
         var cssPath = __dirname + "/styleCahierExercice.css";
-        var pdfPath = "PDF/CahierExercices.pdf";
+        var pdfPath = 'PDF/Zenika-Formation' + (name ? '-'+name : '') + '-CahierExercices.pdf';
 
         console.log("Using CSS file", cssPath);
 
@@ -82,7 +83,7 @@ module.exports = function (grunt) {
         var childArgs = [
             fullPath,
             'http://localhost:' + port + '?print-pdf',
-            'PDF/Slides.pdf'
+            'PDF/Zenika-Formation' + (name ? '-'+name : '') + '-Slides.pdf'
         ];
 
         childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
