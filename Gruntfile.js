@@ -1,15 +1,21 @@
 module.exports = function (grunt) {
 
+    var port = grunt.option('port') || 8000;
+
     grunt.initConfig({
         connect: {
             options: {
                 base: [__dirname, 'Slides/'],
-                open: true,
-                hostname: 'localhost',
-                port: 8000,
-                livereload: 32729
+                hostname: '0.0.0.0',
+                port: port
             },
-            server: {},
+            server: {
+                options: {
+                    livereload: 32729,
+                    open: 'http://localhost:' + port
+                }
+            },
+            print: {},
             keepalive: {
                 options: {
                     keepalive: true
@@ -61,6 +67,33 @@ module.exports = function (grunt) {
             }
         );
     });
+
+    grunt.registerTask('doGenerateSlidesPDF', function () {
+        var
+            childProcess = require('child_process'),
+            phantomjs = require('phantomjs'),
+            path = require('path'),
+            binPath = phantomjs.path,
+            done = grunt.task.current.async()
+            ;
+
+        var fullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
+
+        var childArgs = [
+            fullPath,
+            'http://localhost:' + port + '?print-pdf',
+            'PDF/Slides.pdf'
+        ];
+
+        childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
+            grunt.log.writeln(stdout);
+            grunt.log.writeln(stderr);
+            done(error);
+        });
+    });
+
+
+    grunt.registerTask('generateSlidesPDF', ['connect:print', 'doGenerateSlidesPDF']);
 
     grunt.registerTask('default', ['displaySlides']);
 
