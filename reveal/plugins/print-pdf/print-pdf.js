@@ -11,22 +11,15 @@
 var page = new WebPage();
 var system = require('system');
 
-/*
 page.viewportSize = {
-    width: 1024,
-    height: 768
+    width: 1600,
+    height: 900
 };
 
 page.paperSize = {
-    format: 'letter',
-    orientation: 'landscape',
-    margin: {
-        left: '0',
-        right: '0',
-        top: '0',
-        bottom: '0'
-    }
-};*/
+    format: 'A4',
+    orientation: 'landscape'
+};
 
 var revealFile = system.args[1] || 'index.html?print-pdf';
 var slideFile = system.args[2] || 'slides.pdf';
@@ -36,11 +29,12 @@ if (slideFile.match(/\.pdf$/gi) === null) {
 }
 
 console.log('Printing PDF...');
+console.log('Pour un meilleur rendu : https://github.com/hakimel/reveal.js#pdf-export');
 
 page.open(revealFile, function (status) {
     // hacked for being sure that content is loaded before printing
     if (status !== 'success') {
-        console.log('Unable to load the address : ' + revealFile);
+        console.log('Unable to load the address!');
         phantom.exit();
     } else {
         setTimeout(function () {
