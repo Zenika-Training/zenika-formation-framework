@@ -23,7 +23,7 @@
     var req = new XMLHttpRequest();
     req.onload = function (e) {
       var slideContainer = document.querySelector('.slides');
-      req.response.forEach(function (path) {
+      JSON.parse(req.responseText).forEach(function (path) {
         var chapter = document.createElement('section');
         chapter.dataset.markdown = path;
         chapter.dataset.vertical = '^\r?\n\r?\n\r?\n';
@@ -33,7 +33,6 @@
       callback();
     };
     req.open('GET', 'slides.json');
-    req.responseType = 'json';
     req.send();
   }
 
