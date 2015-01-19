@@ -1,4 +1,10 @@
-﻿0.1.1:
+﻿0.2.0:
+  date: 2015-01-20
+  changes:
+    - correction d'anomalies css
+    - génération pdf automatisée
+    - nom de la formation parametrable
+0.1.1:
   date: 2014-12-17
   changes:
     - Reveal.js en dépendance npm
