@@ -95,6 +95,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('generateSlidesPDF', ['connect:print', 'doGenerateSlidesPDF']);
 
+    grunt.registerTask('pdf', ['generateSlidesPDF', 'generateCahierExercice']);
+
     grunt.registerTask('default', ['displaySlides']);
 
 };
