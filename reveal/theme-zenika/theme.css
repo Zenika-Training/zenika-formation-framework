@@ -70,8 +70,8 @@ body {
   text-shadow: none;
 }
 
-.reveal .slides table {
-  border: 1px solid #696969; 
+.reveal .slides table, .reveal .slides table th, .reveal .slides table td {
+  border: 1px solid #696969;
   border-collapse: collapse;
 }
 
