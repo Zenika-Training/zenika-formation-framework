@@ -88,7 +88,7 @@ body {
   float: right;
   color: #b30c37;
   text-align: right;
-  font-family: "Roboto Light", sans-serif; 
+  font-family: "Roboto Light", sans-serif;
   font-size: 40px;
   line-height: 130%;
 }
@@ -136,7 +136,7 @@ body {
 .reveal blockquote p:first-child, .reveal blockquote p:last-child {
   display: block;
 }
- 
+
 .reveal blockquote {
   background: rgba(230, 230, 230, 1);
 }
@@ -147,8 +147,8 @@ body {
  *********************************************/
 .reveal pre {
   margin: 15px 0;
-  box-shadow: none; 
-  border: 1px solid #b30c37; 
+  box-shadow: none;
+  border: 1px solid #b30c37;
   border-left: 5px solid #b30c37;
 }
 
@@ -158,10 +158,10 @@ body {
 }
 
 .reveal pre > code, .reveal .code {
-  color: black; 
+  color: black;
   max-height: none;
   font-family: "Inconsolata", monospace;
-  font-size: 24px; 
+  font-size: 24px;
   line-height: normal;
 }
 
@@ -170,71 +170,88 @@ body {
  *********************************************/
 
 .reveal section.page-title {
-  background: transparent center center/100% no-repeat url('./images/title-background.png')
+  background: transparent center center no-repeat url('images/title-background.png');
+  background-size: 100%;
 }
 
 .reveal section.page-questions {
-  background: transparent center center/30% no-repeat url('./images/questions.png')
+  background: transparent center center no-repeat url('./images/questions.png');
+  background-size: 30%;
 }
 
 .reveal section.page-tp1 {
-  background: transparent center center/50% no-repeat url('./images/tp1.png')
+  background: transparent center center no-repeat url('./images/tp1.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp2 {
-  background: transparent center center/50% no-repeat url('./images/tp2.png')
+  background: transparent center center no-repeat url('./images/tp2.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp3 {
-  background: transparent center center/50% no-repeat url('./images/tp3.png')
+  background: transparent center center no-repeat url('./images/tp3.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp4 {
-  background: transparent center center/50% no-repeat url('./images/tp4.png')
+  background: transparent center center no-repeat url('./images/tp4.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp5 {
-  background: transparent center center/50% no-repeat url('./images/tp5.png')
+  background: transparent center center no-repeat url('./images/tp5.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp6 {
-  background: transparent center center/50% no-repeat url('./images/tp6.png')
+  background: transparent center center no-repeat url('./images/tp6.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp7 {
-  background: transparent center center/50% no-repeat url('./images/tp7.png')
+  background: transparent center center no-repeat url('./images/tp7.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp8 {
-  background: transparent center center/50% no-repeat url('./images/tp8.png')
+  background: transparent center center no-repeat url('./images/tp8.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp9 {
-  background: transparent center center/50% no-repeat url('./images/tp9.png')
+  background: transparent center center no-repeat url('./images/tp9.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp10 {
-  background: transparent center center/50% no-repeat url('./images/tp10.png')
+  background: transparent center center no-repeat url('./images/tp10.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp11 {
-  background: transparent center center/50% no-repeat url('./images/tp11.png')
+  background: transparent center center no-repeat url('./images/tp11.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp12 {
-  background: transparent center center/50% no-repeat url('./images/tp12.png')
+  background: transparent center center no-repeat url('./images/tp12.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp13 {
-  background: transparent center center/50% no-repeat url('./images/tp13.png')
+  background: transparent center center no-repeat url('./images/tp13.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp14 {
-  background: transparent center center/50% no-repeat url('./images/tp14.png')
+  background: transparent center center no-repeat url('./images/tp14.png');
+  background-size: 50%;
 }
 
 .reveal section.page-tp15 {
-  background: transparent center center/50% no-repeat url('./images/tp15.png')
+  background: transparent center center no-repeat url('./images/tp15.png');
+  background-size: 50%;
 }
 /*********************************************
  * LINKS
@@ -374,12 +391,12 @@ body {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px; 
+  border-radius: 4px;
   font-size: 24px;
 }
 
 .reveal .alert em {
-  color: inherit; 
+  color: inherit;
   font-weight: bold;
 }
 
