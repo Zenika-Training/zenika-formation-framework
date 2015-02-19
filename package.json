@@ -11,7 +11,10 @@
   "dependencies": {
     "grunt-contrib-connect": "~0.9.0",
     "grunt-contrib-watch": "~0.6.0",
-    "markdown-pdf": "^2.2.0",
+    "markdown-pdf": "^5.1.0",
+    "through": "^2.3.6",
+    "duplexer": "^0.1.1",
+    "split": "^0.3.3",
     "phantomjs": "^1.9.13",
     "reveal.js": "^2.6.2"
   },
