@@ -1,4 +1,10 @@
-﻿0.2.0:
+﻿0.3.0:
+  date: 2015-02-20
+  changes:
+    - upgrade de markdown-pdf
+    - possibilité de séparer le cahier de tp en plusieurs fichiers
+    - liens relatifs des ressources du cahier de tp plus élégants
+0.2.0:
   date: 2015-01-20
   changes:
     - correction d'anomalies css
