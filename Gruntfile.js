@@ -59,7 +59,12 @@ module.exports = function (grunt) {
             through = require("through"),
             duplexer = require("duplexer");
 
-        var parts = require(path.resolve(__dirname, "..", "..", "CahierExercices", "parts.json"));
+        try {
+            var parts = require(path.resolve(__dirname, "..", "..", "CahierExercices", "parts.json"));
+        }
+        catch (e) {
+            parts = ["Cahier.md"];
+        }
         var cssPath = path.resolve(__dirname, "styleCahierExercice.css");
         var highlightPath = path.resolve(__dirname, "reveal", "theme-zenika", "code.css");
         var pdfPath = 'PDF/Zenika-Formation' + (name ? '-' + name : '') + '-CahierExercices.pdf';
