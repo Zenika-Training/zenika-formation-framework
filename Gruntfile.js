@@ -81,7 +81,7 @@ module.exports = function (grunt) {
             var splitter = split();
 
             var transform = through(function (data) {
-                var out = data.replace(/!\[([\w|\s]*)][\s]*\(([\w|\s|\-|\.|\/]*)\)/g, function (match, p1, p2, src) {
+                var out = data.replace(/!\[([\w|\s|\.]*)][\s]*\(([\w|\s|\-|\.|\/]*)\)/g, function (match, p1, p2, src) {
                         return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
                     }) + '\n';
                 this.queue(out);
