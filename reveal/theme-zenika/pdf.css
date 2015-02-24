@@ -27,3 +27,11 @@ body {
 .reveal .master-toc-return {
   display: none;
 }
+
+.reveal em {
+	font-weight: bold;
+}
+
+.reveal strong {
+	font-weight: bold;
+}
