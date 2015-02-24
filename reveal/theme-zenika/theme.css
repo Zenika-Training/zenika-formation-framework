@@ -95,7 +95,7 @@ body {
 
 .reveal h2,
 .reveal h3 {
-  margin: 0 -40px 20px -40px;
+  margin: 0 -40px 10px -40px;
   padding: 40px 0 40px 20px;
   background: #b30c37;
   color: white;
@@ -126,7 +126,7 @@ body {
 }
 
 .reveal li {
-  margin: 0.8em 0;
+  margin: 0.8em 0 0 0;
 }
 
 .reveal code {
@@ -150,6 +150,8 @@ body {
   box-shadow: none;
   border: 1px solid #b30c37;
   border-left: 5px solid #b30c37;
+  width:100%;
+  white-space: pre-wrap;
 }
 
 .reveal h2 + pre,

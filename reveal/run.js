@@ -50,6 +50,8 @@
       slideNumber: false,
       margin: 0,
       maxScale: 2.0,
+      width: 1124,
+      height: 795,
 
       // Optional libraries used to extend on reveal.js
       dependencies: [
