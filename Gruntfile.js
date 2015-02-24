@@ -92,7 +92,10 @@ module.exports = function (grunt) {
             return duplexer(splitter, transform);
         }
 
-        markdownpdf({cssPath: cssPath, highlightCssPath: highlightPath, preProcessMd: preprocessMd})
+        markdownpdf({cssPath: cssPath, 
+                highlightCssPath: highlightPath, 
+                preProcessMd: preprocessMd, 
+                remarkable : {html:true, linkify: false}})
             .concat.from(files)
             .to(pdfPath,
             function (v) {
