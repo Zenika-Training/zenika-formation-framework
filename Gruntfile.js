@@ -88,6 +88,9 @@ module.exports = function (grunt) {
                         .replace(/<img (.*)src="([\w|\-|\.|\/]*)"(.*)\/?>/g, function (match, p1, p2, p3, src) {
                             return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
                         })
+                        .replace(/\{Titre-Formation}/g, function () {
+                            return name;
+                        })
                     + '\n';
                 this.queue(out);
             });
