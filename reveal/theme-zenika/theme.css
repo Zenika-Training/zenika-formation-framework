@@ -79,6 +79,29 @@ body {
   padding: 0px 10px
 ;}
 
+.reveal .slides table {
+  margin: 15px 0;
+  box-shadow: none;
+  border: 1px solid #b30c37;
+  border-left: 5px solid #b30c37;
+  border-collapse: collapse;
+}
+.reveal .slides table tr td {
+  border: 1px solid #AAAAAA;
+}
+.reveal .slides table tr th {
+  border: 1px solid #AAAAAA;
+  border-bottom: 5px solid #b30c37;
+  //background-color: #AAAAAA;
+  color : #000000;
+}
+
+.reveal .slides table.no-border,
+.reveal .slides table.no-border tr td,
+.reveal .slides table.no-border tr th {
+  border: none;
+}
+
 /*********************************************
  * HEADERS
  *********************************************/
