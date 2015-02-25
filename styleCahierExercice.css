@@ -53,7 +53,7 @@ h1 {
 }
 
 h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
-    background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
+    background: url("reveal/theme-zenika/images/para.png") no-repeat 10px center;
     text-decoration: none;
 }
 
@@ -114,7 +114,7 @@ p, blockquote, ul, ol, dl, li, table, pre {
 }
 
 hr {
-    background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
+    background: transparent url("reveal/theme-zenika/images/dirty-shade.png") repeat-x 0 0;
     border: 0 none;
     color: #cccccc;
     height: 4px;
