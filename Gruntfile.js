@@ -103,7 +103,8 @@ module.exports = function (grunt) {
             cssPath: cssPath,
             highlightCssPath: highlightPath,
             preProcessMd: preprocessMd,
-            remarkable: {html: true}
+            remarkable: {html: true},
+            cwd: __dirname
         })
             .concat.from(files)
             .to(pdfPath,
