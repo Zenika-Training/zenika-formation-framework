@@ -1,4 +1,10 @@
-﻿0.3.0:
+﻿0.3.1:
+  date: 2015-XX-XX
+  changes:
+    - améliorations des css
+    - support du html dans le cahier de TP
+    - support des liens relatifs pour les images dans les TP
+0.3.0:
   date: 2015-02-20
   changes:
     - upgrade de markdown-pdf
