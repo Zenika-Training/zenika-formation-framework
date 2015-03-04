@@ -4,6 +4,7 @@ module.exports = function (grunt) {
     var name = grunt.config('zenika.formation.name') || null;
 
     grunt.initConfig({
+        dist: "dist",
         connect: {
             options: {
                 base: [__dirname, 'Slides/'],
@@ -42,11 +43,44 @@ module.exports = function (grunt) {
             gruntfile: {
                 files: __dirname + '/Gruntfile.js'
             }
+        },
+        clean: {
+            dist: ['dist/**']
+        },
+        copy: {
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: "Slides",
+                        dest: "<%= dist %>",
+                        src: [
+                            "./**"
+                        ]
+                    },
+                    {
+                        expand: true,
+                        //cwd: ".",
+                        cwd: "node_modules/zenika-formation-framework",
+                        dest: "<%= dist %>/",
+                        src: ["index.html", "styleCahierExercice.css", "reveal/**", "node_modules/reveal.js/**"]
+                    }
+                ]
+            }
         }
     });
 
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-connect/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-watch/tasks');
+    grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-clean/tasks');
+    grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-copy/tasks');
+    grunt.loadTasks(__dirname + '/node_modules/grunt-rev/tasks');
+
+
+    //TODO: 'rev'
+    grunt.registerTask('package', ['clean:dist', 'copy:dist']);
+
 
     grunt.registerTask('displaySlides', ['connect:server', 'watch']);
 
@@ -82,15 +116,15 @@ module.exports = function (grunt) {
 
             var transform = through(function (data) {
                 var out = data
-                        .replace(/!\[([\w|\s|\.]*)][\s]*\(([\w|\s|\-|\.|\/]*)\)/g, function (match, p1, p2, src) {
-                            return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
-                        })
-                        .replace(/<img (.*)src="([\w|\-|\.|\/]*)"(.*)\/?>/g, function (match, p1, p2, p3, src) {
-                            return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
-                        })
-                        .replace(/\{Titre-Formation}/g, function () {
-                            return name;
-                        })
+                    .replace(/!\[([\w|\s|\.]*)][\s]*\(([\w|\s|\-|\.|\/]*)\)/g, function (match, p1, p2, src) {
+                        return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
+                    })
+                    .replace(/<img (.*)src="([\w|\-|\.|\/]*)"(.*)\/?>/g, function (match, p1, p2, p3, src) {
+                        return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
+                    })
+                    .replace(/\{Titre-Formation}/g, function () {
+                        return name;
+                    })
                     + '\n';
                 this.queue(out);
             });
