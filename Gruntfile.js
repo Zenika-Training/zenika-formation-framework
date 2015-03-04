@@ -61,6 +61,15 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
+                        dot: true,
+                        cwd: ".",
+                        dest: "<%= dist %>",
+                        src: [
+                            "app.yaml"
+                        ]
+                    },
+                    {
+                        expand: true,
                         //cwd: ".",
                         cwd: "node_modules/zenika-formation-framework",
                         dest: "<%= dist %>/",
