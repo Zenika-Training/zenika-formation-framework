@@ -84,7 +84,6 @@ module.exports = function (grunt) {
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-watch/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-clean/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-copy/tasks');
-    grunt.loadTasks(__dirname + '/node_modules/grunt-rev/tasks');
 
 
     //TODO: 'rev'
