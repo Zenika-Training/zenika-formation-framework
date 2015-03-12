@@ -68,6 +68,15 @@ module.exports = function (grunt) {
                             "app.yaml"
                         ]
                     },
+					{
+                        expand: true,
+                        dot: true,
+                        cwd: "PDF",
+                        dest: "<%= dist %>",
+                        src: [
+                            "*.pdf"
+                        ]
+                    },
                     {
                         expand: true,
                         //cwd: ".",
