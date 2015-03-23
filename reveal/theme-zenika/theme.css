@@ -452,3 +452,19 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
+/*********************************************
+ * TOC overflow on column
+ *********************************************/
+.toc ul {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1;
+  -webkit-column-width: 31rem;
+  -moz-column-width: 31rem;
+  column-width: 31rem;
+  -webkit-column-gap: 1rem;
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+  height: 40rem;
+}
