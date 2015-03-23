@@ -2,7 +2,7 @@
   date: 2015-03-23
   changes:
     - Débordement du TOC en mode column
-0.3.4:
+0.3.4: 2015-03-12
   date:
   changes:
     - ajout des pdf dans le 'grunt package'
