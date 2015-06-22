@@ -58,7 +58,17 @@
         { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
         { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
+            // Define Plain Text language for Console output
+            hljs.LANGUAGES.text = {
+              keywords: '',
+              contains: [
+                hljs.QUOTE_STRING_MODE
+              ]
+            }
+            hljs.initHighlightingOnLoad();
+          }
+        },
         { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition: function() { return !!document.body.classList; } }
