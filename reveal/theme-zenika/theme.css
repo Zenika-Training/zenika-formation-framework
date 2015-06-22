@@ -70,30 +70,39 @@ body {
   text-shadow: none;
 }
 
+/*********************************************
+ * TABLES
+ *********************************************/
+
 .reveal .slides table, .reveal .slides table th, .reveal .slides table td {
-  border: 1px solid #696969;
+  border: 1px solid white;
   border-collapse: collapse;
+  font-size: 22px;
 }
 
 .reveal .slides table th, .reveal .slides table td {
-  padding: 0px 10px
-;}
+  padding: 5px 10px;
+}
 
 .reveal .slides table {
   margin: 15px 0;
   box-shadow: none;
-  border: 1px solid #b30c37;
-  border-left: 5px solid #b30c37;
-  border-collapse: collapse;
 }
-.reveal .slides table tr td {
-  border: 1px solid #AAAAAA;
+
+.reveal .slides table th {
+  background: #999;
 }
-.reveal .slides table tr th {
-  border: 1px solid #AAAAAA;
-  border-bottom: 5px solid #b30c37;
-  //background-color: #AAAAAA;
-  color : #000000;
+
+.reveal .slides table tbody tr:nth-child(even) {
+  background: #FFF;
+}
+
+.reveal .slides table tbody tr:nth-child(odd) {
+  background: #CCC;
+}
+
+.reveal .slides table td {
+  line-height: 1;
 }
 
 .reveal .slides table.no-border,
