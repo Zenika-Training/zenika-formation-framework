@@ -1,5 +1,7 @@
 ﻿# Zenika Formation Framework
 
+Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Zenika/Formation--Modele)
+
 ## Contenu
 
 - README.md => ce fichier
