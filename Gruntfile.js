@@ -86,9 +86,18 @@ module.exports = function (grunt) {
                     }
                 ]
             }
-        }
+        },
+	sed: {
+	    dist: {
+                path: 'node_modules/zenika-formation-framework/index.html',
+	        pattern: 'ZNK_FORMATION_NAME',
+	        replacement: 'Zenika-Formation' + (name ? '-' + name : '') + '-Slides',
+	        recursive: true
+	    }
+	}
     });
 
+    grunt.loadTasks(__dirname + '/node_modules/grunt-sed/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-connect/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-watch/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-clean/tasks');
@@ -99,7 +108,7 @@ module.exports = function (grunt) {
     grunt.registerTask('package', ['clean:dist', 'copy:dist']);
 
 
-    grunt.registerTask('displaySlides', ['connect:server', 'watch']);
+    grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch']);
 
     grunt.registerTask('generateCahierExercice', function () {
         var done = this.async();
