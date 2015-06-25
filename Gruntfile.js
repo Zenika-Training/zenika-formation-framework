@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 livereload: 32729
             },
             content: {
-                files: ['Slides/*.md', 'Slides/slides.json']
+                files: ['Slides/**/*.md', 'Slides/slides.json']
             },
             ressources: {
                 files: 'Slides/ressources/**'
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                             "app.yaml"
                         ]
                     },
-					{
+          {
                         expand: true,
                         dot: true,
                         cwd: "PDF",
