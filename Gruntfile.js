@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                             "app.yaml"
                         ]
                     },
-          {
+                    {
                         expand: true,
                         dot: true,
                         cwd: "PDF",
@@ -87,14 +87,14 @@ module.exports = function (grunt) {
                 ]
             }
         },
-	sed: {
-	    dist: {
-                path: 'node_modules/zenika-formation-framework/index.html',
-	        pattern: 'ZNK_FORMATION_NAME',
-	        replacement: 'Zenika-Formation' + (name ? '-' + name : '') + '-Slides',
-	        recursive: true
-	    }
-	}
+        sed: {
+            dist: {
+                    path: 'node_modules/zenika-formation-framework/index.html',
+                pattern: 'ZNK_FORMATION_NAME',
+                replacement: 'Zenika-Formation' + (name ? '-' + name : '') + '-Slides',
+                recursive: true
+            }
+        }
     });
 
     grunt.loadTasks(__dirname + '/node_modules/grunt-sed/tasks');
