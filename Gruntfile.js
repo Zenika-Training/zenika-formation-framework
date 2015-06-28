@@ -89,7 +89,7 @@ module.exports = function (grunt) {
         },
         sed: {
             dist: {
-                    path: 'node_modules/zenika-formation-framework/index.html',
+                path: 'node_modules/zenika-formation-framework/index.html',
                 pattern: 'ZNK_FORMATION_NAME',
                 replacement: 'Zenika-Formation' + (name ? '-' + name : '') + '-Slides',
                 recursive: true
