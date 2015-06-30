@@ -199,6 +199,10 @@ body {
   background-size: 100%;
 }
 
+.reveal section.page-title ul {
+  margin-top: 620px;
+}
+
 .reveal section.page-questions {
   background: transparent center center no-repeat url('./images/questions.png');
   background-size: 30%;
