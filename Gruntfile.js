@@ -79,10 +79,18 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        //cwd: ".",
                         cwd: "node_modules/zenika-formation-framework",
                         dest: "<%= dist %>/",
-                        src: ["index.html", "styleCahierExercice.css", "reveal/**", "node_modules/reveal.js/**"]
+                        src: [
+                            "index.html",
+                            "styleCahierExercice.css",
+                            "reveal/**",
+                            "node_modules/reveal.js/css/reveal.min.css",
+                            "node_modules/reveal.js/lib/js/head.min.js",
+                            "node_modules/reveal.js/js/reveal.min.js",
+                            "node_modules/reveal.js/css/print/pdf.css",
+                            "node_modules/reveal.js/plugin/**"
+                            ]
                     }
                 ]
             }
@@ -94,6 +102,18 @@ module.exports = function (grunt) {
                 replacement: 'Zenika-Formation' + (name ? '-' + name : '') + '-Slides',
                 recursive: true
             }
+        },
+        filerev: {
+            markdown: { src: 'dist/**/*.md' },
+            ressources: {src: 'dist/ressources/**'}
+        },
+        filerev_replace: {
+            options: {
+                assets_root: 'dist'
+            },
+            compiled_assets: {
+                src: ['dist/slides.json', 'dist/**/*.md']
+            }
         }
     });
 
@@ -102,11 +122,10 @@ module.exports = function (grunt) {
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-watch/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-clean/tasks');
     grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-copy/tasks');
+    grunt.loadTasks(__dirname + '/node_modules/grunt-filerev/tasks');
+    grunt.loadTasks(__dirname + '/node_modules/grunt-filerev-replace/tasks');
 
-
-    //TODO: 'rev'
-    grunt.registerTask('package', ['clean:dist', 'copy:dist']);
-
+    grunt.registerTask('package', ['sed', 'pdf', 'clean:dist', 'copy:dist', 'filerev', 'filerev_replace']);
 
     grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch']);
 

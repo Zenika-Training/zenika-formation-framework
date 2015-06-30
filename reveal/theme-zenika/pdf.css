@@ -6,6 +6,12 @@ body {
   size: A4 landscape;
 }
 
+@media print {
+  .page-title ul {
+    display: none;
+  }
+}
+
 .reveal .slides section section {
   height: 210mm !important;
   min-height: 210mm !important;
