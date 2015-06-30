@@ -1,5 +1,19 @@
-﻿0.3.3:
-  date: 2015-04-03
+0.3.5:
+  date: 2015-06-30
+  changes:
+    - feat(slides): augmentation de la profondeur du scan des md des slides
+    - feat(slides): Point d'entrée pour la personnalisation du style (CSS)
+    - feat(slides): Pouvoir désactiver la coloration syntaxique dans les blocs de code
+    - feat(slides): Titre HTML "dynamique"
+    - feat(cahier): Paragraphes justifié.
+    - fix(cahier): correction des bug avec des 'alt' des <img>
+    - chore(grunt): package with rev
+0.3.4:
+  date: 2015-03-12
+  changes:
+    - ajout des pdf dans le 'grunt package'
+0.3.3:
+  date: 2015-03-04
   changes:
    - test de déploiement continue
 0.3.1:
