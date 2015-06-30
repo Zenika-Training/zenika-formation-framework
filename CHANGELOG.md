@@ -2,11 +2,11 @@
   date: 2015-06-30
   changes:
     - feat(slides): augmentation de la profondeur du scan des md des slides
-    - feat(slides): Point d'entrée pour la personnalisation du style (CSS)
-    - feat(slides): Pouvoir désactiver la coloration syntaxique dans les blocs de code
-    - feat(slides): Titre HTML "dynamique"
-    - feat(cahier): Paragraphes justifié.
-    - fix(cahier): correction des bug avec des 'alt' des <img>
+    - feat(slides): point d'entrée pour la personnalisation du style (CSS)
+    - feat(slides): pouvoir désactiver la coloration syntaxique dans les blocs de code
+    - feat(slides): titre HTML "dynamique"
+    - feat(cahier): paragraphes justifié.
+    - fix(cahier): correction des bugs avec des 'alt' des <img>
     - chore(grunt): package with rev
 0.3.4:
   date: 2015-03-12
