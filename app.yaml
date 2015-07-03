@@ -1,0 +1,61 @@
+application: FORMATION_DEPLOY_NAME
+version: FORMATION_DEPLOY_VERSION
+runtime: python27
+api_version: 1
+threadsafe: true
+
+default_expiration: "30d"
+
+handlers:
+#re-direct to index.html
+- url: /
+  static_files: index.html
+  upload: index.html
+  expiration: "0d 5m"
+  login: required
+
+ # re-direct to index.html
+- url: /index.html(.*)
+  static_files: index.html
+  upload: index.html(.*)
+  expiration: "0d 5m"
+  login: required
+
+# re-direct to slides.html
+- url: /slides.html(.*)
+  static_files: slides.html
+  upload: slides.html(.*)
+  expiration: "0d 5m"
+  login: required
+
+- url: /(.*\.md)
+  static_files: \1
+  upload: (.*\.md)
+  mime_type: text/x-markdown
+  login: required
+
+- url: /(.*\.pdf)
+  static_files: \1
+  upload: (.*\.pdf)
+  login: required
+
+- url: /(.*\.ttf)
+  static_files: \1
+  upload: (.*\.ttf)
+  mime_type: application/x-font-ttf
+
+- url: /(.*\.json)
+  static_files: \1
+  upload: (.*\.json)
+  mime_type: application/json
+  expiration: "0d 1m"
+
+- url: /(.*\.yaml)
+  static_files: \1
+  upload: (.*\.yaml)
+  mime_type: text/x-yaml
+
+#access the static resources in the root director
+- url: /(.*)
+  static_files: \1
+  upload: (.*)
