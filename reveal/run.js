@@ -48,6 +48,7 @@
       backgroundTransition: 'fade',
       rollingLinks: true,
       slideNumber: false,
+      mouseWheel: true,
       margin: 0,
       maxScale: 2.0,
       width: 1124,
