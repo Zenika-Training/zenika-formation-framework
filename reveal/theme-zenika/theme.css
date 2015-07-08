@@ -152,6 +152,10 @@ body {
   margin: 0.8em 0 0 0;
 }
 
+.reveal li li {
+  margin:0.3em 0 0 0;
+}
+
 .reveal code {
   color: #b30c37;
 }
