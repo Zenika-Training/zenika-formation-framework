@@ -175,7 +175,7 @@ module.exports = function (grunt) {
       yamlVersion: {
         path: [frameworkPath + '/app.yaml'],
         pattern: 'FORMATION_DEPLOY_VERSION',
-        replacement: configFormation.version.replace(/\./g, '-'),
+        replacement: configFormation.config.deploy.version.replace(/\./g, '-'),
         recursive: true
       }
     },
@@ -253,7 +253,7 @@ module.exports = function (grunt) {
           return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
         })
         .replace(/\{Titre-Formation}/g, function () {
-          return name;
+          return configFormation.name;
         })
         + '\n';
         this.queue(out);
