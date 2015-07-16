@@ -1,26 +1,37 @@
 @font-face {
   font-family: 'Roboto';
-  src: url('fonts/Roboto-Regular.ttf') format('truetype');
+  src: url('fonts/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto Light';
-  src: url('fonts/Roboto-Light.ttf') format('truetype');
+  src: url('fonts/Roboto/Roboto-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: "Architect's Daughter";
-  src: url('fonts/ArchitectsDaughter.ttf') format('truetype');
+  src: url('fonts/ArchitectsDaughter/ArchitectsDaughter.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans Bold';
+  src: url("fonts/Open_sans/OpenSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'OpenSans Regular';
+  src: url("fonts/Open_sans/OpenSans-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: 'Inconsolata';
-  src: url('fonts/Inconsolata-Regular.ttf') format('truetype');
+  src: url("fonts/Inconsolata/Inconsolata-Regular.ttf") format("truetype");
 }
 
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
+
 body {
   background: white;
 }
@@ -42,11 +53,11 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 40px;
+  padding: 0 70px;
 }
 
 .reveal .slides section section {
-  margin-left: -40px;
+  margin-left: -70px;
 }
 
 .reveal.overview .slides section {
@@ -76,8 +87,8 @@ body {
 }
 
 .reveal .slides table th, .reveal .slides table td {
-  padding: 0px 10px
-;}
+  padding: 0px 10px;
+}
 
 .reveal .slides table {
   margin: 15px 0;
@@ -105,27 +116,27 @@ body {
 /*********************************************
  * HEADERS
  *********************************************/
+
 .reveal h1 {
-  margin-top: 35%;
-  width: 400px;
+  margin-top: 5%;
+  width: 600px;
   float: right;
   color: #b30c37;
   text-align: right;
-  font-family: 'Roboto Light', sans-serif;
-  font-size: 40px;
+  font-family: "OpenSans Bold", sans-serif;
+  font-size: 50px;
   line-height: 130%;
 }
 
 .reveal h2,
 .reveal h3 {
-  margin: 0 -40px 10px -40px;
+  margin: 0 -40px;
   padding: 40px 0 40px 20px;
-  background: #b30c37;
-  color: white;
+  color: #b30c37;
   text-align: left;
-  font-family: 'Roboto', sans-serif;
-  font-size: 32px;
-  font-weight: normal;
+  font-family: "OpenSans Bold", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
   letter-spacing: 0.02em;
 }
 
@@ -137,6 +148,7 @@ body {
 /*********************************************
  * CONTENT
  *********************************************/
+
 .reveal em {
   color: #b30c37;
   font-style: normal;
@@ -168,6 +180,7 @@ body {
 /*********************************************
  * CODE
  *********************************************/
+
 .reveal pre {
   margin: 15px 0;
   box-shadow: none;
@@ -190,13 +203,30 @@ body {
   line-height: normal;
 }
 
+.slides section > section:not([class^=page-]) {
+  background: transparent no-repeat url('./images/slide-background.svg');
+}
+
 /*********************************************
  * SPECIALS PAGES
  *********************************************/
 
 .reveal section.page-title {
-  background: transparent center center no-repeat url('./images/title-background.png');
-  background-size: 100%;
+  background: #af1e3a no-repeat url('./images/slide-background-white.svg');
+}
+
+.reveal section.page-title h1 {
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  color: white;
+  float: none;
+}
+.reveal section.page-title h1 img {
+  display: inline-block;
 }
 
 .reveal section.page-title ul {
@@ -204,83 +234,91 @@ body {
 }
 
 .reveal section.page-questions {
-  background: transparent center center no-repeat url('./images/questions.png');
-  background-size: 30%;
+  background: transparent center center no-repeat url('./images/questions.svg');
+  background-size: 60%;
 }
 
-.reveal section.page-tp1 {
-  background: transparent center center no-repeat url('./images/tp1.png');
-  background-size: 50%;
+.reveal section [class^="page-tp"]:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 80%;
+}
+.reveal section [class^="page-tp"] {
+  background: transparent center center no-repeat url('./images/tp.svg');
+  background-size: 60%;
+
+}
+.reveal section [class^="page-tp"]:after {
+  display: inline-block;
+  color: #af1e3a;
+  font-size: 50px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
 }
 
-.reveal section.page-tp2 {
-  background: transparent center center no-repeat url('./images/tp2.png');
-  background-size: 50%;
+.reveal section.page-tp1:after {
+  content: "TP1";
 }
-
-.reveal section.page-tp3 {
-  background: transparent center center no-repeat url('./images/tp3.png');
-  background-size: 50%;
+.reveal section.page-tp2:after {
+  content: "TP2";
 }
-
-.reveal section.page-tp4 {
-  background: transparent center center no-repeat url('./images/tp4.png');
-  background-size: 50%;
+.reveal section.page-tp3:after {
+  content: "TP3";
 }
-
-.reveal section.page-tp5 {
-  background: transparent center center no-repeat url('./images/tp5.png');
-  background-size: 50%;
+.reveal section.page-tp4:after {
+  content: "TP4";
 }
-
-.reveal section.page-tp6 {
-  background: transparent center center no-repeat url('./images/tp6.png');
-  background-size: 50%;
+.reveal section.page-tp5:after {
+  content: "TP5";
 }
-
-.reveal section.page-tp7 {
-  background: transparent center center no-repeat url('./images/tp7.png');
-  background-size: 50%;
+.reveal section.page-tp6:after {
+  content: "TP6";
 }
-
-.reveal section.page-tp8 {
-  background: transparent center center no-repeat url('./images/tp8.png');
-  background-size: 50%;
+.reveal section.page-tp7:after {
+  content: "TP7";
 }
-
-.reveal section.page-tp9 {
-  background: transparent center center no-repeat url('./images/tp9.png');
-  background-size: 50%;
+.reveal section.page-tp8:after {
+  content: "TP8";
 }
-
-.reveal section.page-tp10 {
-  background: transparent center center no-repeat url('./images/tp10.png');
-  background-size: 50%;
+.reveal section.page-tp9:after {
+  content: "TP9";
 }
-
-.reveal section.page-tp11 {
-  background: transparent center center no-repeat url('./images/tp11.png');
-  background-size: 50%;
+.reveal section.page-tp10:after {
+  content: "TP10";
 }
-
-.reveal section.page-tp12 {
-  background: transparent center center no-repeat url('./images/tp12.png');
-  background-size: 50%;
+.reveal section.page-tp11:after {
+  content: "TP11";
 }
-
-.reveal section.page-tp13 {
-  background: transparent center center no-repeat url('./images/tp13.png');
-  background-size: 50%;
+.reveal section.page-tp12:after {
+  content: "TP12";
 }
-
-.reveal section.page-tp14 {
-  background: transparent center center no-repeat url('./images/tp14.png');
-  background-size: 50%;
+.reveal section.page-tp13:after {
+  content: "TP13";
 }
-
-.reveal section.page-tp15 {
-  background: transparent center center no-repeat url('./images/tp15.png');
-  background-size: 50%;
+.reveal section.page-tp14:after {
+  content: "TP14";
+}
+.reveal section.page-tp15:after {
+  content: "TP15";
+}
+.reveal section.page-tp16:after {
+  content: "TP16";
+}
+.reveal section.page-tp17:after {
+  content: "TP17";
+}
+.reveal section.page-tp18:after {
+  content: "TP18";
+}
+.reveal section.page-tp19:after {
+  content: "TP19";
+}
+.reveal section.page-tp20:after {
+  content: "TP20";
 }
 
 .reveal section.page-demo {
@@ -291,6 +329,7 @@ body {
 /*********************************************
  * LINKS
  *********************************************/
+
 .reveal a:not(.image) {
   color: #b30c37;
   text-decoration: none;
@@ -319,6 +358,7 @@ body {
 /*********************************************
  * IMAGES
  *********************************************/
+
 .reveal section img {
   display: block;
   margin: 30px auto;
@@ -339,6 +379,7 @@ body {
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
+
 .reveal .controls div.navigate-left,
 .reveal .controls div.navigate-left.enabled {
   border-right-color: #b30c37;
@@ -378,6 +419,7 @@ body {
 /*********************************************
  * PROGRESS BAR
  *********************************************/
+
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
 }
@@ -394,6 +436,7 @@ body {
 /*********************************************
  * FOOTER (style copied from reveal.css -> .reveal .slide-number)
  *********************************************/
+
 .reveal footer, .reveal .slides footer {
   position: absolute;
   bottom: 15px;
@@ -422,6 +465,7 @@ body {
  * ALERTS (taken from bootstrap)
  * Copyright (c) 2011-2014 Twitter, Inc
  *********************************************/
+
 .reveal .alert {
   padding: 15px;
   margin-bottom: 20px;

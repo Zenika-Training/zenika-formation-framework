@@ -13,9 +13,9 @@ body {
 }
 
 .reveal .slides section section {
-  height: 209mm !important;
-  min-height: 209mm !important;
-  padding: 0 40px !important;
+  height: 210mm !important;
+  min-height: 210mm !important;
+  padding: 0 70px !important;
 }
 
 .reveal .slides section {
@@ -27,8 +27,7 @@ body {
 }
 
 .reveal .slides pre > code {
-  overflow: hidden !important;
-  font-family: 'Inconsolata', monospace !important;
+  font-family: "Inconsolata" !important;
 }
 
 .reveal .master-toc-return {
@@ -36,9 +35,9 @@ body {
 }
 
 .reveal em {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .reveal strong {
-    font-weight: bold;
+	font-weight: bold;
 }

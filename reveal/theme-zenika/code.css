@@ -1,8 +1,8 @@
 pre code {
   display: block; 
   padding: 0.5em;
-  background: white;
-  color: black;
+  background: #FBFBFB;
+  color: #111;
 }
 
 pre .keyword,
