@@ -1,18 +1,24 @@
 # zenika/formations
-FROM digitallyseamless/nodejs-bower-grunt:0.12
+FROM node:0.10
 MAINTAINER Vincent Demeester <vincent.demeester@zenika.com>
 
-# Define the workdir for the rest of the commands
-WORKDIR /data
+# Install zenika-formation-framework (ZFF)
+ENV ZFF_INSTALL_DIR /data/node_modules/zenika-formation-framework
+RUN mkdir -p $ZFF_INSTALL_DIR
+COPY package.json $ZFF_INSTALL_DIR/
+WORKDIR $ZFF_INSTALL_DIR
+RUN npm install
 
-# Make grunt as entrypoint
-ENTRYPOINT ["grunt"]
+# Copy content from ZFF git repository
+COPY . $ZFF_INSTALL_DIR/
 
-# When making child images, run these commands
-# The idea is to build an images for the formation that contains
-# the needed libraries
-ONBUILD COPY package.json /data/
-ONBUILD RUN npm install
-ONBUILD COPY . /data/
-
+# Install grunt
 WORKDIR /data/
+RUN npm install grunt@^0.4.5 
+RUN npm install -g grunt-cli
+
+# Ports 8000 (slides) and 32729 (live reload) should be exposed
+EXPOSE 8000 32729
+
+# Make grunt the default command
+CMD ["grunt"]
