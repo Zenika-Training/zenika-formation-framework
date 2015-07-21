@@ -1,6 +1,6 @@
 # zenika/formations
 FROM node:0.10
-MAINTAINER Vincent Demeester <vincent.demeester@zenika.com>
+MAINTAINER Zenika <http://www.zenika.com>
 
 # Install zenika-formation-framework (ZFF)
 ENV ZFF_INSTALL_DIR /data/node_modules/zenika-formation-framework
