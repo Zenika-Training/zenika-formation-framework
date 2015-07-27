@@ -52,6 +52,28 @@ module.exports = function (grunt) {
       dist: ['dist/**']
     },
     copy: {
+      rename: {
+        files: [
+          {
+            expand: true, 
+            cwd: frameworkPath, 
+            src: 'index.html', 
+            dest: 'slides.html', 
+            rename: function(dest, src) {
+              return frameworkPath + '/' + dest;
+            }
+          },
+          {
+            expand: true, 
+            cwd: frameworkPath, 
+            src: 'summary.html', 
+            dest: 'index.html', 
+            rename: function(dest, src) {
+              return frameworkPath + '/' + dest;
+            }
+          }
+        ]
+      },
       dist: {
         files: [
         {
@@ -198,7 +220,7 @@ module.exports = function (grunt) {
         },
         src: 'dist/reveal/run*.js'
       }
-    }
+    },
   });
 
   grunt.loadTasks(__dirname + '/node_modules/grunt-sed/tasks');
