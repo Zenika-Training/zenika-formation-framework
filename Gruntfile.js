@@ -89,7 +89,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: "PDF",
-          dest: "<%= dist %>",
+          dest: "<%= dist %>/pdf",
           src: [
           "*.pdf"
           ]
