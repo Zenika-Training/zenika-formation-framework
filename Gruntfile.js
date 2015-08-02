@@ -2,6 +2,8 @@
  * formations ont leur propres Gruntfile qui vient charger les tâches contenues dans celui-ci via un `loadTasks`.
  */
 
+var path = require("path");
+
 module.exports = function (grunt) {
 
   var port = grunt.option('port') || 8000;
@@ -9,13 +11,13 @@ module.exports = function (grunt) {
   var prefixPdfName = 'Zenika-Formation' + (configFormation.name ? '-' + configFormation.name : '');
   var slidesPdfName = prefixPdfName + '-Slides';
   var cahierExercicesPdfName = prefixPdfName + '-CahierExercices';
-  var frameworkPath = 'node_modules/zenika-formation-framework';
+  var frameworkPath = __dirname;
 
   grunt.initConfig({
     dist: "dist",
     connect: {
       options: {
-        base: [__dirname, 'node_modules/', 'Slides/'],
+        base: [frameworkPath, 'node_modules/', 'Slides/'],
         hostname: '0.0.0.0',
         port: port
       },
@@ -43,13 +45,13 @@ module.exports = function (grunt) {
         files: 'Slides/ressources/**'
       },
       reveal: {
-        files: __dirname + '/reveal/**'
+        files: path.join(frameworkPath, 'reveal/**')
       },
       index: {
-        files: __dirname + '/index.html'
+        files: path.join(frameworkPath, 'index.html')
       },
       gruntfile: {
-        files: __dirname + '/Gruntfile.js'
+        files: path.join(frameworkPath, 'Gruntfile.js')
       }
     },
     clean: {
@@ -64,7 +66,7 @@ module.exports = function (grunt) {
             src: 'index.html',
             dest: 'slides.html',
             rename: function(dest, src) {
-              return frameworkPath + '/' + dest;
+              return path.join(frameworkPath, dest);
             }
           },
           {
@@ -73,7 +75,7 @@ module.exports = function (grunt) {
             src: 'summary.html',
             dest: 'index.html',
             rename: function(dest, src) {
-              return frameworkPath + '/' + dest;
+              return path.join(frameworkPath, dest);
             }
           }
         ]
@@ -157,49 +159,49 @@ module.exports = function (grunt) {
     },
     sed: {
       dist: {
-        path: [frameworkPath + '/index.html'],
+        path: [path.join(frameworkPath, 'index.html')],
         pattern: 'FORMATION_NAME',
         replacement: slidesPdfName,
         recursive: true
       },
       description: {
-        path: [frameworkPath + '/summary.html'],
+        path: [path.join(frameworkPath, 'summary.html')],
         pattern: 'FORMATION_DESCRIPTION',
         replacement: configFormation.description,
         recursive: true
       },
       slidesPdf: {
-        path: [frameworkPath + '/summary.html'],
+        path: [path.join(frameworkPath, 'summary.html')],
         pattern: 'FORMATION_SLIDES',
         replacement: slidesPdfName,
         recursive: true
       },
       cahierExercicesPdf: {
-        path: [frameworkPath + '/summary.html'],
+        path: [path.join(frameworkPath, 'summary.html')],
         pattern: 'FORMATION_CAHIER',
         replacement: cahierExercicesPdfName,
         recursive: true
       },
       github: {
-        path: [frameworkPath + '/summary.html'],
+        path: [path.join(frameworkPath, 'summary.html')],
         pattern: 'FORMATION_GITHUB',
         replacement: configFormation.repository.url,
         recursive: true
       },
       homepage: {
-        path: [frameworkPath + '/summary.html'],
+        path: [path.join(frameworkPath, 'summary.html')],
         pattern: 'FORMATION_HOMEPAGE',
         replacement: configFormation.homepage,
         recursive: true
       },
       yamlName: {
-        path: [frameworkPath + '/app.yaml'],
+        path: [path.join(frameworkPath, 'app.yaml')],
         pattern: 'FORMATION_DEPLOY_NAME',
         replacement: configFormation.config.deploy.name,
         recursive: true
       },
       yamlVersion: {
-        path: [frameworkPath + '/app.yaml'],
+        path: [path.join(frameworkPath, 'app.yaml')],
         pattern: 'FORMATION_DEPLOY_VERSION',
         replacement: configFormation.config.deploy.version.replace(/\./g, '-'),
         recursive: true
@@ -244,19 +246,19 @@ module.exports = function (grunt) {
     var done = this.async();
 
     var markdownpdf = require("markdown-pdf"),
-    path = require('path'),
     split = require("split"),
     through = require("through"),
     duplexer = require("duplexer");
 
+    var parts;
     try {
-      var parts = require(path.resolve(__dirname, "..", "..", "CahierExercices", "parts.json"));
+      parts = require("./CahierExercices/parts.json");
     }
     catch (e) {
       parts = ["Cahier.md"];
     }
-    var cssPath = path.resolve(__dirname, "styleCahierExercice.css");
-    var highlightPath = path.resolve(__dirname, "reveal", "theme-zenika", "code.css");
+    var cssPath = path.resolve(frameworkPath, "styleCahierExercice.css");
+    var highlightPath = path.resolve(frameworkPath, "reveal/theme-zenika/code.css");
     var pdfPath = 'PDF/' + cahierExercicesPdfName + '.pdf';
     var files = parts.map(function (f) {
       return "CahierExercices/" + f;
@@ -295,7 +297,7 @@ module.exports = function (grunt) {
       highlightCssPath: highlightPath,
       preProcessMd: preprocessMd,
       remarkable: {html: true},
-      cwd: __dirname
+      cwd: frameworkPath
     })
     .concat.from(files)
     .to(pdfPath,
@@ -310,12 +312,11 @@ module.exports = function (grunt) {
     var
     childProcess = require('child_process'),
     phantomjs = require('phantomjs'),
-    path = require('path'),
     binPath = phantomjs.path,
     done = grunt.task.current.async()
     ;
 
-    var fullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
+    var fullPath = path.join(frameworkPath, 'reveal/plugins/print-pdf/print-pdf.js');
 
     var childArgs = [
     fullPath,
