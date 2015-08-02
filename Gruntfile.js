@@ -310,18 +310,18 @@ module.exports = function (grunt) {
 
   grunt.registerTask('doGenerateSlidesPDF', function () {
     var
-    childProcess = require('child_process'),
-    phantomjs = require('phantomjs'),
-    binPath = phantomjs.path,
-    done = grunt.task.current.async()
+      childProcess = require('child_process'),
+      phantomjs = require('phantomjs'),
+      binPath = phantomjs.path,
+      done = grunt.task.current.async()
     ;
 
     var fullPath = path.join(frameworkPath, 'reveal/plugins/print-pdf/print-pdf.js');
 
     var childArgs = [
-    fullPath,
-    'http://localhost:' + port + '?print-pdf',
-    'PDF/' + slidesPdfName + '.pdf'
+      fullPath,
+      'http://localhost:' + port + '?print-pdf',
+      'PDF/' + slidesPdfName + '.pdf'
     ];
 
     childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
