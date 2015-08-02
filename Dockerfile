@@ -12,13 +12,8 @@ RUN npm install
 # Copy content from ZFF git repository
 COPY . $ZFF_INSTALL_DIR/
 
-# Install grunt
-WORKDIR /data/
-RUN npm install grunt@^0.4.5 
-RUN npm install -g grunt-cli
-
 # Ports 8000 (slides) and 32729 (live reload) should be exposed
 EXPOSE 8000 32729
 
 # Make grunt the default command
-CMD ["grunt"]
+CMD ["npm", "start"]
