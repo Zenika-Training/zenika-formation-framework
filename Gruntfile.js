@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     dist: "dist",
     connect: {
       options: {
-        base: [__dirname, 'Slides/'],
+        base: [__dirname, 'node_modules/', 'Slides/'],
         hostname: '0.0.0.0',
         port: port
       },
@@ -227,13 +227,13 @@ module.exports = function (grunt) {
     },
   });
 
-  grunt.loadTasks(__dirname + '/node_modules/grunt-sed/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-connect/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-watch/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-clean/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-contrib-copy/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-filerev/tasks');
-  grunt.loadTasks(__dirname + '/node_modules/grunt-filerev-replace/tasks');
+  grunt.loadNpmTasks('grunt-sed');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-filerev-replace');
 
   grunt.registerTask('package', ['sed', 'pdf', 'clean:dist', 'copy:dist', 'filerev-all']);
   grunt.registerTask('filerev-all', ['filerev', 'filerev_replace']);
