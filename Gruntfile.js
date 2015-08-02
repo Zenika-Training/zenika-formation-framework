@@ -1,3 +1,7 @@
+/* Ce Gruntfile ne contient pas le build pour le framework mais pour les formations basées sur le framework. Les
+ * formations ont leur propres Gruntfile qui vient charger les tâches contenues dans celui-ci via un `loadTasks`.
+ */
+
 module.exports = function (grunt) {
 
   var port = grunt.option('port') || 8000;
@@ -55,19 +59,19 @@ module.exports = function (grunt) {
       rename: {
         files: [
           {
-            expand: true, 
-            cwd: frameworkPath, 
-            src: 'index.html', 
-            dest: 'slides.html', 
+            expand: true,
+            cwd: frameworkPath,
+            src: 'index.html',
+            dest: 'slides.html',
             rename: function(dest, src) {
               return frameworkPath + '/' + dest;
             }
           },
           {
-            expand: true, 
-            cwd: frameworkPath, 
-            src: 'summary.html', 
-            dest: 'index.html', 
+            expand: true,
+            cwd: frameworkPath,
+            src: 'summary.html',
+            dest: 'index.html',
             rename: function(dest, src) {
               return frameworkPath + '/' + dest;
             }
