@@ -8,7 +8,7 @@ module.exports = function (grunt) {
   var frameworkPath = 'node_modules/zenika-formation-framework';
 
   grunt.initConfig({
-    dist: "dist",
+    dist: 'dist',
     connect: {
       options: {
         base: [__dirname, 'Slides/'],
@@ -55,20 +55,20 @@ module.exports = function (grunt) {
       rename: {
         files: [
           {
-            expand: true, 
-            cwd: frameworkPath, 
-            src: 'index.html', 
-            dest: 'slides.html', 
-            rename: function(dest, src) {
+            expand: true,
+            cwd: frameworkPath,
+            src: 'index.html',
+            dest: 'slides.html',
+            rename: function (dest, src) {
               return frameworkPath + '/' + dest;
             }
           },
           {
-            expand: true, 
-            cwd: frameworkPath, 
-            src: 'summary.html', 
-            dest: 'index.html', 
-            rename: function(dest, src) {
+            expand: true,
+            cwd: frameworkPath,
+            src: 'summary.html',
+            dest: 'index.html',
+            rename: function (dest, src) {
               return frameworkPath + '/' + dest;
             }
           }
@@ -76,78 +76,78 @@ module.exports = function (grunt) {
       },
       dist: {
         files: [
-        {
-          expand: true,
-          dot: true,
-          cwd: "Slides",
-          dest: "<%= dist %>",
-          src: [
-          "./**"
-          ]
-        },
-        {
-          expand: true,
-          dot: true,
-          cwd: "PDF",
-          dest: "<%= dist %>/pdf",
-          src: [
-          "*.pdf"
-          ]
-        },
-        {
-          expand: true,
-          cwd: frameworkPath,
-          dest: "<%= dist %>",
-          src: [
-          "styleCahierExercice.css",
-          "reveal/**",
-          "node_modules/reveal.js/css/reveal.min.css",
-          "node_modules/reveal.js/lib/js/head.min.js",
-          "node_modules/reveal.js/js/reveal.min.js",
-          "node_modules/reveal.js/css/print/pdf.css",
-          "node_modules/reveal.js/plugin/**"
-          ]
-        },
-        {
-          expand: true,
-          cwd: frameworkPath,
-          flatten: true,
-          dest: "<%= dist %>",
-          src: [
-          "reveal/theme-zenika/favicon.png"
-          ]
-        },
-        {
-          expand: true,
-          cwd: frameworkPath,
-          dest: "<%= dist %>",
-          src: [
-          "index.html"
-          ],
-          rename: function(dest, src) {
-            return dest + "/slides.html";
+          {
+            expand: true,
+            dot: true,
+            cwd: 'Slides',
+            dest: '<%= dist %>',
+            src: [
+              './**'
+            ]
+          },
+          {
+            expand: true,
+            dot: true,
+            cwd: 'PDF',
+            dest: '<%= dist %>/pdf',
+            src: [
+              '*.pdf'
+            ]
+          },
+          {
+            expand: true,
+            cwd: frameworkPath,
+            dest: '<%= dist %>',
+            src: [
+              'styleCahierExercice.css',
+              'reveal/**',
+              'node_modules/reveal.js/css/reveal.min.css',
+              'node_modules/reveal.js/lib/js/head.min.js',
+              'node_modules/reveal.js/js/reveal.min.js',
+              'node_modules/reveal.js/css/print/pdf.css',
+              'node_modules/reveal.js/plugin/**'
+            ]
+          },
+          {
+            expand: true,
+            cwd: frameworkPath,
+            flatten: true,
+            dest: '<%= dist %>',
+            src: [
+              'reveal/theme-zenika/favicon.png'
+            ]
+          },
+          {
+            expand: true,
+            cwd: frameworkPath,
+            dest: '<%= dist %>',
+            src: [
+              'index.html'
+            ],
+            rename: function (dest, src) {
+              return dest + '/slides.html';
+            }
+          },
+          {
+            expand: true,
+            cwd: frameworkPath,
+            dest: '<%= dist %>',
+            src: [
+              'summary.html'
+            ],
+            rename: function (dest, src) {
+              return dest + '/index.html';
+            }
+          },
+          {
+            expand: true,
+            dot: true,
+            cwd: frameworkPath,
+            dest: '<%= dist %>',
+            src: [
+              'app.yaml'
+            ]
           }
-        },
-        {
-          expand: true,
-          cwd: frameworkPath,
-          dest: "<%= dist %>",
-          src: [
-          "summary.html"
-          ],
-          rename: function(dest, src) {
-            return dest + "/index.html";
-          }
-        },
-        {
-          expand: true,
-          dot: true,
-          cwd: frameworkPath,
-          dest: "<%= dist %>",
-          src: [
-          "app.yaml"
-          ]
-        }
         ]
       }
     },
@@ -202,7 +202,7 @@ module.exports = function (grunt) {
       }
     },
     filerev: {
-      markdown: { src: 'dist/**/*.md' },
+      markdown: {src: 'dist/**/*.md'},
       ressources: {src: 'dist/ressources/**'},
       slidesJson: {src: 'dist/slides.json'},
       runJs: {src: 'dist/reveal/run.js'}
@@ -239,28 +239,28 @@ module.exports = function (grunt) {
   grunt.registerTask('generateCahierExercice', function () {
     var done = this.async();
 
-    var markdownpdf = require("markdown-pdf"),
-    path = require('path'),
-    split = require("split"),
-    through = require("through"),
-    duplexer = require("duplexer");
+    var markdownpdf = require('markdown-pdf'),
+      path = require('path'),
+      split = require('split'),
+      through = require('through'),
+      duplexer = require('duplexer');
 
     try {
-      var parts = require(path.resolve(__dirname, "..", "..", "CahierExercices", "parts.json"));
+      var parts = require(path.resolve(__dirname, '..', '..', 'CahierExercices', 'parts.json'));
     }
     catch (e) {
-      parts = ["Cahier.md"];
+      parts = ['Cahier.md'];
     }
-    var cssPath = path.resolve(__dirname, "styleCahierExercice.css");
-    var highlightPath = path.resolve(__dirname, "reveal", "theme-zenika", "code.css");
+    var cssPath = path.resolve(__dirname, 'styleCahierExercice.css');
+    var highlightPath = path.resolve(__dirname, 'reveal', 'theme-zenika', 'code.css');
     var pdfPath = 'PDF/' + cahierExercicesPdfName + '.pdf';
     var files = parts.map(function (f) {
-      return "CahierExercices/" + f;
+      return 'CahierExercices/' + f;
     });
 
-    console.log("Using CSS file", cssPath);
-    console.log("Using highlightPath file", highlightPath);
-    console.log("Using md sources files", files);
+    console.log('Using CSS file', cssPath);
+    console.log('Using highlightPath file', highlightPath);
+    console.log('Using md sources files', files);
 
 
     function preprocessMd() {
@@ -268,16 +268,16 @@ module.exports = function (grunt) {
 
       var transform = through(function (data) {
         var out = data
-        .replace(/!\[([^\]]*)][\s]*\(([^\)]*)\)/g, function (match, p1, p2, src) {
-          return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
-        })
-        .replace(/<img (.*)src=["|']([^\"\']*)["|'](.*)>/g, function (match, p1, p2, p3, src) {
-          return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
-        })
-        .replace(/\{Titre-Formation}/g, function () {
-          return configFormation.name;
-        })
-        + '\n';
+            .replace(/!\[([^\]]*)][\s]*\(([^\)]*)\)/g, function (match, p1, p2, src) {
+              return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
+            })
+            .replace(/<img (.*)src=["|']([^\"\']*)["|'](.*)>/g, function (match, p1, p2, p3, src) {
+              return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
+            })
+            .replace(/\{Titre-Formation}/g, function () {
+              return configFormation.name;
+            })
+          + '\n';
         this.queue(out);
       });
 
@@ -293,30 +293,30 @@ module.exports = function (grunt) {
       remarkable: {html: true},
       cwd: __dirname
     })
-    .concat.from(files)
-    .to(pdfPath,
+      .concat.from(files)
+      .to(pdfPath,
       function (v) {
-        console.log("PDF généré: " + pdfPath);
+        console.log('PDF généré: ' + pdfPath);
         done();
       }
-      );
+    );
   });
 
   grunt.registerTask('doGenerateSlidesPDF', function () {
     var
-    childProcess = require('child_process'),
-    phantomjs = require('phantomjs'),
-    path = require('path'),
-    binPath = phantomjs.path,
-    done = grunt.task.current.async()
-    ;
+      childProcess = require('child_process'),
+      phantomjs = require('phantomjs'),
+      path = require('path'),
+      binPath = phantomjs.path,
+      done = grunt.task.current.async()
+      ;
 
     var fullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
 
     var childArgs = [
-    fullPath,
-    'http://localhost:' + port + '?print-pdf',
-    'PDF/' + slidesPdfName + '.pdf'
+      fullPath,
+      'http://localhost:' + port + '?print-pdf',
+      'PDF/' + slidesPdfName + '.pdf'
     ];
 
     childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
