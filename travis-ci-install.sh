@@ -1,4 +1,3 @@
-npm install;
 if [[ ! -f google-cloud-sdk/path.bash.inc ]]; then
   echo "Downloading google cloud sdk";
   wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.zip;
