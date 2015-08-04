@@ -1,5 +1,3 @@
-application: FORMATION_DEPLOY_NAME
-version: FORMATION_DEPLOY_VERSION
 runtime: python27
 api_version: 1
 threadsafe: true
