@@ -188,7 +188,7 @@ module.exports = function (grunt) {
         replacement: configFormation.homepage,
         recursive: true
       },
-      travisDeployName: {
+      gcloudDeployName: {
         path: [frameworkPath + '/gcloud-deploy.sh'],
         pattern: 'FORMATION_DEPLOY_NAME',
         replacement: configFormation.config.deploy.name,
