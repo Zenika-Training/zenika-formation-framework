@@ -59,7 +59,7 @@ module.exports = function (grunt) {
             cwd: frameworkPath,
             src: 'index.html',
             dest: 'slides.html',
-            rename: function (dest, src) {
+            rename: function (dest) {
               return frameworkPath + '/' + dest;
             }
           },
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
             cwd: frameworkPath,
             src: 'summary.html',
             dest: 'index.html',
-            rename: function (dest, src) {
+            rename: function (dest) {
               return frameworkPath + '/' + dest;
             }
           }
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
             src: [
               'index.html'
             ],
-            rename: function (dest, src) {
+            rename: function (dest) {
               return dest + '/slides.html';
             }
           },
@@ -135,7 +135,7 @@ module.exports = function (grunt) {
             src: [
               'summary.html'
             ],
-            rename: function (dest, src) {
+            rename: function (dest) {
               return dest + '/index.html';
             }
           },
@@ -214,7 +214,7 @@ module.exports = function (grunt) {
         },
         src: 'dist/reveal/run*.js'
       }
-    },
+    }
   });
 
   grunt.loadTasks(__dirname + '/node_modules/grunt-sed/tasks');
@@ -262,7 +262,7 @@ module.exports = function (grunt) {
 
       var transform = through(function (data) {
         var out = data
-            .replace(/!\[([^\]]*)][\s]*\(([^\)]*)\)/g, function (match, p1, p2, src) {
+            .replace(/!\[([^\]]*)][\s]*\(([^\)]*)\)/g, function (match, p1, p2) {
               return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
             })
             .replace(/<img (.*)src=["|']([^\"\']*)["|'](.*)>/g, function (match, p1, p2, p3, src) {
@@ -289,7 +289,7 @@ module.exports = function (grunt) {
     })
       .concat.from(files)
       .to(pdfPath,
-      function (v) {
+      function () {
         console.log('PDF généré: ' + pdfPath);
         done();
       }
