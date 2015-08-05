@@ -145,7 +145,7 @@ module.exports = function (grunt) {
             cwd: frameworkPath,
             dest: '<%= dist %>',
             src: [
-              'app.yaml', 'travis-ci-deploy.sh', '.travis.yml'
+              'app.yaml'
             ]
           }
         ]
@@ -189,7 +189,7 @@ module.exports = function (grunt) {
         recursive: true
       },
       travisDeployName: {
-        path: [frameworkPath + '/travis-ci-deploy.sh'],
+        path: [frameworkPath + '/gcloud-deploy.sh'],
         pattern: 'FORMATION_DEPLOY_NAME',
         replacement: configFormation.config.deploy.name,
         recursive: true
