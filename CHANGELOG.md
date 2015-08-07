@@ -1,3 +1,8 @@
+0.4.0:
+- date: 2015-08-07
+-changes:
+  - ajout d'un Dockerfile
+  - Déploiement continue opérationnel
 0.3.5:
 - date: 2015-06-30
 - changes:
