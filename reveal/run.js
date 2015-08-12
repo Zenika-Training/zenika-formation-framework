@@ -68,7 +68,7 @@
               ]
             };
             
-            var allCodeTags = document.getElementsByTagName('code');
+            var allCodeTags = document.querySelectorAll( 'pre code' );
             for(var i=0; i < allCodeTags.length; i++) {
               hljs.highlightBlock(allCodeTags[i]);
             }
