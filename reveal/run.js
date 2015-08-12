@@ -26,8 +26,8 @@
       JSON.parse(req.responseText).forEach(function (path) {
         var chapter = document.createElement('section');
         chapter.dataset.markdown = path;
-        chapter.dataset.vertical = '^\r?\n\r?\n\r?\n';
-        chapter.dataset.notes = '^Notes :';
+        chapter.dataset.separatorVertical = '^\r?\n\r?\n\r?\n';
+        chapter.dataset.separatorNotes = '^Notes :';
         slideContainer.appendChild(chapter);
       });
       callback();
@@ -60,13 +60,6 @@
         { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
-            // Define Plain Text language for Console output
-            hljs.LANGUAGES.text = {
-              keywords: '',
-              contains: [
-                hljs.QUOTE_STRING_MODE
-              ]
-            };
             
             var allCodeTags = document.querySelectorAll( 'pre code' );
             for(var i=0; i < allCodeTags.length; i++) {

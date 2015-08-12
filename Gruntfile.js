@@ -26,6 +26,14 @@ module.exports = function (grunt) {
         options: {
           keepalive: true
         }
+      },
+      dist: {
+        options: {
+          base: 'dist/',
+          hostname: '0.0.0.0',
+          port: 8888,
+          keepalive: true
+        }
       }
     },
     watch: {
@@ -101,9 +109,9 @@ module.exports = function (grunt) {
             src: [
               'styleCahierExercice.css',
               'reveal/**',
-              'node_modules/reveal.js/css/reveal.min.css',
+              'node_modules/reveal.js/css/reveal.css',
               'node_modules/reveal.js/lib/js/head.min.js',
-              'node_modules/reveal.js/js/reveal.min.js',
+              'node_modules/reveal.js/js/reveal.js',
               'node_modules/reveal.js/css/print/pdf.css',
               'node_modules/reveal.js/plugin/**'
             ]
