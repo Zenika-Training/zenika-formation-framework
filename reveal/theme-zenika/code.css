@@ -1,108 +1,122 @@
-pre code {
-  display: block; 
-  padding: 0.5em;
-  background: white;
-  color: black;
+/*
+
+Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+pre .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    color: #000;
+    background: #fff;
+    -webkit-text-size-adjust: none;
 }
 
-pre .keyword,
-pre .tag,
-pre .css .class,
-pre .css .id,
-pre .lisp .title,
-pre .nginx .title,
-pre .request,
-pre .status,
-pre .clojure .attribute {
-  color: #b30c37;
+pre .hljs-subst,
+pre .hljs-title,
+pre .json .hljs-value {
+    font-weight: normal;
+    color: #000;
 }
 
-pre .django .template_tag,
-pre .django .variable,
-pre .django .filter .argument {
-  color: black;
+pre .hljs-comment,
+pre .diff .hljs-header {
+    color: #808080;
+    font-style: italic;
 }
 
-pre .number,
-pre .date {
-  color: #C4490D;
+pre .hljs-annotation,
+pre .hljs-decorator,
+pre .hljs-preprocessor,
+pre .hljs-pragma,
+pre .hljs-doctype,
+pre .hljs-pi,
+pre .hljs-chunk,
+pre .hljs-shebang,
+pre .apache .hljs-cbracket,
+pre .hljs-prompt,
+pre .http .hljs-title {
+    color: #808000;
 }
 
-pre .dos .envvar,
-pre .dos .stream,
-pre .variable,
-pre .apache .sqbracket {
-  color: black;
+pre .hljs-tag,
+pre .hljs-pi {
+    background: #efefef;
 }
 
-pre .dos .flow,
-pre .diff .change,
-pre .python .exception,
-pre .python .built_in,
-pre .literal,
-pre .tex .special {
-  color: black;
+pre .hljs-tag .hljs-title,
+pre .hljs-id,
+pre .hljs-attr_selector,
+pre .hljs-pseudo,
+pre .hljs-literal,
+pre .hljs-keyword,
+pre .hljs-hexcolor,
+pre .css .hljs-function,
+pre .ini .hljs-title,
+pre .css .hljs-class,
+pre .hljs-list .hljs-keyword,
+pre .nginx .hljs-title,
+pre .tex .hljs-command,
+pre .hljs-request,
+pre .hljs-status {
+    font-weight: bold;
+    color: #000080;
 }
 
-pre .diff .chunk,
-pre .subst {
-  color: black;
+pre .hljs-attribute,
+pre .hljs-rule .hljs-keyword,
+pre .hljs-number,
+pre .hljs-date,
+pre .hljs-regexp,
+pre .tex .hljs-special {
+    font-weight: bold;
+    color: #0000ff;
 }
 
-pre .dos .keyword,
-pre .python .decorator,
-pre .title,
-pre .haskell .type,
-pre .diff .header,
-pre .ruby .class .parent,
-pre .apache .tag,
-pre .nginx .built_in,
-pre .tex .command,
-pre .prompt {
-  color: black;
+pre .hljs-number,
+pre .hljs-regexp {
+    font-weight: normal;
 }
 
-pre .dos .winutils,
-pre .ruby .symbol,
-pre .ruby .symbol .string,
-pre .ruby .string {
-  color: black;
+pre .hljs-string,
+pre .hljs-value,
+pre .hljs-filter .hljs-argument,
+pre .css .hljs-function .hljs-params,
+pre .apache .hljs-tag {
+    color: #008000;
+    font-weight: bold;
 }
 
-pre .diff .deletion,
-pre .string,
-pre .tag .value,
-pre .preprocessor,
-pre .built_in,
-pre .sql .aggregate,
-pre .javadoc,
-pre .smalltalk .class,
-pre .smalltalk .localvars,
-pre .smalltalk .array,
-pre .css .rules .value,
-pre .attr_selector,
-pre .pseudo,
-pre .apache .cbracket,
-pre .tex .formula {
-  color: #4BAC0C;
+pre .hljs-symbol,
+pre .ruby .hljs-symbol .hljs-string,
+pre .hljs-char,
+pre .tex .hljs-formula {
+    color: #000;
+    background: #d0eded;
+    font-style: italic;
 }
 
-pre .shebang,
-pre .diff .addition,
-pre .comment,
-pre .java .annotation,
-pre .template_comment,
-pre .pi,
-pre .doctype {
-  color: #098458;
+pre .hljs-doctag {
+    text-decoration: underline;
 }
 
-pre .coffeescript .javascript,
-pre .javascript .xml,
-pre .tex .formula,
-pre .xml .javascript,
-pre .xml .vbscript,
-pre .xml .css,
-pre .xml .cdata {
-  opacity: 0.5;
+pre .hljs-variable,
+pre .hljs-envvar,
+pre .apache .hljs-sqbracket,
+pre .nginx .hljs-built_in,
+pre .hljs-name {
+    color: #660e7a;
+}
+
+pre .hljs-addition {
+    background: #baeeba;
+}
+
+pre .hljs-deletion {
+    background: #ffc8bd;
+}
+
+pre .diff .hljs-change {
+    background: #bccff9;
 }
