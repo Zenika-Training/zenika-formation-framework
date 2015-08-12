@@ -26,6 +26,14 @@ module.exports = function (grunt) {
         options: {
           keepalive: true
         }
+      },
+      dist: {
+        options: {
+          base: 'dist/',
+          hostname: '0.0.0.0',
+          port: 8888,
+          keepalive: true
+        }
       }
     },
     watch: {
