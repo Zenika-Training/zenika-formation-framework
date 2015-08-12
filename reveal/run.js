@@ -21,7 +21,7 @@
 
   function insertSlides(callback) {
     var req = new XMLHttpRequest();
-    req.onload = function (e) {
+    req.onload = function () {
       var slideContainer = document.querySelector('.slides');
       JSON.parse(req.responseText).forEach(function (path) {
         var chapter = document.createElement('section');
@@ -66,8 +66,12 @@
               contains: [
                 hljs.QUOTE_STRING_MODE
               ]
+            };
+            
+            var allCodeTags = document.getElementsByTagName('code');
+            for(var i=0; i < allCodeTags.length; i++) {
+              hljs.highlightBlock(allCodeTags[i]);
             }
-            hljs.initHighlightingOnLoad();
           }
         },
         { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
