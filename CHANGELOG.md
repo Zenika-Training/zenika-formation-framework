@@ -1,6 +1,11 @@
+0.4.1:
+- date: 2015-08-13
+- changes:
+  - fix : syntax highlighting sur appEngine
+
 0.4.0:
 - date: 2015-08-07
--changes:
+- changes:
   - ajout d'un Dockerfile
   - Déploiement continue opérationnel
 
