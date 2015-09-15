@@ -1,6 +1,12 @@
+0.4.1:
+- date: 2015-09-15
+- changes:
+  - reveal reste en v2
+  - fix : syntax highlighting sur appEngine
+
 0.4.0:
 - date: 2015-08-07
--changes:
+- changes:
   - ajout d'un Dockerfile
   - Déploiement continue opérationnel
 0.3.5:
