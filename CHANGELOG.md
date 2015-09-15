@@ -1,5 +1,5 @@
 0.5.0:
-- date: 2015-09-15
+- date: todo
 - changes:
   - passage à reveal v3
 
