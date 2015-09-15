@@ -1,7 +1,12 @@
-0.4.1:
+0.5.0:
+- date: todo
+- changes:
+  - passage à reveal v3
+
+0.4.1
 - date: 2015-08-13
 - changes:
-  - fix : syntax highlighting sur appEngine
+  - fix highlightning
 
 0.4.0:
 - date: 2015-08-07
