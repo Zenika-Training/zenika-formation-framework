@@ -2,7 +2,11 @@
 - date: 2015-09-15
 - changes:
   - passage à reveal v3
-  - fix highlighting
+
+0.4.1
+- date: 2015-08-13
+- changes:
+  - fix highlightning
 
 0.4.0:
 - date: 2015-08-07
