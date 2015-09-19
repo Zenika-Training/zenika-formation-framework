@@ -56,11 +56,11 @@
 
       // Optional libraries used to extend on reveal.js
       dependencies: [
-        { src: 'node_modules/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: 'node_modules/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'node_modules/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: 'node_modules/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
-            
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() {
+
             var allCodeTags = document.querySelectorAll( 'pre code' );
             for(var i=0; i < allCodeTags.length; i++) {
               hljs.highlightBlock(allCodeTags[i]);
