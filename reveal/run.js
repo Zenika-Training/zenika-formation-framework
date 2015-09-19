@@ -14,7 +14,7 @@
       linkElement.href = stylesheet;
       document.getElementsByTagName('head')[0].appendChild(linkElement);
     }
-    addStylesheetWhenUrlMatches(/print-pdf/gi, '/node_modules/reveal.js/css/print/pdf.css');
+    addStylesheetWhenUrlMatches(/print-pdf/gi, '/reveal.js/css/print/pdf.css');
     addStylesheetWhenUrlMatches(/print-pdf/gi, '/reveal/theme-zenika/pdf.css');
     addStylesheetWhenUrlMatches(/edition/gi, '/reveal/theme-zenika/edition.css');
   }
@@ -67,8 +67,8 @@
             }
           }
         },
-        { src: 'node_modules/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-        { src: 'node_modules/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition: function() { return !!document.body.classList; } }
       ]
     });

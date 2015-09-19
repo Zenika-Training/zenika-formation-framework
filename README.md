@@ -1,4 +1,4 @@
-﻿# Zenika Formation Framework
+# Zenika Formation Framework
 
 Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Zenika/Formation--Modele)
 
@@ -17,7 +17,6 @@ Le framework des formations est un package npm à part entière. Il est importé
 Comme il s'agit d'un package privé (il n'est pas publié sur http://npmjs.org), sa déclaration dans le fichier package.json de chaque formation se fait de la manière suivante :
 ```javascript
   "dependencies": {
-    "grunt": "^0.4.5",
     "zenika-formation-framework": "git+ssh://git@github.com:Zenika/Formation--Framework.git#tags/X.Y.Z"
   }
 ```
@@ -31,8 +30,8 @@ Le code de Reveal, ainsi que le thème utilisé, se trouve dans le framework de 
 
 ### Architecture
 
-Pour une formation F donnée, 
-le framework se trouve dans le répertoire `./node_modules/zenika-formation-framework/`, le contenu des slides dans `./Slides/`. 
+Pour une formation F donnée,
+le framework se trouve dans le répertoire `./node_modules/zenika-formation-framework/`, le contenu des slides dans `./Slides/`.
 Le serveur utilise 2 baseDir qui sont `./node_modules/zenika-formation-framework/`, puis `./Slides/`.
 Ainsi, il est possible d'utiliser des ressources dans le contenu des slides (dans les fichiers `./Slides/*.md`) avec un chemin relatif simple.
 
