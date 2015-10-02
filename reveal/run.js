@@ -102,7 +102,7 @@
           chapter.dataset.notes = '^Notes :';
           slideContainer.appendChild(chapter);
         });
-        resolve(request.response);
+        resolve(slideContainer);
       };
 
       request.onerror = function (event) {
