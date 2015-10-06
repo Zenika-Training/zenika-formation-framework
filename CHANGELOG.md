@@ -1,3 +1,8 @@
+0.4.2:
+- date: 2015-10-05
+- changes:
+  - ajout de Gulp pour gérer NPM3
+
 0.4.1:
 - date: 2015-09-15
 - changes:
