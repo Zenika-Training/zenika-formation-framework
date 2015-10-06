@@ -4,7 +4,7 @@
     revealTheme: '/reveal/theme-zenika/'
   };
 
-  isFileExist('reveal.js/css/reveal.min.css')
+  fileExists('reveal.js/css/reveal.min.css')
     .then(function () {
       // NPM 3
       config.revealModule = 'reveal.js/';
@@ -115,7 +115,7 @@
     });
   }
 
-  function isFileExist(url) {
+  function fileExists(url) {
     return new Promise(function (resolve, reject) {
       var request = new XMLHttpRequest();
       request.onload = function () {
