@@ -10,6 +10,7 @@
   "private": "true",
   "dependencies": {
     "browser-sync": "^2.9.8",
+    "del": "^2.0.2",
     "duplexer": "^0.1.1",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
