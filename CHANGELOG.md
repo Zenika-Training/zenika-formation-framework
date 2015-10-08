@@ -1,3 +1,8 @@
+0.4.3:
+- date: 2015-10-08
+- changes:
+  - correction de la version de Reveal.js
+
 0.4.2:
 - date: 2015-10-05
 - changes:
@@ -22,7 +27,7 @@
   - feat(slides): pouvoir désactiver la coloration syntaxique dans les blocs de code
   - feat(slides): titre HTML "dynamique"
   - feat(cahier): paragraphes justifié.
-  - fix(cahier): correction des bugs avec des 'alt' des <img>
+  - fix(cahier): correction des bugs avec des 'alt' des `<img>`
   - chore(grunt): package with rev
 
 0.3.4:
