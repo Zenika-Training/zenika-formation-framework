@@ -1,5 +1,5 @@
 # zenika/formations
-FROM node:0.10
+FROM node:4.2
 MAINTAINER Zenika <http://www.zenika.com>
 
 # Install zenika-formation-framework (ZFF)
@@ -14,7 +14,7 @@ COPY . $ZFF_INSTALL_DIR/
 
 # Install grunt
 WORKDIR /data/
-RUN npm install grunt@^0.4.5 
+RUN npm install grunt@^0.4.5
 RUN npm install -g grunt-cli
 
 # Ports 8000 (slides) and 32729 (live reload) should be exposed
