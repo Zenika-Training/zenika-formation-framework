@@ -309,10 +309,13 @@ module.exports = function (grunt) {
 
     var revealFullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
 
+    var debugMode = false;
+
     var childArgs = [
       revealFullPath,
       'http://localhost:' + port + '?print-pdf',
-      'PDF/' + slidesPdfName + '.pdf'
+      'PDF/' + slidesPdfName + '.pdf',
+      debugMode
     ];
 
     childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
