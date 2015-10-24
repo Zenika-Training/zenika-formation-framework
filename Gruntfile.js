@@ -18,7 +18,10 @@ module.exports = function (grunt) {
       server: {
         options: {
           livereload: 32729,
-          open: 'http://localhost:' + port
+          open: {
+            target: 'http://localhost:' + port,
+            appName: 'chrome'
+          }
         }
       },
       print: {},
