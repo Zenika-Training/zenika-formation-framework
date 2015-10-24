@@ -8,16 +8,19 @@
     .then(function () {
       // NPM 3
       config.revealModule = 'reveal.js/';
+      console.log('NPM 3 detected.');
     })
     .catch(function () {
       // NPM 2
       config.revealModule = 'node_modules/reveal.js/';
+      console.log('NPM 2 detected.');
+    })
+    .then(function(){
+      Promise.all([
+        applyPrintStylesheets(),
+        insertSlides()
+      ]).then(runReveal);
     });
-
-  Promise.all([
-    applyPrintStylesheets(),
-    insertSlides()
-  ]).then(runReveal);
 
   function runReveal() {
     // Full list of configuration options available here:
@@ -90,18 +93,36 @@
     return new Promise(function (resolve, reject) {
 
       var request = new XMLHttpRequest();
-      request.responseType = 'json';
+      var jsonSupport = false;
+      try {
+        request.responseType = 'json';
+        jsonSupport = true;
+      } catch (error) {
+        console.error(error);
+      }
+
+      console.log('Insert slides');
 
       request.onload = function () {
         var slideContainer = document.querySelector('.slides');
 
-        request.response.forEach(function (path) {
+        function slideLoader(path){
+          console.log('path:', path);
           var chapter = document.createElement('section');
           chapter.dataset.markdown = path;
           chapter.dataset.vertical = '^\r?\n\r?\n\r?\n';
           chapter.dataset.notes = '^Notes :';
           slideContainer.appendChild(chapter);
-        });
+        }
+
+        console.log('start');
+        if (jsonSupport) {
+          request.response.forEach(slideLoader);
+        } else {
+          JSON.parse(request.responseText).forEach(slideLoader);
+        }
+        console.log('end');
+
         resolve(slideContainer);
       };
 
@@ -127,6 +148,7 @@
         }
       };
       request.onerror = function (event) {
+        reject('File inacessible');
         console.log(event);
       };
       request.open('GET', url);
