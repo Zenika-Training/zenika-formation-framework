@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'Roboto';
-  src: url("fonts/Roboto-Regular.ttf") format("truetype");
+  src: url('fonts/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto Light';
-  src: url("fonts/Roboto-Light.ttf") format("truetype");
+  src: url('fonts/Roboto-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: "Architect's Daughter";
-  src: url("fonts/ArchitectsDaughter.ttf") format("truetype");
+  src: url('fonts/ArchitectsDaughter.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Inconsolata';
-  src: url("fonts/Inconsolata-Regular.ttf") format("truetype");
+  src: url('fonts/Inconsolata-Regular.ttf') format('truetype');
 }
 
 /*********************************************
@@ -26,7 +26,7 @@ body {
 }
 
 .reveal {
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
   font-size: 28px;
   font-weight: normal;
   color: #333333;
@@ -54,7 +54,7 @@ body {
 }
 
 .reveal .slides h2:after {
-  content: url("images/zenika-logo-small.png");
+  content: url('images/zenika-logo-small.png');
   float: right;
   margin-top: -14px;
   margin-right: 20px;
@@ -92,7 +92,7 @@ body {
 .reveal .slides table tr th {
   border: 1px solid #AAAAAA;
   border-bottom: 5px solid #b30c37;
-  //background-color: #AAAAAA;
+/*  background-color: #AAAAAA;*/
   color : #000000;
 }
 
@@ -111,7 +111,7 @@ body {
   float: right;
   color: #b30c37;
   text-align: right;
-  font-family: "Roboto Light", sans-serif;
+  font-family: 'Roboto Light', sans-serif;
   font-size: 40px;
   line-height: 130%;
 }
@@ -123,7 +123,7 @@ body {
   background: #b30c37;
   color: white;
   text-align: left;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-weight: normal;
   letter-spacing: 0.02em;
@@ -185,7 +185,7 @@ body {
 .reveal pre > code, .reveal .code {
   color: black;
   max-height: none;
-  font-family: "Inconsolata", monospace;
+  font-family: 'Inconsolata', monospace;
   font-size: 24px;
   line-height: normal;
 }
@@ -195,7 +195,7 @@ body {
  *********************************************/
 
 .reveal section.page-title {
-  background: transparent center center no-repeat url('images/title-background.png');
+  background: transparent center center no-repeat url('./images/title-background.png');
   background-size: 100%;
 }
 
