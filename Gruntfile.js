@@ -19,8 +19,8 @@ module.exports = function (grunt) {
         options: {
           livereload: 32729,
           open: {
-            target: 'http://localhost:' + port,
-            appName: 'chrome'
+            target: 'http://localhost:' + port
+            // appName: 'chrome' // commenté temps de faire la bonne mécanique cross-OS
           }
         }
       },
