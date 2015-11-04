@@ -8,42 +8,97 @@
  */
 
 // html2pdf.js
-var page = new WebPage();
-var system = require('system');
+(function (phantom) {
+  'use strict';
 
-page.viewportSize = {
+  var page = new WebPage();
+  var system = require('system');
+  var fs = require('fs');
+
+  page.viewportSize = {
     width: 1600,
     height: 900
-};
+  };
 
-page.paperSize = {
+  page.paperSize = {
     format: 'A4',
     orientation: 'landscape'
-};
+  };
 
-var revealFile = system.args[1] || 'index.html?print-pdf';
-var slideFile = system.args[2] || 'slides.pdf';
+  // Debug mode
+  var debug = system.args[3] === 'true';
+  console.log('debug:', !!debug);
 
-if (slideFile.match(/\.pdf$/gi) === null) {
+  // PDF path and file name
+  var slideFile = system.args[2] || 'slides.pdf';
+  if (slideFile.match(/\.pdf$/gi) === null) {
     slideFile += '.pdf';
-}
+  }
 
-console.log('Printing PDF...');
-console.log('Pour un meilleur rendu : https://github.com/hakimel/reveal.js#pdf-export');
+  console.log('Printing PDF...', Date.now());
+  console.log('Pour un meilleur rendu : https://github.com/hakimel/reveal.js#pdf-export');
 
-page.open(revealFile, function (status) {
+  var urlPrint = system.args[1] || 'index.html?print-pdf';
+  page.open(urlPrint, function (status) {
     // hacked for being sure that content is loaded before printing
     if (status !== 'success') {
-        console.log('Unable to load the address!');
-        phantom.exit();
+      console.log('Unable to load the address!');
+      phantom.exit();
     } else {
-        setTimeout(function () {
-            //console.log(page.content);
+      setTimeout(function () {
 
-            page.render(slideFile, {format: 'pdf', quality: '100'});
-            phantom.exit();
+        if (debug) {
+          // console.log(page.content);
+          console.log('Save HTML content.');
+          fs.write(slideFile + '.source.html', page.content, 'w');
+          console.log('Take a scrennshot.');
+          page.render(slideFile + '.screenshot.png');
+        }
 
-        }, 1000); // Change timeout as required to allow sufficient time
+        console.log('Save PDF.', Date.now());
+        page.render(slideFile, {
+          format: 'pdf',
+          quality: '100'
+        });
+
+        phantom.exit();
+      }, 10000); // Change timeout as required to allow sufficient time
     }
-});
+  });
 
+  // TO HELP DEBUG
+  page.onConsoleMessage = function (msg) {
+    if (debug) {
+      console.log('Phantom console: ', msg);
+    }
+  };
+  page.onResourceError = function (resourceError) {
+    if (debug) {
+      console.log('Unable to load resource: ', JSON.stringify(resourceError, null, 2));
+    }
+  };
+  page.onResourceReceived = function (response) {
+    if (debug) {
+      if (response.stage === "end") {
+        console.log('Received:', response.id, Date.now(), response.stage, response.url);
+      }
+      // console.log('Received:', JSON.stringify(response, null, 2));
+    }
+  };
+  page.onResourceRequested = function (requestData, networkRequest) {
+    if (debug) {
+      console.log('Requested:', requestData.id, Date.now(), requestData.url);
+      // console.log('Requested:', JSON.stringify(requestData, null, 2));
+      // console.log('networkRequest:', networkRequest);
+    }
+  };
+  page.onResourceTimeout = function (request) {
+    console.log('Resource Timeout:', JSON.stringify(request, null, 2));
+  };
+  page.onLoadFinished = function (status) {
+    if (debug) {
+      console.log('Load finished. Status:', status);
+    }
+  };
+
+})(phantom);

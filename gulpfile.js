@@ -69,8 +69,9 @@ gulp.task('serve', ['build'], function () {
   browserSync.init({
     port: fwkConfig.port,
     server: {
-      baseDir: [fwkConfig.outputPath, './Slides']
-    }
+      baseDir: [fwkConfig.outputPath, './Slides'],
+    },
+    browser: ['chrome']
   });
 
   gulp.watch([

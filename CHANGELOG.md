@@ -1,3 +1,16 @@
+0.4.5:
+- date: 2015-10-26
+- changes:
+  - feat: ouverture forcée dans Chrome
+  - fix: correction de la génération des PDF avec PhantomJS 1.x
+  - fix: ajout d'un polyfill qui ne s'active que si les `Promise` n'existe pas dans le browser
+  - feat: ajout d'un mode debug pour les PDF
+  - feat: screenshot & HTML sauvegardé en mode debug
+  - fix: augmentation du temps d'attente avant la création du PDF  avec PhantomJS 1.x (1000ms -> 10000ms)
+0.4.4:
+- date: 2015-10-18
+- changes:
+  - correction pour GAE
 0.4.3:
 - date: 2015-10-08
 - changes:

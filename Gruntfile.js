@@ -18,7 +18,10 @@ module.exports = function (grunt) {
       server: {
         options: {
           livereload: 32729,
-          open: 'http://localhost:' + port
+          open: {
+            target: 'http://localhost:' + port
+            // appName: 'chrome' // commenté temps de faire la bonne mécanique cross-OS
+          }
         }
       },
       print: {},
@@ -70,8 +73,7 @@ module.exports = function (grunt) {
             rename: function (dest) {
               return frameworkPath + '/' + dest;
             }
-          },
-          {
+          }, {
             expand: true,
             cwd: frameworkPath,
             src: 'summary.html',
@@ -92,8 +94,7 @@ module.exports = function (grunt) {
             src: [
               './**'
             ]
-          },
-          {
+          }, {
             expand: true,
             dot: true,
             cwd: 'PDF',
@@ -101,8 +102,7 @@ module.exports = function (grunt) {
             src: [
               '*.pdf'
             ]
-          },
-          {
+          }, {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
@@ -115,8 +115,7 @@ module.exports = function (grunt) {
               'node_modules/reveal.js/css/print/pdf.css',
               'node_modules/reveal.js/plugin/**'
             ]
-          },
-          {
+          }, {
             expand: true,
             cwd: frameworkPath,
             flatten: true,
@@ -124,8 +123,7 @@ module.exports = function (grunt) {
             src: [
               'reveal/theme-zenika/favicon.png'
             ]
-          },
-          {
+          }, {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
@@ -135,8 +133,7 @@ module.exports = function (grunt) {
             rename: function (dest) {
               return dest + '/slides.html';
             }
-          },
-          {
+          }, {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
@@ -146,8 +143,7 @@ module.exports = function (grunt) {
             rename: function (dest) {
               return dest + '/index.html';
             }
-          },
-          {
+          }, {
             expand: true,
             dot: true,
             cwd: frameworkPath,
@@ -305,20 +301,21 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('doGenerateSlidesPDF', function () {
-    var
-      childProcess = require('child_process'),
-      phantomjs = require('phantomjs'),
-      path = require('path'),
-      binPath = phantomjs.path,
-      done = grunt.task.current.async()
-      ;
+    var childProcess = require('child_process');
+    var phantomjs = require('phantomjs');
+    var path = require('path');
+    var binPath = phantomjs.path;
+    var done = grunt.task.current.async();
 
-    var fullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
+    var revealFullPath = path.join(__dirname, 'reveal/plugins/print-pdf/print-pdf.js');
+
+    var debugMode = false;
 
     var childArgs = [
-      fullPath,
+      revealFullPath,
       'http://localhost:' + port + '?print-pdf',
-      'PDF/' + slidesPdfName + '.pdf'
+      'PDF/' + slidesPdfName + '.pdf',
+      debugMode
     ];
 
     childProcess.execFile(binPath, childArgs, function (error, stdout, stderr) {
