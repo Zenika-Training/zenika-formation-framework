@@ -48,3 +48,7 @@ Les exercices de TP sont écrits également en markdown, puis convertis en PDF g
 
 Le contenu du cahier de TP doit se trouver dans `./CahierExercices/Cahier.md`, ou dans plusieurs fichiers `.md` distincts. Dans ce dernier cas, un fichier `parts.json` doit indexer les fichier `.md` sur le même principe que pour les slides.
 Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styleCahierExercice.css`
+
+## Troobleshooting
+
+Dans le [wiki](https://github.com/Zenika/Formation--Framework/wiki/Toubleshooting)
