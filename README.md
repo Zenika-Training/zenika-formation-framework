@@ -51,4 +51,4 @@ Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styl
 
 ## Troobleshooting
 
-Dans le [wiki](https://github.com/Zenika/Formation--Framework/wiki/Toubleshooting)
+Dans le [wiki](https://github.com/Zenika/Formation--Framework/wiki/Troubleshooting)
