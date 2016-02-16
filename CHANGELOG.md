@@ -1,3 +1,8 @@
+0.4.6:
+- date: 2016-02-16
+- changes:
+  - Montée de version de node dans Dockerfile
+  - Fix: Script de déploiement avec dernière version de GCloud 
 0.4.5:
 - date: 2015-10-26
 - changes:
