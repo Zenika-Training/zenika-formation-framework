@@ -282,6 +282,12 @@ body {
   background: transparent center center no-repeat url('./images/tp15.png');
   background-size: 50%;
 }
+
+.reveal section.page-demo {
+  background: transparent center center no-repeat url('./images/demo.png');
+  background-size: 50%;
+}
+
 /*********************************************
  * LINKS
  *********************************************/
