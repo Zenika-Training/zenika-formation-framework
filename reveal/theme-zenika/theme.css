@@ -456,3 +456,11 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
 }
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  hyphens: none;
+}
+
+.reveal h1 {
+	width: 500px;
+}
