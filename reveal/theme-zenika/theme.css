@@ -462,9 +462,3 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
 }
-
-/** incusion de font-awesome avec reveal : cf https://github.com/FortAwesome/Font-Awesome/pull/2131 */
-.reveal .fa {
-  font-family: 'FontAwesome';
-  font-style: normal;
-}
