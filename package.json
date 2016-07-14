@@ -1,13 +1,13 @@
 {
   "name": "zenika-formation-framework",
-  "version": "0.4.5",
-  "description": "Framework for displaying slides and building pdf's for Zenika Training",
+  "version": "0.4.7",
+  "description": "Framework for displaying slides and building PDFs for Zenika Training",
   "author": "Zenika",
   "repository": {
     "type": "git",
     "url": "https://github.com/Zenika/Formation--Framework"
   },
-  "private": "true",
+  "private": true,
   "dependencies": {
     "browser-sync": "^2.9.8",
     "del": "^2.0.2",
