@@ -1,3 +1,13 @@
+1.0.1:
+- date: 2016-07-29
+- changes:
+  - plus de coupure au milieu des mots dans les titres (#112)
+
+1.0.0:
+- date: 2016-07-29
+- changes:
+  - nouveau thème (#37, #120)
+
 0.4.7:
 - date: 2016-07-14
 - changes:
