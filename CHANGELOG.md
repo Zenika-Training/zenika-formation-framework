@@ -1,3 +1,8 @@
+1.0.2:
+- date: 2016-09-30
+- changes:
+  - mise à jour de l'URL du repo dans le readme et le package.json
+
 1.0.1:
 - date: 2016-07-29
 - changes:
