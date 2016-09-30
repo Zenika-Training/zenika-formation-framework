@@ -1,3 +1,9 @@
+1.0.3:
+- date: 2016-09-30
+- changes:
+  - mise à jour de la façon dont on ajoute le framework au package.json d'une formation suite à la publication du
+  framework sur npm
+
 1.0.2:
 - date: 2016-09-30
 - changes:

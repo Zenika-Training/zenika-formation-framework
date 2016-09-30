@@ -14,11 +14,10 @@ Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Ze
 ## Principes
 
 Le framework des formations est un package npm à part entière. Il est importé dans les formations via `npm`.
-Comme il s'agit d'un package privé (il n'est pas publié sur http://npmjs.org), sa déclaration dans le fichier package.json de chaque formation se fait de la manière suivante :
 ```javascript
   "dependencies": {
     "grunt": "^0.4.5",
-    "zenika-formation-framework": "git+ssh://git@github.com:Zenika/zenika-formation-framework.git#tags/X.Y.Z"
+    "zenika-formation-framework": "X.Y.Z"
   }
 ```
 
