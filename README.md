@@ -18,7 +18,7 @@ Comme il s'agit d'un package privé (il n'est pas publié sur http://npmjs.org),
 ```javascript
   "dependencies": {
     "grunt": "^0.4.5",
-    "zenika-formation-framework": "git+ssh://git@github.com:Zenika/Formation--Framework.git#tags/X.Y.Z"
+    "zenika-formation-framework": "git+ssh://git@github.com:Zenika/zenika-formation-framework.git#tags/X.Y.Z"
   }
 ```
 
@@ -51,4 +51,4 @@ Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styl
 
 ## Troobleshooting
 
-Dans le [wiki](https://github.com/Zenika/Formation--Framework/wiki/Troubleshooting)
+Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)

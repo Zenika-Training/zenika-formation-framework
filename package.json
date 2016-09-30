@@ -5,7 +5,7 @@
   "author": "Zenika",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zenika/Formation--Framework"
+    "url": "https://github.com/Zenika/zenika-formation-framework"
   },
   "private": true,
   "dependencies": {
