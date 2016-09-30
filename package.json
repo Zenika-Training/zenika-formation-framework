@@ -7,7 +7,6 @@
     "type": "git",
     "url": "https://github.com/Zenika/zenika-formation-framework"
   },
-  "private": true,
   "dependencies": {
     "browser-sync": "^2.9.8",
     "del": "^2.0.2",
