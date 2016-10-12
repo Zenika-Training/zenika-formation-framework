@@ -518,3 +518,12 @@ body {
   font-family: 'FontAwesome';
   font-style: normal;
 }
+
+/** contournement bug chrome et ff qui affichent un fond noir lors du passage en fullscreen */
+html:-webkit-full-screen-ancestor {
+  background-color: inherit;
+}
+
+html {
+  background-color: #fff !important;
+}
