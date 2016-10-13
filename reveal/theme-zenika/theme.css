@@ -519,7 +519,7 @@ body {
   font-style: normal;
 }
 
-/** contournement bug chrome et ff qui affichent un fond noir lors du passage en fullscreen */
+/** contournement bug chrome et ff qui affichent un fond noir lors du passage en fullscreen : cf https://github.com/hakimel/reveal.js/issues/1386#issuecomment-225379825 */
 html:-webkit-full-screen-ancestor {
   background-color: inherit;
 }
