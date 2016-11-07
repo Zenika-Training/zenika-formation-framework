@@ -28,5 +28,11 @@
     "reveal.js": "^2.6.2",
     "split": "^0.3.3",
     "through": "^2.3.6"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "bin": {
+    "zenika-formation-deploy": "deploy.js"
   }
 }
