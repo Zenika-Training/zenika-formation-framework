@@ -1,3 +1,9 @@
+1.0.4:
+- date: 2016-11-11
+- changes:
+  - Correction fond lors du passage en fullscreen (#126)
+  - fix: lors d'une impression, 1 page sur 2 est blanche, en diminuant la hauteur de la section, le pb est corrigé (#129)
+
 1.0.3:
 - date: 2016-09-30
 - changes:
