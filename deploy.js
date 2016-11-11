@@ -17,6 +17,7 @@ if (!serviceAccount || !currentBranch) {
 fs.writeFileSync(tempKeyFile, process.env.GAE_KEY_FILE_CONTENT)
 try {
   execFileSync('gcloud', ['config', 'set', 'app/use_appengine_api', 'false'])
+  execFileSync('gcloud', ['config', 'set', 'app/promote_by_default', 'false'])
   console.log('Authenticate with', serviceAccount)
   execFileSync('gcloud', ['auth', 'activate-service-account', serviceAccount, '--key-file', tempKeyFile])
   console.log('Deploying to', deployName)
