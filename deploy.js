@@ -16,6 +16,9 @@ if (!serviceAccount || !currentBranch) {
 
 fs.writeFileSync(tempKeyFile, process.env.GAE_KEY_FILE_CONTENT)
 try {
+  console.log('Updating Google Cloud SDK')
+  execFileSync('gcloud', ['--quiet', 'components', 'update', 'app'])
+  console.log('Configuring Google Cloud SDK')
   execFileSync('gcloud', ['config', 'set', 'app/use_appengine_api', 'false'])
   execFileSync('gcloud', ['config', 'set', 'app/promote_by_default', 'false'])
   console.log('Authenticate with', serviceAccount)
