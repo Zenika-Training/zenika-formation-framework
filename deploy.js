@@ -15,6 +15,7 @@ if (require.main === module) {
     process.exit(1)
   }
 
+  execFileSync('gcloud', ['config', 'set', 'app/promote_by_default', 'false'])
   fs.writeFileSync(tempKeyFile, process.env.GAE_KEY_FILE_CONTENT)
   try {
     console.log('Updating Google Cloud SDK')
