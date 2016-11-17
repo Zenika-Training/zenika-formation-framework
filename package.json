@@ -30,7 +30,7 @@
     "through": "^2.3.6"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "bin": {
     "zenika-formation-deploy": "deploy.js"

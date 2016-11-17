@@ -1,3 +1,9 @@
+2.0.0
+- date: 2016-11-17
+- breaking changes:
+  - le déploiement se fait maintenant via le script `zenika-formation-deploy` à la place de `gcloud-dploy.sh`
+    - migration: https://github.com/Zenika/Formation--Modele/pull/112/commits/b5f2f8d5f0e28fe7fd88026ce13a6bdb88445c7b#diff-b9cfc7f2cdf78a7f4b91a753d10865a2
+
 1.0.3:
 - date: 2016-09-30
 - changes:
