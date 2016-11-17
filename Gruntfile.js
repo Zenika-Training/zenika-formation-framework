@@ -213,12 +213,6 @@ module.exports = function (grunt) {
         pattern: 'FORMATION_HOMEPAGE',
         replacement: configFormation.homepage,
         recursive: true
-      },
-      gcloudDeployName: {
-        path: [frameworkPath + '/gcloud-deploy.sh'],
-        pattern: 'FORMATION_DEPLOY_NAME',
-        replacement: configFormation.config.deploy.name,
-        recursive: true
       }
     },
     filerev: {
