@@ -20,7 +20,7 @@ if (require.main === module) {
   try {
     if (!process.argv.includes('--no-gcloud-update')) {
       console.log(`Updating Google Cloud SDK to version ${gcloudSdkVersion}`)
-      execFileSync('gcloud', ['config', 'set', '--scope=installation', 'component_manager/fixed_sdk_version', gcloudSdkVersion])
+      execFileSync('gcloud', ['config', 'set', '--installation', 'component_manager/fixed_sdk_version', gcloudSdkVersion])
       execFileSync('gcloud', ['version'])
       execFileSync('sudo', ['/opt/google-cloud-sdk/bin/gcloud', '--quiet', 'components', 'update'])
       execFileSync('gcloud', ['version'])
@@ -31,7 +31,7 @@ if (require.main === module) {
     console.log('Authenticate with', serviceAccount)
     execFileSync('gcloud', ['auth', 'activate-service-account', serviceAccount, '--key-file', tempKeyFile])
     console.log('Deploying to', deployName)
-    execFileSync('gcloud', ['--project', deployName, 'preview', 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
+    execFileSync('gcloud', ['--project', deployName, 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
   } finally {
     fs.unlinkSync(tempKeyFile)
   }
