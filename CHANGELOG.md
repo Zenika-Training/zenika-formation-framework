@@ -1,8 +1,15 @@
-2.0.0
-- date: 2016-11-17
-- breaking changes:
-  - le déploiement se fait maintenant via le script `zenika-formation-deploy` à la place de `gcloud-dploy.sh`, ce qui corrige les builds rouges systèmatiques (issue #130)
-    - migration: https://github.com/Zenika/Formation--Modele/pull/112/commits/b5f2f8d5f0e28fe7fd88026ce13a6bdb88445c7b#diff-b9cfc7f2cdf78a7f4b91a753d10865a2
+# 2.0.0 (2016-11-17)
+
+## Breaking changes
+
+- Le déploiement se fait maintenant via le script `zenika-formation-deploy` à la place de `gcloud-deploy.sh`, ce qui corrige les builds rouges systèmatiques (issue [#130](https://github.com/Zenika/zenika-formation-framework/issues/130)).
+
+## Migrating
+
+- S'assurer que le build s'exécute sur une version 6 ou supérieure de Node.js, comme [ceci](https://github.com/Zenika/Formation--Modele/commit/0c6e195113eb3f4a85816934dc00cfbc3cbba378). Il est recommandé d'utiliser la dernière LTS (voir http://nodejs.org).
+- Modification de `circle.yml` pour utiliser le nouveau script à la place des anciens, comme [ceci](https://github.com/Zenika/Formation--Modele/pull/112/commits/b5f2f8d5f0e28fe7fd88026ce13a6bdb88445c7b#diff-b9cfc7f2cdf78a7f4b91a753d10865a2).
+
+# Older versions
 
 1.0.3:
 - date: 2016-09-30
