@@ -1,3 +1,9 @@
+# 2.0.1 (2016-11-29)
+
+## Bug fixes
+
+- `Dockerfile` updated to work with changes introduced in 2.0.0.
+
 # 2.0.0 (2016-11-17)
 
 ## Breaking changes
