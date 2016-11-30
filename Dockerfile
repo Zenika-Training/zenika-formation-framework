@@ -1,5 +1,5 @@
 # zenika/formations
-FROM node:7.2
+FROM node:7.2-alpine
 MAINTAINER Zenika <http://www.zenika.com>
 
 # Install grunt
