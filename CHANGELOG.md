@@ -1,3 +1,7 @@
+# 2.1.0 (2016-12-13)
+
+- Updated copyright notice in slides
+
 # 2.0.1 (2016-11-29)
 
 ## Bug fixes
