@@ -1,3 +1,7 @@
+# 2.0.2 (2016-12-13)
+
+- Footer copyright update
+
 # 2.0.1 (2016-11-29)
 
 ## Bug fixes

@@ -31,7 +31,7 @@ Reveal.addEventListener('ready', function() {
 
   function addCopyright(slide, chapterIndex, slideIndex) {
     if (slideIndex == 0) return;
-    slide.appendChild(footer('copyright', '&copy; Copyright Zenika'));
+    slide.appendChild(footer('copyright', '&copy; Copyright ' + new Date().getFullYear() + ' Zenika. All rights reserved'));
   }
 
   forEachSlide(addSlideNumber);
