@@ -31,11 +31,16 @@ gulp.task('clean', function () {
 /**
  * Construction du dossier de build
  */
-gulp.task('build', ['copybase', 'copyreveal'], function () {
+gulp.task('build', ['copyAppYaml'], function () {
 
   // Remplacement du placeholder par le nom de la formation
   return gulp.src([path.join(fwkConfig.frameworkPath, 'index.html')])
     .pipe(g.replace(/(FORMATION_NAME)/g, fwkConfig.slidesPdfName))
+    .pipe(gulp.dest(fwkConfig.outputPath));
+});
+
+gulp.task('copyAppYaml', ['copybase', 'copyreveal', 'copyslides'], function() {
+  return gulp.src([path.join(fwkConfig.frameworkPath, 'app.yaml')])
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
 
@@ -46,9 +51,10 @@ gulp.task('copybase', ['clean'], function () {
 
   return gulp.src(
     [
-      path.join(fwkConfig.frameworkPath, 'index.html'),
+      //not index.html or slides.html done in `build`
       path.join(fwkConfig.frameworkPath, '*.css'),
-      path.join(fwkConfig.frameworkPath, '!(node_modules)/**/*')
+      path.join(fwkConfig.frameworkPath, 'favicon.png'),
+      path.join(fwkConfig.frameworkPath, 'reveal*/**'),
     ])
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
@@ -60,6 +66,16 @@ gulp.task('copyreveal', ['clean'], function () {
 
   return gulp.src('./node_modules/reveal.js/!(node_modules)/**/*')
     .pipe(gulp.dest('./build/reveal.js'));
+});
+
+gulp.task('copyslides', ['clean'], function () {
+
+  return gulp.src([
+                  'Slides/**/*.md',
+                  'Slides/slides.json',
+                  'Slides/ressources*/**'
+                  ])
+    .pipe(gulp.dest('./build/'));
 });
 
 /**
