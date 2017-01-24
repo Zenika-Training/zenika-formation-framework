@@ -1,4 +1,4 @@
-﻿# Zenika Formation Framework
+# Zenika Formation Framework
 
 Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Zenika/Formation--Modele)
 
@@ -10,6 +10,8 @@ Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Ze
 - index.html => le template des slides (voir section dédiée)
 - styleCahierExercice.css => le fichier de style pour le cahier de TP
 - reveal => le repertoire contenant reveal.js customisé pour les formations
+- deploy.js => script gérant le déploiement sur AppEngine
+- ic.js => script gérant la création du job CircleCI
 
 ## Principes
 
@@ -47,6 +49,43 @@ Les exercices de TP sont écrits également en markdown, puis convertis en PDF g
 
 Le contenu du cahier de TP doit se trouver dans `./CahierExercices/Cahier.md`, ou dans plusieurs fichiers `.md` distincts. Dans ce dernier cas, un fichier `parts.json` doit indexer les fichier `.md` sur le même principe que pour les slides.
 Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styleCahierExercice.css`
+
+## Commandes et utilisation
+
+### deploy.js
+
+Permet d'installer et d'utiliser l'outil `gcloud` de Google pour déployer sur AppEngine un projet statique.
+Nécessite 2 variables d'environnement:
+```
+GAE_SERVICE_ACCOUNT=email de service
+GAE_KEY_FILE_CONTENT=clé au format json
+```
+
+### ic.js
+
+Permet d'initialiser un projet CircleCI à partir d'un repository GitHub.
+Nécessite 3 variables d'environnement:
+```
+CIRCLE_TOKEN=token circle
+GAE_SERVICE_ACCOUNT=email de service
+GAE_KEY_FILE_CONTENT=clé au format json
+```
+
+Possibilité de surcharger le nom du projet:
+```
+$./ic.js formation-pwa
+👷 Welcome jlandure
+🚧 Project formation-pwa created
+🔧 Env variables set!
+💚 All is done! Wait for a green deployment
+```
+
+### Intégration Slack _Non disponible en API_
+
+De base, tous les builds sont repertoriés sur Slack dans le channel `#ic-formation`.
+Pour cela, aller dans CircleCI > Settings du projet > Chat Notifications et indiquer dans le panel Slack `https://hooks.slack.com/services/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`
+
+NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-pwa/edit#hooks`
 
 ## Troobleshooting
 
