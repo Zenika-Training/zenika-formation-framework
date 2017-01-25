@@ -2,14 +2,12 @@
 
 const assert = require('assert');
 const fs = require('fs');
-const rp = require('request-promise-native');
+const request = require('request-promise-native');
 const username = process.env.CIRCLE_TOKEN;
 const password = '';
 const auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
-var projectName = JSON.parse(fs.readFileSync('./package.json')).name;
-//Override project name in the command line
-if(process.argv.length === 3) projectName = process.argv[2]
+const projectName = process.argv[2] || require('./package.json').name
 
 const firstCheckToken = {
     method: 'GET',
@@ -27,10 +25,10 @@ const secondCreateProject = {
     headers: {
       'Authorization': auth
     },
-    json: true, // Automatically parses the JSON string in the response
+    json: true,
 };
 
-const thirdSetEnvVariable1 = {
+const thirdSetEnvVariableGaeServiceAccount = {
     method: 'POST',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/envvar`,
     headers: {
@@ -43,7 +41,7 @@ const thirdSetEnvVariable1 = {
     json: true,
 };
 
-const thirdSetEnvVariable2 = {
+const thirdSetEnvVariableGaeKey = {
     method: 'POST',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/envvar`,
     headers: {
@@ -65,34 +63,18 @@ const lastGetFirstGreenBuild = {
     json: true,
 }
 
-rp(firstCheckToken)
-    .then(function (data) {
-        assert(data.login, "jlandure")
-        return console.log(`👷 Welcome ${data.login}`)
-    })
-    .then(function (data) {
-        return rp(secondCreateProject)
-    })
-    .then(function (data) {
+request(firstCheckToken)
+    .then(data => console.log(`👷 Welcome ${data.login}`))
+    .then(() => request(secondCreateProject))
+    .then(data => {
         if(!data.first_build) return console.log(`🚧 Project ${projectName} already exists`)
         return console.log(`🚧 Project ${projectName} created`)
     })
-    .then(function (data) {
-        return rp(thirdSetEnvVariable1)
-    })
-    .then(function (data) {
-        return rp(thirdSetEnvVariable2)
-    })
-    .then(function (data) {
-        return console.log(`🔧 Env variables set!`)
-    })
-    .then(function (data) {
-        return rp(lastGetFirstGreenBuild)
-    })
-    .then(function (data) {
-        return console.log(`💚 All is done! Wait for a green deployment`)
-    })
-    .catch(function (err) {
+    .then(() => request(thirdSetEnvVariableGaeServiceAccount))
+    .then(() => request(thirdSetEnvVariableGaeKey))
+    .then(() => console.log(`🔧 Env variables set!`))
+    .then(() => request(lastGetFirstGreenBuild))
+    .then(() => console.log(`💚 All is done! Wait for a green deployment`))
+    .catch(err => {
       console.log('💩 AieAieAie!\n', err)
-        // API call failed...
     });
