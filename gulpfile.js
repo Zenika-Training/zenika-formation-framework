@@ -72,7 +72,20 @@ gulp.task('copybase', ['clean'], function () {
  */
 gulp.task('copyreveal', ['clean'], function () {
 
-  return gulp.src('./node_modules/reveal.js/!(node_modules)/**/*')
+  return gulp.src([
+      '!./node_modules/reveal.js/node_modules{,/**/*}',
+      '!./node_modules/reveal.js/test{,/**/*}',
+      '!./node_modules/reveal.js/css/theme{,/**/*}',
+      '!./node_modules/reveal.js/js/reveal.js',
+      '!./node_modules/reveal.js/css/reveal.css',
+      '!./node_modules/reveal.js/css/lib{,/**/*}',
+      '!./node_modules/reveal.js/Gruntfile.js',
+      '!./node_modules/reveal.js/index.html',
+      '!./node_modules/reveal.js/LICENSE',
+      '!./node_modules/reveal.js/package.json',
+      '!./node_modules/reveal.js/README.md',
+      './node_modules/reveal.js/**/*',
+      ])
     .pipe(gulp.dest('./build/reveal.js'));
 });
 
