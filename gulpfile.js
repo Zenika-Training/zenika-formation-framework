@@ -72,7 +72,8 @@ gulp.task('copybase', ['clean'], function () {
  */
 gulp.task('copyreveal', ['clean'], function () {
 
-  return gulp.src([
+  return gulp.src(
+    [
       '!./node_modules/reveal.js/node_modules{,/**/*}',
       '!./node_modules/reveal.js/test{,/**/*}',
       '!./node_modules/reveal.js/css/theme{,/**/*}',
@@ -85,17 +86,18 @@ gulp.task('copyreveal', ['clean'], function () {
       '!./node_modules/reveal.js/package.json',
       '!./node_modules/reveal.js/README.md',
       './node_modules/reveal.js/**/*',
-      ])
+    ])
     .pipe(gulp.dest('./build/reveal.js'));
 });
 
 gulp.task('copyslides', ['clean'], function () {
 
-  return gulp.src([
-                  'Slides/**/*.md',
-                  'Slides/slides.json',
-                  'Slides/ressources*/**'
-                  ])
+  return gulp.src(
+    [
+      'Slides/**/*.md',
+      'Slides/slides.json',
+      'Slides/ressources*/**',
+    ])
     .pipe(gulp.dest('./build/'));
 });
 
@@ -111,13 +113,14 @@ gulp.task('serve', ['build'], function () {
     browser: ['chrome']
   });
 
-  gulp.watch([
-              'Slides/**/*.md',
-              'Slides/slides.json',
-              'Slides/ressources/**',
-              path.join(fwkConfig.outputPath, 'reveal/**'),
-              path.join(fwkConfig.outputPath, 'index.html')
-            ], browserSync.reload);
+  gulp.watch(
+    [
+      'Slides/**/*.md',
+      'Slides/slides.json',
+      'Slides/ressources/**',
+      path.join(fwkConfig.outputPath, 'reveal/**'),
+      path.join(fwkConfig.outputPath, 'index.html'),
+    ], browserSync.reload);
 });
 
 gulp.task('default', ['serve']);
