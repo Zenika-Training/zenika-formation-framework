@@ -31,15 +31,23 @@ gulp.task('clean', function () {
 /**
  * Construction du dossier de build
  */
-gulp.task('build', ['copyAppYaml'], function () {
+gulp.task('build', ['copybase', 'copyreveal', 'copyslides', 'copyIndex', 'copySummary', 'copyAppYaml']);
 
+gulp.task('copyIndex', function() {
   // Remplacement du placeholder par le nom de la formation
-  return gulp.src([path.join(fwkConfig.frameworkPath, 'index.html')])
+  return gulp.src(path.join(fwkConfig.frameworkPath, 'index.html'))
     .pipe(g.replace(/(FORMATION_NAME)/g, fwkConfig.slidesPdfName))
+    .pipe(g.rename("slides.html"))
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
 
-gulp.task('copyAppYaml', ['copybase', 'copyreveal', 'copyslides'], function() {
+gulp.task('copySummary', function() {
+  return gulp.src([path.join(fwkConfig.frameworkPath, 'summary.html')])
+    .pipe(g.rename("index.html"))
+    .pipe(gulp.dest(fwkConfig.outputPath));
+});
+
+gulp.task('copyAppYaml', function() {
   return gulp.src([path.join(fwkConfig.frameworkPath, 'app.yaml')])
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
@@ -51,7 +59,7 @@ gulp.task('copybase', ['clean'], function () {
 
   return gulp.src(
     [
-      //not index.html or slides.html done in `build`
+      // do not include "index.html" or "summary.html" handled by others tasks
       path.join(fwkConfig.frameworkPath, '*.css'),
       path.join(fwkConfig.frameworkPath, 'favicon.png'),
       path.join(fwkConfig.frameworkPath, 'reveal*/**'),
