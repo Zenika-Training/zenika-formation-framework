@@ -70,6 +70,7 @@ CIRCLE_TOKEN=token circle
 GAE_SERVICE_ACCOUNT=email de service
 GAE_KEY_FILE_CONTENT=clé au format json
 ```
+Pour les valeurs, aller sur la documentation de CircleCI sur [l'API](https://circleci.com/docs/api/#getting-started) et [l'authentification avec Google](https://circleci.com/docs/google-auth/)
 
 Possibilité de surcharger le nom du projet:
 ```
