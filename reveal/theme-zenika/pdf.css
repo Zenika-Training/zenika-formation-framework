@@ -41,3 +41,13 @@ body {
 .reveal strong {
 	font-weight: bold;
 }
+
+/* Disables SVG decorations when printing to PDF because PhantomJS does not support that very well. */
+
+.slides section > section:not([class^=page-]) {
+  background: none;
+}
+
+.reveal section.page-title {
+  background: #AF1E3A;
+}
