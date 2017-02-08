@@ -7,7 +7,8 @@ if (require.main === module) {
   const tempKeyFile = 'file.key'
   const gcloudSdkVersion = '135.0.0'
   const serviceAccount = process.env.GAE_SERVICE_ACCOUNT
-  const deployName = process.env.npm_package_config_deploy_name
+  const gcloudProject = 'zen-formations'
+  const gcloudService = process.env.npm_package_config_deploy_name
   const currentBranch = process.env.CURRENT_BRANCH
 
   if (!serviceAccount || !currentBranch) {
@@ -30,8 +31,8 @@ if (require.main === module) {
     execFileSync('gcloud', ['config', 'set', 'app/promote_by_default', 'false'])
     console.log('Authenticate with', serviceAccount)
     execFileSync('gcloud', ['auth', 'activate-service-account', serviceAccount, '--key-file', tempKeyFile])
-    console.log('Deploying to', deployName)
-    execFileSync('gcloud', ['--project', 'zen-formations', 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
+    console.log(`Deploying to ${gcloudService}-dot-${gcloudProject}`)
+    execFileSync('gcloud', ['--project', gcloudProject, 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
   } finally {
     fs.unlinkSync(tempKeyFile)
   }
