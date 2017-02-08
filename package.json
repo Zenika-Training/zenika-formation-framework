@@ -25,6 +25,8 @@
     "gulp-replace": "^0.5.4",
     "markdown-pdf": "^5.1.0",
     "phantomjs": "^1.9.13",
+    "request": "^2.79.0",
+    "request-promise-native": "^1.0.3",
     "reveal.js": "^2.6.2",
     "split": "^0.3.3",
     "through": "^2.3.6"

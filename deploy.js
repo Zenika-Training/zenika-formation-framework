@@ -31,7 +31,7 @@ if (require.main === module) {
     console.log('Authenticate with', serviceAccount)
     execFileSync('gcloud', ['auth', 'activate-service-account', serviceAccount, '--key-file', tempKeyFile])
     console.log('Deploying to', deployName)
-    execFileSync('gcloud', ['--project', deployName, 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
+    execFileSync('gcloud', ['--project', 'zen-formations', 'app', 'deploy', '--version', currentBranch, '--quiet', 'dist/app.yaml'])
   } finally {
     fs.unlinkSync(tempKeyFile)
   }
