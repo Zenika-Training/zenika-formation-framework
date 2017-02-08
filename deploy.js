@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-if (require.main === module) {
+if (require.main === module) { // or else the Gruntfile from the depending project will run the code!
   const execFileSync = require('child_process').execFileSync
   const fs = require('fs')
 
