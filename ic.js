@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-if (require.main === module) {
+if (require.main === module) { // or else the Gruntfile from the depending project will run the code!
   const assert = require('assert');
   const fs = require('fs');
   const request = require('request-promise-native');
