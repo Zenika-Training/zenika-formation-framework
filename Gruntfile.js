@@ -132,17 +132,11 @@ module.exports = function (grunt) {
             src: [
               'styleCahierExercice.css',
               'reveal/**',
-            ].concat([
-              'reveal.js/css/reveal.min.css',
-              'reveal.js/lib/js/head.min.js',
-              'reveal.js/js/reveal.min.js',
-              'reveal.js/css/print/pdf.css',
-              'reveal.js/plugin/**'
-            ].map(resolveNpmModulesPath).map(path.relative.bind(null, frameworkPath)))
+            ]
           },
           {
             expand: true,
-            cwd: path.join(__dirname, 'node_modules/'),
+            cwd: path.dirname(resolveNpmModulesPath('reveal.js')),
             dest: '<%= dist %>',
             src: [
               'reveal.js/css/reveal.min.css',
@@ -150,11 +144,7 @@ module.exports = function (grunt) {
               'reveal.js/js/reveal.min.js',
               'reveal.js/css/print/pdf.css',
               'reveal.js/plugin/**'
-            ],
-            rename: function (dest) {
-              console.log(path.join(__dirname, 'node_modules/'))
-              return dest;
-            }
+            ]
           },
           {
             expand: true,
