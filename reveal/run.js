@@ -93,13 +93,6 @@
     return new Promise(function (resolve, reject) {
 
       var request = new XMLHttpRequest();
-      var jsonSupport = false;
-      try {
-        request.responseType = 'json';
-        jsonSupport = true;
-      } catch (error) {
-        console.error(error);
-      }
 
       console.log('Insert slides');
 
@@ -116,11 +109,7 @@
         }
 
         console.log('start');
-        if (jsonSupport) {
-          request.response.forEach(slideLoader);
-        } else {
-          JSON.parse(request.responseText).forEach(slideLoader);
-        }
+        JSON.parse(request.responseText).forEach(slideLoader);
         console.log('end');
 
         resolve(slideContainer);
