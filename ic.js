@@ -55,14 +55,23 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
       json: true,
   };
 
-  const lastGetFirstGreenBuild = {
+  const getBuilds = {
+    method: 'GET',
+    uri: `https://circleci.com/api/v1/project/Zenika/${projectName}`,
+    headers: {
+      'Authorization': auth
+    },
+    json: true,
+  }
+
+  const retryBuild = buildNum => ({
       method: 'POST',
-      uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/1/retry`,
+      uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/${buildNum}/retry`,
       headers: {
         'Authorization': auth
       },
       json: true,
-  }
+  })
 
   request(firstCheckToken)
       .then(data => console.log(`👷 Welcome ${data.login}`))
@@ -74,7 +83,10 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
       .then(() => request(thirdSetEnvVariableGaeServiceAccount))
       .then(() => request(thirdSetEnvVariableGaeKey))
       .then(() => console.log(`🔧 Env variables set!`))
-      .then(() => request(lastGetFirstGreenBuild))
+      .then(() => request(getBuilds))
+      .then(response => response[0].build_num)
+      .then(buildNum => { console.log(`✨ Retrying build #${buildNum}`); return buildNum })
+      .then(buildNum => request(retryBuild(buildNum)))
       .then(() => console.log(`💚 All is done! Wait for a green deployment`))
       .catch(err => {
         console.log('💩 AieAieAie!\n', err)
