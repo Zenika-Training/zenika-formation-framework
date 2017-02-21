@@ -190,7 +190,7 @@ module.exports = function (grunt) {
       }
     },
     sed: {
-      dist: {
+      title: {
         path: [frameworkPath + '/index.html'],
         pattern: 'FORMATION_NAME',
         replacement: slidesPdfName,
