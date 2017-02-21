@@ -34,20 +34,17 @@ body {
   display: none;
 }
 
+.reveal strong,
 .reveal em {
-	font-weight: bold;
-}
-
-.reveal strong {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 /* Disables SVG decorations when printing to PDF because PhantomJS does not support that very well. */
 
 .slides section > section:not([class^=page-]) {
-  background: none;
+    background: white no-repeat url('./images/slide-background.png');
 }
 
 .reveal section.page-title {
-  background: #AF1E3A;
+    background: #af1e3a no-repeat url('./images/slide-background-white.png');
 }
