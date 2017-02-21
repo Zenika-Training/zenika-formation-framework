@@ -115,7 +115,8 @@ module.exports = function (grunt) {
             src: [
               './**'
             ]
-          }, {
+          },
+          {
             expand: true,
             dot: true,
             cwd: 'PDF',
@@ -123,21 +124,29 @@ module.exports = function (grunt) {
             src: [
               '*.pdf'
             ]
-          }, {
+          },
+          {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
             src: [
               'styleCahierExercice.css',
               'reveal/**',
-            ].concat([
+            ]
+          },
+          {
+            expand: true,
+            cwd: path.dirname(resolveNpmModulesPath('reveal.js')),
+            dest: '<%= dist %>',
+            src: [
               'reveal.js/css/reveal.min.css',
               'reveal.js/lib/js/head.min.js',
               'reveal.js/js/reveal.min.js',
               'reveal.js/css/print/pdf.css',
               'reveal.js/plugin/**'
-            ].map(resolveNpmModulesPath).map(path.relative.bind(null, frameworkPath)))
-          }, {
+            ]
+          },
+          {
             expand: true,
             cwd: frameworkPath,
             flatten: true,
@@ -145,7 +154,8 @@ module.exports = function (grunt) {
             src: [
               'reveal/theme-zenika/favicon.png'
             ]
-          }, {
+          },
+          {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
@@ -155,7 +165,8 @@ module.exports = function (grunt) {
             rename: function (dest) {
               return dest + '/slides.html';
             }
-          }, {
+          },
+          {
             expand: true,
             cwd: frameworkPath,
             dest: '<%= dist %>',
@@ -165,7 +176,8 @@ module.exports = function (grunt) {
             rename: function (dest) {
               return dest + '/index.html';
             }
-          }, {
+          },
+          {
             expand: true,
             dot: true,
             cwd: frameworkPath,
@@ -182,6 +194,12 @@ module.exports = function (grunt) {
         path: [frameworkPath + '/index.html'],
         pattern: 'FORMATION_NAME',
         replacement: slidesPdfName,
+        recursive: true
+      },
+      dist: {
+        path: [frameworkPath + '/app.yaml'],
+        pattern: 'runtime: python27',
+        replacement: `service: ${configFormation.name}\nruntime: python27`,
         recursive: true
       },
       description: {

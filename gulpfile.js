@@ -25,7 +25,7 @@ var fwkConfig = {
  * Clean build file
  */
 gulp.task('clean', function () {
-  del([fwkConfig.outputPath]);
+  del.sync([fwkConfig.outputPath]);
 });
 
 /**

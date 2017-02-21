@@ -1,3 +1,15 @@
+# 2.2.0 (2017-02-10)
+
+## Deployment changes
+
+- Deployment to a single App Engine project for all depending packages, instead of one AppEngine project per depending package (issue #146, pr #150).
+  - :warning: This is not a breaking change but depending packages should update their README with the new URL to the deployed site.
+
+## Bug fixes
+
+- Fixed `gulp clean` command not waiting for termination before handling control to next tasks (issue #147, pr #148).
+- Fixed a bug preventing the correct packaging of Reveal.js assets, resulting in those assets not being deployed (commit 3c731cf).
+
 # 2.1.0 (2016-12-13)
 
 - Updated copyright notice in slides
