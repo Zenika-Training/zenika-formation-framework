@@ -217,6 +217,15 @@ body {
  * SPECIALS PAGES
  *********************************************/
 
+.slides section:first-child::after {
+    color: white;
+    font-size: 13px;
+    content: "VERSION";
+    position: absolute;
+    bottom: 5mm;
+    right: 5mm;
+}
+
 .reveal section.page-title {
   background: #af1e3a no-repeat url('./images/slide-background-white.svg');
 }

@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var git = require('git-rev-sync');
 
 module.exports = function (grunt) {
 
@@ -8,6 +9,8 @@ module.exports = function (grunt) {
   var prefixPdfName = 'Zenika-Formation' + (configFormation.name ? '-' + configFormation.name : '');
   var slidesPdfName = prefixPdfName + '-Slides';
   var cahierExercicesPdfName = prefixPdfName + '-CahierExercices';
+  var date = new Date().toISOString().slice(0,10);
+  var version = date + '#' + git.short();
   var frameworkPath = __dirname;
 
   function resolveNpmModulesPath(npmModulePath) {
@@ -194,6 +197,12 @@ module.exports = function (grunt) {
         path: [frameworkPath + '/index.html'],
         pattern: 'FORMATION_NAME',
         replacement: slidesPdfName,
+        recursive: true
+      },
+      version: {
+        path: [frameworkPath + '/reveal/theme-zenika/theme.css'],
+        pattern: 'VERSION',
+        replacement: version,
         recursive: true
       },
       dist: {
