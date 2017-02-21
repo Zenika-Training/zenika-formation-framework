@@ -59,7 +59,7 @@ gulp.task('copybase', ['clean'], function () {
 
   return gulp.src(
     [
-      // do not include "index.html" or "summary.html" handled by others tasks
+      // do not include "index.html" or "summary.html" because they are handled by others tasks
       path.join(fwkConfig.frameworkPath, '*.css'),
       path.join(fwkConfig.frameworkPath, 'favicon.png'),
       path.join(fwkConfig.frameworkPath, 'reveal*/**'),
