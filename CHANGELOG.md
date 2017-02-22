@@ -2,7 +2,7 @@
 
 ## :warning: Breaking change!
 
-A breaking was unintentionally introduced into this release. The `package.json` from depending packages is now expected to have a name that can be an AppEngine service name. That is to say it should have only lower case letters and hyphens. As a convention, it is recommended to name the package `formation-<name>`. Examples: `formation-angularjs`, `formation-maven`, `formation-initiation-js`.
+A breaking change was unintentionally introduced into this release. The `package.json` from depending packages is now expected to have a name that can be an AppEngine service name. That is to say it should have only lower case letters and hyphens. As a convention, it is recommended to name the package `formation-<name>`. Examples: `formation-angularjs`, `formation-maven`, `formation-initiation-js`.
 
 Also, while not really a breaking change, depending packages should update their README with the new URL to the deployed site, which is now of the following form: `https://<package-name>-dot-zen-formations.appspot.com`.
 
