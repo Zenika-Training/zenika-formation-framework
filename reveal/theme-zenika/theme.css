@@ -233,15 +233,13 @@ body {
 .reveal section.page-title h1 {
   height: 90%;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
   margin: auto;
   text-align: center;
   color: white;
   float: none;
-}
-.reveal section.page-title h1 img {
-  display: inline-block;
 }
 
 .reveal section.page-title ul {
