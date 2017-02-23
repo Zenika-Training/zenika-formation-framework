@@ -12,6 +12,11 @@ body {
   }
 }
 
+.reveal section.page-title h1 {
+  display: block;
+  padding-top: 20%;
+}
+
 .reveal .slides section section {
   height: 209mm !important;
   min-height: 209mm !important;
