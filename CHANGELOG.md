@@ -1,3 +1,15 @@
+# 2.3.0 (2017-02-27)
+
+## Features
+
+- The first slide mentions the date and abbreviated commit SHA-1 of its build (issue #98, pr #158)
+
+## Bug fixes
+
+- Titles vertically centered on PDF slides (pr #158)
+- Zenika logos are back on PDF slides (issue #152, pr #155)
+- HTML slides have the correct page `<title>` (issue #154, pr #157)
+
 # 2.2.0 (2017-02-10)
 
 ## :warning: Breaking change!
