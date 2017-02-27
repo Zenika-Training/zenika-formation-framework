@@ -3,4 +3,5 @@ node_modules
 *.iml
 dist
 *.log
+build
 /.env

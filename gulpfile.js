@@ -31,11 +31,24 @@ gulp.task('clean', function () {
 /**
  * Construction du dossier de build
  */
-gulp.task('build', ['copybase', 'copyreveal'], function () {
+gulp.task('build', ['copybase', 'copyreveal', 'copyslides', 'copyIndex', 'copySummary', 'copyAppYaml']);
 
+gulp.task('copyIndex', function() {
   // Remplacement du placeholder par le nom de la formation
-  return gulp.src([path.join(fwkConfig.frameworkPath, 'index.html')])
+  return gulp.src(path.join(fwkConfig.frameworkPath, 'index.html'))
     .pipe(g.replace(/(FORMATION_NAME)/g, fwkConfig.slidesPdfName))
+    .pipe(g.rename("slides.html"))
+    .pipe(gulp.dest(fwkConfig.outputPath));
+});
+
+gulp.task('copySummary', function() {
+  return gulp.src([path.join(fwkConfig.frameworkPath, 'summary.html')])
+    .pipe(g.rename("index.html"))
+    .pipe(gulp.dest(fwkConfig.outputPath));
+});
+
+gulp.task('copyAppYaml', function() {
+  return gulp.src([path.join(fwkConfig.frameworkPath, 'app.yaml')])
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
 
@@ -46,9 +59,10 @@ gulp.task('copybase', ['clean'], function () {
 
   return gulp.src(
     [
-      path.join(fwkConfig.frameworkPath, 'index.html'),
+      // do not include "index.html" or "summary.html" because they are handled by others tasks
       path.join(fwkConfig.frameworkPath, '*.css'),
-      path.join(fwkConfig.frameworkPath, '!(node_modules)/**/*')
+      path.join(fwkConfig.frameworkPath, 'favicon.png'),
+      path.join(fwkConfig.frameworkPath, 'reveal*/**'),
     ])
     .pipe(gulp.dest(fwkConfig.outputPath));
 });
@@ -58,8 +72,33 @@ gulp.task('copybase', ['clean'], function () {
  */
 gulp.task('copyreveal', ['clean'], function () {
 
-  return gulp.src('./node_modules/reveal.js/!(node_modules)/**/*')
+  return gulp.src(
+    [
+      '!./node_modules/reveal.js/node_modules{,/**/*}',
+      '!./node_modules/reveal.js/test{,/**/*}',
+      '!./node_modules/reveal.js/css/theme{,/**/*}',
+      '!./node_modules/reveal.js/js/reveal.js',
+      '!./node_modules/reveal.js/css/reveal.css',
+      '!./node_modules/reveal.js/css/lib{,/**/*}',
+      '!./node_modules/reveal.js/Gruntfile.js',
+      '!./node_modules/reveal.js/index.html',
+      '!./node_modules/reveal.js/LICENSE',
+      '!./node_modules/reveal.js/package.json',
+      '!./node_modules/reveal.js/README.md',
+      './node_modules/reveal.js/**/*',
+    ])
     .pipe(gulp.dest('./build/reveal.js'));
+});
+
+gulp.task('copyslides', ['clean'], function () {
+
+  return gulp.src(
+    [
+      'Slides/**/*.md',
+      'Slides/slides.json',
+      'Slides/ressources*/**',
+    ])
+    .pipe(gulp.dest('./build/'));
 });
 
 /**
@@ -74,13 +113,14 @@ gulp.task('serve', ['build'], function () {
     browser: ['chrome']
   });
 
-  gulp.watch([
-              'Slides/**/*.md',
-              'Slides/slides.json',
-              'Slides/ressources/**',
-              path.join(fwkConfig.outputPath, 'reveal/**'),
-              path.join(fwkConfig.outputPath, 'index.html')
-            ], browserSync.reload);
+  gulp.watch(
+    [
+      'Slides/**/*.md',
+      'Slides/slides.json',
+      'Slides/ressources/**',
+      path.join(fwkConfig.outputPath, 'reveal/**'),
+      path.join(fwkConfig.outputPath, 'index.html'),
+    ], browserSync.reload);
 });
 
 gulp.task('default', ['serve']);
