@@ -1,3 +1,9 @@
+# 2.3.1 (2017-03-03)
+
+## Bug fixes
+
+- PDF generation not working inside the Docker image (issue #162, pr #166)
+
 # 2.3.0 (2017-02-27)
 
 ## Features
@@ -6,9 +12,9 @@
 
 ## Bug fixes
 
-- Titles vertically centered on PDF slides (pr #158)
-- Zenika logos are back on PDF slides (issue #152, pr #155)
-- HTML slides have the correct page `<title>` (issue #154, pr #157)
+- Titles on PDF slides are not vertically centered (pr #158)
+- PDF slides lack a Zenika logo (issue #152, pr #155)
+- Web slides display FORMATION_NAME as a page title (issue #154, pr #157)
 
 # 2.2.0 (2017-02-10)
 
