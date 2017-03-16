@@ -274,7 +274,7 @@ module.exports = function (grunt) {
     'grunt-filerev-replace/tasks',
   ].map(resolveNpmModulesPath).forEach(grunt.loadTasks);
 
-  grunt.registerTask('package', ['sed', 'pdf', 'clean:dist', 'copy:dist', 'filerev-all']);
+  grunt.registerTask('package', ['sed', 'justPdf', 'clean:dist', 'copy:dist', 'filerev-all']);
   grunt.registerTask('filerev-all', ['filerev', 'filerev_replace']);
 
   grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch']);
@@ -371,7 +371,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('generateSlidesPDF', ['connect:print', 'doGenerateSlidesPDF']);
 
-  grunt.registerTask('pdf', ['generateSlidesPDF', 'generateCahierExercice']);
+  grunt.registerTask('justPdf', ['generateSlidesPDF', 'generateCahierExercice']);
+
+  grunt.registerTask('pdf', ['sed', 'justPdf'])
 
   grunt.registerTask('default', ['displaySlides']);
 
