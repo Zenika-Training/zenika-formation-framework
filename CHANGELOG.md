@@ -1,3 +1,9 @@
+# 2.3.2 (2017-03-16)
+
+## Bug fixes
+
+- VERSION on PDF is not replaced (issue #169, commit 1431ba87fcecef0718ab550eac815ef91fe61a9a)
+
 # 2.3.1 (2017-03-03)
 
 ## Bug fixes
