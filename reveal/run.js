@@ -35,6 +35,12 @@
       rollingLinks: true,
       slideNumber: false,
       mouseWheel: true,
+      keyboard: {
+        37: function leftArrow() { if (Reveal.isOverview()) Reveal.left(); else Reveal.prev(); },
+        38: function upArrow() { if (Reveal.isOverview()) Reveal.up(); else Reveal.prev(); },
+        39: function rightArrow() { if (Reveal.isOverview()) Reveal.right(); else Reveal.next(); },
+        40: function downArrow() { if (Reveal.isOverview()) Reveal.down(); else Reveal.next(); },
+      },
       margin: 0,
       maxScale: 2.0,
       width: 1124,
