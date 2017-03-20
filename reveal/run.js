@@ -36,10 +36,10 @@
       slideNumber: false,
       mouseWheel: true,
       keyboard: {
-        37: function leftArrow() { if (Reveal.isOverview()) Reveal.left(); else Reveal.prev(); },
-        38: function upArrow() { if (Reveal.isOverview()) Reveal.up(); else Reveal.prev(); },
-        39: function rightArrow() { if (Reveal.isOverview()) Reveal.right(); else Reveal.next(); },
-        40: function downArrow() { if (Reveal.isOverview()) Reveal.down(); else Reveal.next(); },
+        37: function leftArrow() { if (isRemoteMode()) Reveal.prev(); else Reveal.left(); },
+        38: function upArrow() { if (isRemoteMode()) Reveal.prev(); else Reveal.up(); },
+        39: function rightArrow() { if (isRemoteMode()) Reveal.next(); else Reveal.right(); },
+        40: function downArrow() { if (isRemoteMode()) Reveal.next(); else Reveal.down(); },
       },
       margin: 0,
       maxScale: 2.0,
@@ -73,6 +73,11 @@
     });
   }
 
+  function isRemoteMode() {
+    return Reveal.isOverview()
+                  ? false
+                  : window.location.search.match(/[?&]remote[&]?/i);
+  }
 
   function appendStylesheetWhenUrlMatches(head, regexp, stylesheets) {
     if (window.location.search.match(regexp)) {
