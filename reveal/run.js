@@ -37,24 +37,24 @@
       mouseWheel: true,
       keyboard: {
         37: function leftArrow() {
-              if (isRemoteMode()) Reveal.prev();
-              else Reveal.left();
-            },
+          if (isRemoteMode()) Reveal.prev();
+          else Reveal.left();
+        },
         38: function upArrow() {
-              if (isRemoteMode()) Reveal.prev();
-              else Reveal.up();
-            },
+          if (isRemoteMode()) Reveal.prev();
+          else Reveal.up();
+        },
         39: function rightArrow() {
-              if (isRemoteMode()) Reveal.next();
-              else Reveal.right();
-            },
+          if (isRemoteMode()) Reveal.next();
+          else Reveal.right();
+        },
         40: function downArrow() {
-              if (isRemoteMode()) Reveal.next();
-              else Reveal.down();
-            },
+          if (isRemoteMode()) Reveal.next();
+          else Reveal.down();
+        },
         82: function rKey() {
-              toggleRemoteMode();
-            },
+          toggleRemoteMode();
+        },
       },
       margin: 0,
       maxScale: 2.0,
@@ -94,22 +94,22 @@
 
   function isRemoteMode() {
     return Reveal.isOverview()
-                  ? false
-                  : hasRemoteQueryParameter();
+      ? false
+      : hasRemoteQueryParameter();
   }
 
   function enableRemoteMode() {
     window.location.search += window.location.search.match(/[?]/)
-                           ? '&remote'
-                           : "?remote";
+      ? '&remote'
+      : '?remote';
   }
 
   function disableRemoteMode() {
     window.location.search = window.location.search
-        .replace(/[?]remote[&]/i, '?')
-        .replace(/[?]remote/i, '')
-        .replace(/[&]remote[&]/i, '&')
-        .replace(/[&]remote$/i, '');
+      .replace(/[?]remote[&]/i, '?')
+      .replace(/[?]remote/i, '')
+      .replace(/[&]remote[&]/i, '&')
+      .replace(/[&]remote$/i, '');
   }
 
   function toggleRemoteMode() {
