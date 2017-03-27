@@ -1,3 +1,9 @@
+# 2.4.0 (2017-03-27)
+
+## Features
+
+- Support for presentation remotes (pr #170)
+
 # 2.3.2 (2017-03-16)
 
 ## Bug fixes
