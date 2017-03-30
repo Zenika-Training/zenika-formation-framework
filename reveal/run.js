@@ -82,21 +82,6 @@
         { src: config.prismModule + 'components/prism-scala.js', condition: function() { return true; }},
         { src: config.revealModule + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: config.revealModule + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        // { src: config.revealModule + 'plugin/highlight/highlight.js', async: true, callback: function() {
-        //     // Define Plain Text language for Console output
-        //     hljs.LANGUAGES.text = {
-        //       keywords: '',
-        //       contains: [
-        //         hljs.QUOTE_STRING_MODE
-        //       ]
-        //     };
-        //
-        //     var allCodeTags = document.querySelectorAll( 'pre code' );
-        //     Array.prototype.forEach.call(allCodeTags, function(codeTag) {
-        //        hljs.highlightBlock(codeTag);
-        //     });
-        //   }
-        // },
         { src: config.revealModule + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: config.revealModule + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition: function() { return !!document.body.classList; } }
@@ -133,21 +118,26 @@
     else enableRemoteMode();
   }
 
+  function appendStylesheet(head, stylesheets) {
+    stylesheets.forEach(function (stylesheet) {
+      var linkElement = document.createElement('link');
+      linkElement.rel = 'stylesheet';
+      linkElement.type = 'text/css';
+      linkElement.href = stylesheet;
+      head.appendChild(linkElement);
+    });
+  }
+
   function appendStylesheetWhenUrlMatches(head, regexp, stylesheets) {
     if (window.location.search.match(regexp)) {
-      stylesheets.forEach(function (stylesheet) {
-        var linkElement = document.createElement('link');
-        linkElement.rel = 'stylesheet';
-        linkElement.type = 'text/css';
-        linkElement.href = stylesheet;
-        head.appendChild(linkElement);
-      });
+      appendStylesheet(head, stylesheets);
     }
   }
 
   function applyPrintStylesheets() {
     return new Promise(function (resolve) {
       var head = document.getElementsByTagName('head')[0];
+      appendStylesheet(head, [config.prismModule + 'themes/prism.css']);
       appendStylesheetWhenUrlMatches(head, /print-pdf/gi, [config.revealModule + 'css/print/pdf.css', config.revealTheme + 'pdf.css']);
       appendStylesheetWhenUrlMatches(head, /edition/gi, [config.revealTheme + 'edition.css']);
       resolve();
