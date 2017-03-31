@@ -58,7 +58,7 @@
       },
       margin: 0,
       maxScale: 2.0,
-      width: 1124,
+      width: selectWidth(window.location.search),
       height: 795,
 
       // Optional libraries used to extend on reveal.js
@@ -86,6 +86,12 @@
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition: function() { return !!document.body.classList; } }
       ]
     });
+  }
+
+  function selectWidth(queryParams) {
+    if (/\bwide\b/.test(queryParams)) return 1413; // 16:9
+    if (/\bwide10\b/.test(queryParams)) return 1272; // 16:10
+    else return 1124; // ~4:3
   }
 
   function hasRemoteQueryParameter() {
