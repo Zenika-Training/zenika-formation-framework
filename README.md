@@ -81,6 +81,10 @@ $./ic.js formation-pwa
 💚 All is done! Wait for a green deployment
 ```
 
+### rebuild-all.js
+
+Force une reconstruction de tous les projets suivis sur CircleCI. Nécessite la variable d'environnement `CIRCLE_TOKEN`. Ce script est appelé après la publication du framework sur npm. Dans ce cadre la variable d'environnement peut être spécifiée dans une fichier `.env`.
+
 ### Intégration Slack _Non disponible en API_
 
 De base, tous les builds sont repertoriés sur Slack dans le channel `#ic-formation`.
