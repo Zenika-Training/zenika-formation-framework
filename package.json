@@ -38,5 +38,11 @@
   },
   "bin": {
     "zenika-formation-deploy": "deploy.js"
+  },
+  "scripts": {
+    "postpublish": "node -r dotenv/config rebuild-all"
+  },
+  "devDependencies": {
+    "dotenv": "^4.0.0"
   }
 }
