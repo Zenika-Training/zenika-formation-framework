@@ -1,5 +1,5 @@
 (function (window, document, Promise, Reveal) {
-
+  
   var config = {
     revealTheme: '/reveal/theme-zenika/'
   };
@@ -55,6 +55,9 @@
         82: function rKey() {
           toggleRemoteMode();
         },
+        87: function wKey() {
+          cycleWideModes();
+        }
       },
       margin: 0,
       maxScale: 2.0,
@@ -89,13 +92,22 @@
   }
 
   function selectWidth(queryParams) {
-    if (/\bwide\b/.test(queryParams)) return 1413; // 16:9
-    if (/\bwide10\b/.test(queryParams)) return 1272; // 16:10
+    if (queryParameterIsPresent(window.location.search, 'wide')) return 1413; // 16:9
+    else if (queryParameterIsPresent(window.location.search, 'wide10')) return 1272; // 16:10
     else return 1124; // ~4:3
   }
 
-  function hasRemoteQueryParameter() {
-    return window.location.search.match(/[?&]remote[&]?/i);
+  function cycleWideModes() {
+    var queryString = window.location.search;
+    if (queryParameterIsPresent(queryString, 'wide')) {
+      queryString = removeQueryParameter(queryString, 'wide');
+      queryString = addQueryParameter(queryString, 'wide10');
+    } else if (queryParameterIsPresent(queryString, 'wide10')) {
+      queryString = removeQueryParameter(queryString, 'wide10');
+    } else {
+      queryString = addQueryParameter(queryString, 'wide');
+    }
+    window.location.search = queryString;
   }
 
   function isRemoteMode() {
@@ -104,23 +116,43 @@
       : hasRemoteQueryParameter();
   }
 
-  function enableRemoteMode() {
-    window.location.search += window.location.search.match(/[?]/)
-      ? '&remote'
-      : '?remote';
-  }
-
-  function disableRemoteMode() {
-    window.location.search = window.location.search
-      .replace(/[?]remote[&]/i, '?')
-      .replace(/[?]remote/i, '')
-      .replace(/[&]remote[&]/i, '&')
-      .replace(/[&]remote$/i, '');
-  }
-
   function toggleRemoteMode() {
     if (hasRemoteQueryParameter()) disableRemoteMode();
     else enableRemoteMode();
+  }
+
+  function hasRemoteQueryParameter() {
+    return queryParameterIsPresent(window.location.search, 'remote')
+  }
+
+  function enableRemoteMode() {
+    window.location.search = addQueryParameter(window.location.search, 'remote')
+  }
+
+  function disableRemoteMode() {
+    window.location.search = removeQueryParameter(window.location.search, 'remote')
+  }
+
+  function queryParameterIsPresent(queryString, queryParameter) {
+    return queryParameterRegexp(queryParameter).test(queryString);
+  }
+
+  function addQueryParameter(queryString, queryParameter) {
+    return queryString + (queryString.match(/\?/)
+      ? '&' + queryParameter
+      : '?' + queryParameter);
+  }
+
+  function removeQueryParameter(queryString, queryParameter) {
+    return queryString.replace(
+      queryParameterRegexp(queryParameter), 
+      function (match, before, after) {
+        return after ? before : '';
+      });
+  }
+
+  function queryParameterRegexp(queryParameter) {
+    return new RegExp('([?&])' + queryParameter + '(&|$)');
   }
 
   function appendStylesheetWhenUrlMatches(head, regexp, stylesheets) {
