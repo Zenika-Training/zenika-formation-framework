@@ -1,3 +1,18 @@
+# 2.5.0 (2017-04-03)
+
+## Features
+
+- Support for wide screen slides (issue #125, pr #174)
+- New syntax highlighting for slides (issue #171, pr #172)
+
+## Bug fixes
+
+- Better font for exercices (issue #35, commit f0347304acbcfd336de0282d336c2b7eee4e2998)
+
+## Deployment changes
+
+- All dependent projects rebuilt upon new release (issue #165, pr #175)
+
 # 2.4.0 (2017-03-27)
 
 ## Features
