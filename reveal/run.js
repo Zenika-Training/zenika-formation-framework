@@ -1,5 +1,5 @@
 (function (window, document, Promise, Reveal) {
-  
+
   var config = {
     revealTheme: '/reveal/theme-zenika/'
   };
@@ -92,20 +92,20 @@
   }
 
   function selectWidth(queryParams) {
-    if (queryParameterIsPresent(window.location.search, 'wide')) return 1413; // 16:9
-    else if (queryParameterIsPresent(window.location.search, 'wide10')) return 1272; // 16:10
+    if (queryParameterIsPresent(window.location.search, '16x9')) return 1413; // 16:9
+    else if (queryParameterIsPresent(window.location.search, '16x10')) return 1272; // 16:10
     else return 1124; // ~4:3
   }
 
   function cycleWideModes() {
     var queryString = window.location.search;
-    if (queryParameterIsPresent(queryString, 'wide')) {
-      queryString = removeQueryParameter(queryString, 'wide');
-      queryString = addQueryParameter(queryString, 'wide10');
-    } else if (queryParameterIsPresent(queryString, 'wide10')) {
-      queryString = removeQueryParameter(queryString, 'wide10');
+    if (queryParameterIsPresent(queryString, '16x9')) {
+      queryString = removeQueryParameter(queryString, '16x9');
+      queryString = addQueryParameter(queryString, '16x10');
+    } else if (queryParameterIsPresent(queryString, '16x10')) {
+      queryString = removeQueryParameter(queryString, '16x10');
     } else {
-      queryString = addQueryParameter(queryString, 'wide');
+      queryString = addQueryParameter(queryString, '16x9');
     }
     window.location.search = queryString;
   }
@@ -145,7 +145,7 @@
 
   function removeQueryParameter(queryString, queryParameter) {
     return queryString.replace(
-      queryParameterRegexp(queryParameter), 
+      queryParameterRegexp(queryParameter),
       function (match, before, after) {
         return after ? before : '';
       });
