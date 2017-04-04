@@ -72,8 +72,8 @@
         { src: config.prismModule + 'prism.js', condition: function() { return true; }, callback: function() {
           window.hljs = {
             highlightAuto : function( code, lang ) {
-              var langDef = Prism.languages[lang] ? Prism.languages[lang] : Prism.languages.clike;
-              return { value: Prism.highlight( code, Prism.languages[lang] ) };
+              var defaultLanguage = Prism.languages[lang] || Prism.languages.clike;
+              return { value: Prism.highlight(code, defaultLanguage) };
             }
           };
         } },
