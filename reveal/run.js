@@ -71,17 +71,20 @@
         { src: config.revealModule + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
         { src: config.prismModule + 'prism.js', condition: function() { return true; }, callback: function() {
           window.hljs = {
-            highlightAuto : function( code, lang ) {
-              var langDef = Prism.languages[lang] ? Prism.languages[lang] : Prism.languages.clike;
-              return { value: Prism.highlight( code, Prism.languages[lang] ) };
+            highlightAuto : function(code, lang) {
+              var defaultLanguage = Prism.languages[lang] || Prism.languages.clike;
+              return { value: Prism.highlight(code, defaultLanguage) };
             }
           };
         } },
-        { src: config.prismModule + 'components/prism-typescript.js', condition: function() { return true; }},
         { src: config.prismModule + 'components/prism-bash.js', condition: function() { return true; }, callback: function() {
           Prism.languages.shell = Prism.languages.bash;
         }},
+        { src: config.prismModule + 'components/prism-clike.js', condition: function() { return true; }},
+        { src: config.prismModule + 'components/prism-go.js', condition: function() { return true; }},
         { src: config.prismModule + 'components/prism-java.js', condition: function() { return true; }},
+        { src: config.prismModule + 'components/prism-json.js', condition: function() { return true; }},
+        { src: config.prismModule + 'components/prism-typescript.js', condition: function() { return true; }},
         { src: config.prismModule + 'components/prism-scala.js', condition: function() { return true; }},
         { src: config.revealModule + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: config.revealModule + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
