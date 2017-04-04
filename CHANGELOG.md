@@ -1,3 +1,10 @@
+# 2.5.1 (2017-04-04)
+
+## Bug fixes
+
+- Fixed packaging of new syntax highlighter (issue #176, pr #177)
+- Fixed new syntax highlighter default language selection (pr #179)
+
 # 2.5.0 (2017-04-03)
 
 ## Features
