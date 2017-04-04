@@ -151,6 +151,20 @@ module.exports = function (grunt) {
           },
           {
             expand: true,
+            cwd: path.dirname(resolveNpmModulesPath('prismjs')),
+            dest: '<%= dist %>',
+            src: [
+              'prismjs/prism.js',
+              'prismjs/components/prism-typescript.js',
+              'prismjs/components/prism-bash.js',
+              'prismjs/components/prism-java.js',
+              'prismjs/components/prism-scala.js',
+              'prismjs/components/prism-go.js',
+              'prismjs/themes/prism.css'
+            ]
+          },
+          {
+            expand: true,
             cwd: frameworkPath,
             flatten: true,
             dest: '<%= dist %>',
