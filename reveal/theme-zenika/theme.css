@@ -157,12 +157,12 @@ body {
 
 .reveal em {
   color: #b30c37;
-  font-style: normal;
+  font-style: italic;
 }
 
 .reveal strong {
   color: #b30c37;
-  font-style: italic;
+  font-style: normal;
   font-weight: normal;
 }
 
