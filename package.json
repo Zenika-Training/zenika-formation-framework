@@ -41,9 +41,14 @@
     "zenika-formation-deploy": "deploy.js"
   },
   "scripts": {
+    "lint": "eslint --fix *.js reveal/**/*.js",
+    "preversion": "npm run lint",
     "postpublish": "node -r dotenv/config rebuild-all"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0"
   }
 }
