@@ -7,9 +7,9 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
   const username = process.env.CIRCLE_TOKEN;
   const password = '';
   const auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
-  
+
   const projectName = process.argv[2] || require('./package.json').name
-  
+
   const firstCheckToken = {
     method: 'GET',
     uri: 'https://circleci.com/api/v1.1/me',
@@ -19,7 +19,7 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     json: true,
     resolveWithFullResponse: false,
   };
-  
+
   const secondCreateProject = {
     method: 'POST',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/follow`,
@@ -28,7 +28,7 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     },
     json: true,
   };
-  
+
   const thirdSetEnvVariableGaeServiceAccount = {
     method: 'POST',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/envvar`,
@@ -41,7 +41,7 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     },
     json: true,
   };
-  
+
   const thirdSetEnvVariableGaeKey = {
     method: 'POST',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/envvar`,
@@ -54,16 +54,7 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     },
     json: true,
   };
-  
-  const getBuilds = {
-    method: 'GET',
-    uri: `https://circleci.com/api/v1/project/Zenika/${projectName}`,
-    headers: {
-      'Authorization': auth
-    },
-    json: true,
-  }
-  
+
   const deleteCache = {
     method: 'DELETE',
     uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/build-cache`,
@@ -72,16 +63,16 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     },
     json: true,
   }
-  
-  const retryBuild = buildNum => ({
+
+  const retryMasterBuild = () => ({
     method: 'POST',
-    uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/${buildNum}/retry`,
+    uri: `https://circleci.com/api/v1/project/Zenika/${projectName}/tree/master`,
     headers: {
       'Authorization': auth
     },
     json: true,
   })
-  
+
   request(firstCheckToken)
     .then(data => console.log(`👷 Welcome ${data.login}`))
     .then(() => request(secondCreateProject))
@@ -94,10 +85,8 @@ if (require.main === module) { // or else the Gruntfile from the depending proje
     .then(() => console.log(`🔧 Env variables set!`))
     .then(() => console.log(`💣 Clearing cache...`))
     .then(() => request(deleteCache))
-    .then(() => request(getBuilds))
-    .then(response => response[0].build_num)
-    .then(buildNum => { console.log(`✨ Retrying build #${buildNum}`); return buildNum })
-    .then(buildNum => request(retryBuild(buildNum)))
+    .then(() => { console.log(`✨ Re-building master`) })
+    .then(() => request(retryMasterBuild()))
     .then(() => console.log(`💚 All is done! Wait for a green deployment`))
     .catch(err => console.log('💩 AieAieAie!\n', err))
 }
