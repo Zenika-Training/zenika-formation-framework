@@ -347,8 +347,7 @@ module.exports = function gruntConfig(grunt) {
       () => {
         console.log(`PDF généré: ${pdfPath}`);
         done();
-      },
-    );
+      });
   });
 
   grunt.registerTask('doGenerateSlidesPDF', () => {
