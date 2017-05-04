@@ -6,7 +6,7 @@ eslint no-param-reassign: [
 ]
 */
 
-(function run(window, document, Promise, Reveal, Prism) {
+(function run(window, document, Promise, Reveal) {
   const config = {
     revealTheme: '/reveal/theme-zenika/',
   };
@@ -248,4 +248,4 @@ eslint no-param-reassign: [
       request.send();
     });
   }
-}(window, document, Promise, Reveal, Prism));
+}(window, document, Promise, Reveal));
