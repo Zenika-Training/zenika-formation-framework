@@ -102,14 +102,14 @@ NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-p
 
 Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)
 
-## Faire une release
+## Publish a release
 
-- Choisir le numéro de version.
-  - Si la release requiert une modification des formations : nouvelle version majeure.
-  - Si la release modifie un comportement attendu et souhaité : nouvelle version mineure.
-  - Sinon, nouvelle version patch.
-  - Note : autant la distinction mineure/patch est peu importante, autant il faut absolument ne pas casser les formations avec une version mineure car les formations utilisent (volontairement) un careet semver range.
-- Modifier le CHANGELOG pour ajouter la nouvelle version.
-- Exécuter `npm version [major|minor|patch]`
-- Exécuter `npm publish` (il faut être un utilisateur npm autorisé par l'utilisateur npm zenika, contacter la DSI).
-  - Cela entraine une reconstruction et déploiement de toutes les formations avec la nouvelle release.
+- Choose the version number.
+  - If the release requires changes in depending projects: bump the major version.
+  - If the release changes an expected behavior (eg rendering differences) or adds new behaviors: bump the minor version.
+  - Otherwise, bump the patch version.
+  - As depending projects use a caret semver range (on purpose) and are rebuilt upon every framework release, it is critical to not break depending projects on minor or patch releases.
+- Edit the changelog to add the new release.
+- Run `npm version [major|minor|patch]`
+- Run `npm publish` (requires authorization from the `zenika` npm user, which you may contact to obtain those rights).
+  - Publication will trigger all GitHub projects starting with `Zenika/formation-` to rebuild and redeploy.
