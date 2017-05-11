@@ -110,6 +110,7 @@ Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Trouble
   - Otherwise, bump the patch version.
   - As depending projects use a caret semver range (on purpose) and are rebuilt upon every framework release, it is critical to not break depending projects on minor or patch releases.
 - Edit the changelog to add the new release.
-- Run `npm version [major|minor|patch]`
+- Run `npm version [major|minor|patch]`.
+- Run `git push`.
 - Run `npm publish` (requires authorization from the `zenika` npm user, which you may contact to obtain those rights).
   - Publication will trigger all GitHub projects starting with `Zenika/formation-` to rebuild and redeploy.
