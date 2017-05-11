@@ -20,6 +20,9 @@ Le framework des formations est un package npm à part entière. Il est importé
   "dependencies": {
     "grunt": "^0.4.5",
     "zenika-formation-framework": "X.Y.Z"
+  },
+  "script": {
+    "deploy": "zenika-formation-deploy"
   }
 ```
 
@@ -61,9 +64,12 @@ GAE_SERVICE_ACCOUNT=email de service
 GAE_KEY_FILE_CONTENT=clé au format json
 ```
 
+Ce script est utilisé par les formations pour se déployer via `npm run deploy`.
+
 ### ic.js
 
-Permet d'initialiser un projet CircleCI à partir d'un repository GitHub.
+Permet d'initialiser (ou ré-initialiser) un projet CircleCI à partir d'un repository GitHub.
+
 Nécessite 3 variables d'environnement:
 ```
 CIRCLE_TOKEN=token circle
@@ -95,3 +101,15 @@ NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-p
 ## Troobleshooting
 
 Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)
+
+## Faire une release
+
+- Choisir le numéro de version.
+  - Si la release requiert une modification des formations : nouvelle version majeure.
+  - Si la release modifie un comportement attendu et souhaité : nouvelle version mineure.
+  - Sinon, nouvelle version patch.
+  - Note : autant la distinction mineure/patch est peu importante, autant il faut absolument ne pas casser les formations avec une version mineure car les formations utilisent (volontairement) un careet semver range.
+- Modifier le CHANGELOG pour ajouter la nouvelle version.
+- Exécuter `npm version [major|minor|patch]`
+- Exécuter `npm publish` (il faut être un utilisateur npm autorisé par l'utilisateur npm zenika, contacter la DSI).
+  - Cela entraine une reconstruction et déploiement de toutes les formations avec la nouvelle release.
