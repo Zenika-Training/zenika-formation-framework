@@ -18,7 +18,6 @@ const chromeRemoteInterface = require('chrome-remote-interface');
 const fs = require('fs');
 const util = require('util');
 
-const timeout = util.promisify(setTimeout);
 const writeFile = util.promisify(fs.writeFile);
 
 async function launchChrome() {
@@ -45,16 +44,30 @@ function connectToChrome(remoteInterface) {
   return new Promise((resolve, reject) => remoteInterface(resolve).on('error', reject));
 }
 
+function waitForReveal(Runtime) {
+  return new Promise((resolve) => {
+    const timer = setInterval(async () => {
+      const slideChangedEvent = await Runtime.evaluate({
+        expression: 'window.Reveal.isReady()',
+      });
+      if (slideChangedEvent.result.value) {
+        clearInterval(timer);
+        resolve();
+      }
+    }, 500);
+  });
+}
+
 async function run() {
   const launcher = await launchChrome();
   const protocol = await connectToChrome(chromeRemoteInterface);
-  const { Page } = protocol;
+  const { Page, Runtime } = protocol;
   await Page.enable();
+  await Runtime.enable();
   await Page.navigate({ url: 'http://localhost:8000/?print-pdf' });
   await Page.loadEventFired();
-  // Leave time for the JS to kick in and render everything
-  await timeout(10000);
-  const printToPdfOptions = {
+  await waitForReveal(Runtime);
+  const pdf = await Page.printToPDF({
     landscape: true,
     printBackground: true,
     // Paper size is in inches, this corresponds to A4
@@ -64,11 +77,12 @@ async function run() {
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
-  };
-  const pdf = await Page.printToPDF(printToPdfOptions);
+  });
   await writeFile(`${__dirname}/output.pdf`, pdf.data, { encoding: 'base64' });
   protocol.close();
   launcher.kill();
 }
 
-run();
+if (require.main === module) {
+  run();
+}
