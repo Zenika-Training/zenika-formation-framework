@@ -15,10 +15,6 @@
 
 const { ChromeLauncher } = require('lighthouse/lighthouse-cli/chrome-launcher');
 const chromeRemoteInterface = require('chrome-remote-interface');
-const fs = require('fs');
-const util = require('util');
-
-const writeFile = util.promisify(fs.writeFile);
 
 async function launchChrome() {
   const launcher = new ChromeLauncher({
@@ -40,10 +36,6 @@ async function launchChrome() {
   return launcher;
 }
 
-function connectToChrome(remoteInterface) {
-  return new Promise((resolve, reject) => remoteInterface(resolve).on('error', reject));
-}
-
 function waitForReveal(Runtime) {
   return new Promise((resolve) => {
     const timer = setInterval(async () => {
@@ -58,31 +50,23 @@ function waitForReveal(Runtime) {
   });
 }
 
-async function run() {
+/**
+ * @param {string} url URL where the slides are served
+ * @returns {Promise<string>} PDF content in base64
+ */
+async function generatePdf(url, options) {
   const launcher = await launchChrome();
-  const protocol = await connectToChrome(chromeRemoteInterface);
+  const protocol = await chromeRemoteInterface();
   const { Page, Runtime } = protocol;
   await Page.enable();
   await Runtime.enable();
-  await Page.navigate({ url: 'http://localhost:8000/?print-pdf' });
+  await Page.navigate({ url });
   await Page.loadEventFired();
   await waitForReveal(Runtime);
-  const pdf = await Page.printToPDF({
-    landscape: true,
-    printBackground: true,
-    // Paper size is in inches, this corresponds to A4
-    paperWidth: 8.27,
-    paperHeight: 11.69,
-    marginTop: 0,
-    marginRight: 0,
-    marginBottom: 0,
-    marginLeft: 0,
-  });
-  await writeFile(`${__dirname}/output.pdf`, pdf.data, { encoding: 'base64' });
+  const pdf = await Page.printToPDF(options);
   protocol.close();
   launcher.kill();
+  return pdf.data;
 }
 
-if (require.main === module) {
-  run();
-}
+module.exports = generatePdf;

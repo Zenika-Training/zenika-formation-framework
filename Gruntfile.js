@@ -350,28 +350,27 @@ module.exports = function gruntConfig(grunt) {
       });
   });
 
-  grunt.registerTask('doGenerateSlidesPDF', () => {
-    const childProcess = require('child_process');
-    const phantomjs = require('phantomjs');
-    const binPath = phantomjs.path;
-    const done = grunt.task.current.async();
-
-    const revealFullPath = path.join(frameworkPath, 'reveal/plugins/print-pdf/print-pdf.js');
-
-    const debugMode = false;
-
-    const childArgs = [
-      revealFullPath,
-      `http://localhost:${port}?print-pdf`,
-      `PDF/${slidesPdfName}.pdf`,
-      debugMode,
-    ];
-
-    childProcess.execFile(binPath, childArgs, (error, stdout, stderr) => {
-      grunt.log.writeln(stdout);
-      grunt.log.writeln(stderr);
-      done(error);
-    });
+  grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
+    const chromeHeadlessPrintPdf = require('./chrome-headless/chrome-headless');
+    const done = this.async();
+    try {
+      const pdf = await chromeHeadlessPrintPdf(`http://localhost:${port}?print-pdf`, {
+        landscape: true,
+        printBackground: true,
+        // Paper size is in inches, this corresponds to A4
+        paperWidth: 8.27,
+        paperHeight: 11.69,
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      });
+      grunt.file.write(`PDF/${slidesPdfName}.pdf`, pdf, { encoding: 'base64' });
+      done();
+    } catch (err) {
+      grunt.log.error(err);
+      done(false);
+    }
   });
 
 
