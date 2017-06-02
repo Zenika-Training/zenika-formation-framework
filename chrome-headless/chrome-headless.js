@@ -1,42 +1,63 @@
-// from https://developers.google.com/web/updates/2017/04/headless-chrome
+/**
+ * This script runs Chrome, connects to it via the debug protocol,
+ * then navigates to localhost:8000 where the slides should be running,
+ * then generates a PDF file on disk next to the script.
+ *
+ * Which Chrome to run is auto-detected using the Chrome Launcher from the
+ * Lighthouse project.
+ *
+ * Resources:
+ * Getting started with Chrome Headless
+ * https://developers.google.com/web/updates/2017/04/headless-chrome
+ * Chrome Remote Interface Documention
+ * https://chromedevtools.github.io/devtools-protocol/
+ */
 
 const { ChromeLauncher } = require('lighthouse/lighthouse-cli/chrome-launcher');
-const chrome = require('chrome-remote-interface');
+const chromeRemoteInterface = require('chrome-remote-interface');
 const fs = require('fs');
+const util = require('util');
 
-/**
- * Launches a debugging instance of Chrome on port 9222.
- * @param {boolean=} headless True (default) to launch Chrome in headless mode.
- *     Set to false to launch Chrome normally.
- * @return {Promise<ChromeLauncher>}
- */
-function launchChrome(headless = true) {
+const timeout = util.promisify(setTimeout);
+const writeFile = util.promisify(fs.writeFile);
+
+async function launchChrome() {
   const launcher = new ChromeLauncher({
     port: 9222,
-    autoSelectChrome: true, // False to manually select which Chrome install.
+    autoSelectChrome: true,
     additionalFlags: [
-      '--window-size=412,732',
       '--disable-gpu',
-      headless ? '--headless' : '',
+      '--headless',
     ],
   });
 
-  return launcher.run().then(() => launcher)
-    .catch(err => launcher.kill().then(() => { // Kill Chrome if there's an error.
-      throw err;
-    }, console.error));
+  try {
+    await launcher.run();
+  } catch (err) {
+    await launcher.kill();
+    throw err;
+  }
+
+  return launcher;
 }
 
-function timeout(t) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), t);
-  });
+function connectToChrome(remoteInterface) {
+  return new Promise((resolve, reject) => remoteInterface(resolve).on('error', reject));
 }
 
-function onPageLoad(Page) {
-  const printPdfOptions = {
+async function run() {
+  const launcher = await launchChrome();
+  const protocol = await connectToChrome(chromeRemoteInterface);
+  const { Page } = protocol;
+  await Page.enable();
+  await Page.navigate({ url: 'http://localhost:8000/?print-pdf' });
+  await Page.loadEventFired();
+  // Leave time for the JS to kick in and render everything
+  await timeout(10000);
+  const printToPdfOptions = {
     landscape: true,
     printBackground: true,
+    // Paper size is in inches, this corresponds to A4
     paperWidth: 8.27,
     paperHeight: 11.69,
     marginTop: 0,
@@ -44,31 +65,10 @@ function onPageLoad(Page) {
     marginBottom: 0,
     marginLeft: 0,
   };
-  return timeout(10000).then(() => Page.printToPDF(printPdfOptions).then((pdf) => {
-    fs.writeFileSync(`${__dirname}/output.pdf`, pdf.data, { encoding: 'base64' });
-  }));
+  const pdf = await Page.printToPDF(printToPdfOptions);
+  await writeFile(`${__dirname}/output.pdf`, pdf.data, { encoding: 'base64' });
+  protocol.close();
+  launcher.kill();
 }
 
-launchChrome().then((launcher) => {
-  chrome.Version().then(version => console.log(version['User-Agent']));
-  chrome((protocol) => {
-    // Extract the parts of the DevTools protocol we need for the task.
-    // See API docs: https://chromedevtools.github.io/devtools-protocol/
-    const { Page } = protocol;
-
-    // First, enable the Page domain we're going to use.
-    Page.enable().then(() => {
-      Page.navigate({ url: 'http://localhost:8000/?print-pdf' });
-
-      // Wait for window.onload before doing stuff.
-      Page.loadEventFired(() => {
-        onPageLoad(Page).then(() => {
-          protocol.close();
-          launcher.kill(); // Kill Chrome.
-        });
-      });
-    });
-  }).on('error', (err) => {
-    throw Error(`Cannot connect to Chrome:${err}`);
-  });
-});
+run();
