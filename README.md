@@ -98,6 +98,16 @@ Pour cela, aller dans CircleCI > Settings du projet > Chat Notifications et indi
 
 NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-pwa/edit#hooks`
 
+### Build args
+
+The following args are available to customize the build:
+- `slides-folder` to define the folder name containing the slides (useful when the training is translated in different languages)
+  - Default to `Slides`
+- `labs-folder` to define the folder name containing the labs (useful when the training is translated in different languages)
+  - Default to `CahierExercices`
+- `port` to define the port of the HTTP server
+  - Default to `8000`
+  
 ## Troobleshooting
 
 Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)
