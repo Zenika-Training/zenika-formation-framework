@@ -1,3 +1,14 @@
+# 2.6.0 (2017-06-06)
+
+# Features
+
+- Added build args to specify path to slides and exercices (issue #189, pr #193)
+
+## Deployment changes
+
+- Fixed: "no test command" CI warning (issue #167, pr #186)
+- Fixed: `ic.js` retries latest build instead of building `master` (issue #156, pr #182)
+
 # 2.5.1 (2017-04-04)
 
 ## Bug fixes
