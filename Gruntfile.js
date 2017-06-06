@@ -13,6 +13,9 @@ module.exports = function (grunt) {
   var version = date + '#' + git.short();
   var frameworkPath = __dirname;
 
+  var slidesFolder = grunt.option('slides-folder') || 'Slides';
+  var labsFolder = grunt.option('labs-folder') || 'CahierExercices';
+
   function resolveNpmModulesPath(npmModulePath) {
     try {
       fs.accessSync(pathIfNpm2(npmModulePath));
@@ -35,7 +38,7 @@ module.exports = function (grunt) {
     dist: 'dist',
     connect: {
       options: {
-        base: [frameworkPath, 'Slides/', pathIfNpm2(''), pathIfNpm3('')],
+        base: [frameworkPath, slidesFolder + '/', pathIfNpm2(''), pathIfNpm3('')],
         hostname: '0.0.0.0',
         port: port
       },
@@ -68,10 +71,10 @@ module.exports = function (grunt) {
         livereload: 32729
       },
       content: {
-        files: ['Slides/**/*.md', 'Slides/slides.json']
+        files: [slidesFolder + '/**/*.md', slidesFolder + 'slides.json']
       },
       ressources: {
-        files: 'Slides/ressources/**'
+        files: slidesFolder + '/ressources/**'
       },
       reveal: {
         files: frameworkPath + '/reveal/**'
@@ -113,7 +116,7 @@ module.exports = function (grunt) {
           {
             expand: true,
             dot: true,
-            cwd: 'Slides',
+            cwd: slidesFolder,
             dest: '<%= dist %>',
             src: [
               './**'
@@ -304,7 +307,7 @@ module.exports = function (grunt) {
       duplexer = require('duplexer');
 
     try {
-      var parts = require(path.resolve(frameworkPath, '..', '..', 'CahierExercices', 'parts.json'));
+      var parts = require(path.resolve(frameworkPath, '..', '..', labsFolder, 'parts.json'));
     }
     catch (e) {
       parts = ['Cahier.md'];
@@ -313,7 +316,7 @@ module.exports = function (grunt) {
     var highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css');
     var pdfPath = 'PDF/' + cahierExercicesPdfName + '.pdf';
     var files = parts.map(function (f) {
-      return 'CahierExercices/' + f;
+      return labsFolder + '/' + f;
     });
 
     console.log('Using CSS file', cssPath);
@@ -327,10 +330,10 @@ module.exports = function (grunt) {
       var transform = through(function (data) {
         var out = data
             .replace(/!\[([^\]]*)][\s]*\(([^\)]*)\)/g, function (match, p1, p2) {
-              return '![' + p1 + '](' + path.resolve('CahierExercices', p2) + ')';
+              return '![' + p1 + '](' + path.resolve(labsFolder, p2) + ')';
             })
             .replace(/<img (.*)src=["|']([^\"\']*)["|'](.*)>/g, function (match, p1, p2, p3, src) {
-              return '<img ' + p1 + 'src="' + path.resolve('CahierExercices', p2) + '"' + p3 + '>';
+              return '<img ' + p1 + 'src="' + path.resolve(labsFolder, p2) + '"' + p3 + '>';
             })
             .replace(/\{Titre-Formation}/g, function () {
               return configFormation.name;
