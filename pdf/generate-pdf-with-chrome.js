@@ -1,10 +1,12 @@
 /**
- * This script runs Chrome, connects to it via the debug protocol,
- * then navigates to localhost:8000 where the slides should be running,
- * then generates a PDF file on disk next to the script.
+ * This modules exposes a function that runs Chrome, connects to it via the
+ * debug protocol, then navigates to the given URL where the slides should be 
+ * running, waits for Reveal to be ready then generates and returns a PDF as a
+ * base 64 string.
  *
  * Which Chrome to run is auto-detected using the Chrome Launcher from the
- * Lighthouse project.
+ * Lighthouse project. Chrome is run headless if available. Chrome Canary
+ * is run if available.
  *
  * Resources:
  * Getting started with Chrome Headless
