@@ -39,10 +39,10 @@ async function launchChrome() {
 function waitForReveal(Runtime) {
   return new Promise((resolve) => {
     const timer = setInterval(async () => {
-      const slideChangedEvent = await Runtime.evaluate({
+      const { result } = await Runtime.evaluate({
         expression: 'window.Reveal.isReady()',
       });
-      if (slideChangedEvent.result.value) {
+      if (result.value) {
         clearInterval(timer);
         resolve();
       }

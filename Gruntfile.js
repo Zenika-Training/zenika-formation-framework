@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const git = require('git-rev-sync');
+const generatePdfWithChrome = require('./pdf/generate-pdf-with-chrome');
 
 module.exports = function gruntConfig(grunt) {
   const port = grunt.option('port') || 8000;
@@ -351,10 +352,9 @@ module.exports = function gruntConfig(grunt) {
   });
 
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
-    const chromeHeadlessPrintPdf = require('./chrome-headless/chrome-headless');
     const done = this.async();
     try {
-      const pdf = await chromeHeadlessPrintPdf(`http://localhost:${port}?print-pdf`, {
+      const pdf = await generatePdfWithChrome(`http://localhost:${port}?print-pdf`, {
         landscape: true,
         printBackground: true,
         // Paper size is in inches, this corresponds to A4
