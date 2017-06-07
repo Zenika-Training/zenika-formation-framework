@@ -1,5 +1,5 @@
 /**
- * This modules exposes a function that runs Chrome, connects to it via the
+ * This module exposes a function that runs Chrome, connects to it via the
  * debug protocol, then navigates to the given URL where the slides should be 
  * running, waits for Reveal to be ready then generates and returns a PDF as a
  * base 64 string.
