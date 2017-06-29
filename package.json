@@ -26,7 +26,7 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "lighthouse": "^2.0.0",
+    "lighthouse": "~2.0.0",
     "markdown-pdf": "^5.1.0",
     "phantomjs": "^1.9.0",
     "prismjs": "^1.6.0",
