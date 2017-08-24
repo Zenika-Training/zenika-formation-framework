@@ -55,15 +55,15 @@ Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styl
 
 ## Commandes et utilisation
 
-### Paramètres de lancement
+### Launch/build arguments
 
 The following args are available to customize the build:
 - `slides-folder` to define the folder name containing the slides (useful when the training is translated in different languages)
-  - Default to `Slides`
+  - Defaults to `Slides`
 - `labs-folder` to define the folder name containing the labs (useful when the training is translated in different languages)
-  - Default to `CahierExercices`
+  - Defaults to `CahierExercices`
 - `port` to define the port of the HTTP server
-  - Default to `8000`
+  - Defaults to `8000`
 
 ### deploy.js
 
