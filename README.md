@@ -55,6 +55,16 @@ Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styl
 
 ## Commandes et utilisation
 
+### Launch/build arguments
+
+The following args are available to customize the build:
+- `slides-folder` to define the folder name containing the slides (useful when the training is translated in different languages)
+  - Defaults to `Slides`
+- `labs-folder` to define the folder name containing the labs (useful when the training is translated in different languages)
+  - Defaults to `CahierExercices`
+- `port` to define the port of the HTTP server
+  - Defaults to `8000`
+
 ### deploy.js
 
 Permet d'installer et d'utiliser l'outil `gcloud` de Google pour déployer sur AppEngine un projet statique.
@@ -97,16 +107,6 @@ De base, tous les builds sont repertoriés sur Slack dans le channel `#ic-format
 Pour cela, aller dans CircleCI > Settings du projet > Chat Notifications et indiquer dans le panel Slack `https://hooks.slack.com/services/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`
 
 NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-pwa/edit#hooks`
-
-### Build args
-
-The following args are available to customize the build:
-- `slides-folder` to define the folder name containing the slides (useful when the training is translated in different languages)
-  - Default to `Slides`
-- `labs-folder` to define the folder name containing the labs (useful when the training is translated in different languages)
-  - Default to `CahierExercices`
-- `port` to define the port of the HTTP server
-  - Default to `8000`
   
 ## Troobleshooting
 
