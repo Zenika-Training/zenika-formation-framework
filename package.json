@@ -1,6 +1,6 @@
 {
   "name": "zenika-formation-framework",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Framework for displaying slides and building PDFs for Zenika Training",
   "author": "Zenika",
   "repository": {
