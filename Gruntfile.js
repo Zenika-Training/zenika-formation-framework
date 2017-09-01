@@ -319,31 +319,31 @@ module.exports = function gruntConfig(grunt) {
     console.log('Using highlightPath file', highlightPath);
     console.log('Using md sources files', files);
 
+    // from https://github.com/jonschlinkert/remarkable#syntax-highlighting
+    function highlight(str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value;
+        } catch (err) {
+          // ignore
+        }
+      }
+      try {
+        return hljs.highlightAuto(str).value;
+      } catch (err) {
+        // ignore
+      }
+      return ''; // use external default escaping
+    }
+
     try {
       const markdownContent = files.map(file => fs.readFileSync(file)).join('\n\n');
       const cssContent = fs.readFileSync(cssPath);
       const highlightJsCssContent = fs.readFileSync(highlightPath);
-      const remarkable = new Remarkable({ html: true,
-        highlight(str, lang) {
-          if (lang && hljs.getLanguage(lang)) {
-            try {
-              return hljs.highlight(lang, str).value;
-            } catch (err) {
-              // ignore
-            }
-          }
-          try {
-            return hljs.highlightAuto(str).value;
-          } catch (err) {
-            // ignore
-          }
-          return ''; // use external default escaping
-        },
-      });
+      const remarkable = new Remarkable({ html: true, highlight });
       const htmlContent = remarkable.render(markdownContent)
         .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
         .replace(/\{Titre-Formation}/g, () => configFormation.name);
-      console.log(htmlContent);
       const htmlContentWithStyles = `
         ${htmlContent}
         <style>
