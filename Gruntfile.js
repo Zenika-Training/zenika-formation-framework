@@ -357,13 +357,13 @@ module.exports = function gruntConfig(grunt) {
       const pdf = await generatePdfWithChrome(`http://localhost:${port}?print-pdf`, {
         landscape: true,
         printBackground: true,
-        // Paper size is in inches, this corresponds to A4
-        paperWidth: 8.27,
-        paperHeight: 11.69,
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        format: 'A4',
+        margin: {
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+        },
       });
       grunt.file.write(`PDF/${slidesPdfName}.pdf`, pdf, { encoding: 'base64' });
       done();
