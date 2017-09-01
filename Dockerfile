@@ -1,5 +1,5 @@
 # zenika/formations
-FROM node:7
+FROM node:8
 MAINTAINER Zenika <http://www.zenika.com>
 
 # Install grunt
