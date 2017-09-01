@@ -71,7 +71,7 @@ module.exports = function gruntConfig(grunt) {
         livereload: 32729,
       },
       content: {
-        files: [`${slidesFolder}/**/*.md`, `${slidesFolder}slides.json`],
+        files: [`${slidesFolder}/**/*.md`, `${slidesFolder}/slides.json`],
       },
       ressources: {
         files: `${slidesFolder}/ressources/**`,
