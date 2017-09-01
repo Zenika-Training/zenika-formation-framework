@@ -1,6 +1,19 @@
+# 2.7.0 (2017-09-01)
+
+## Features
+
+- PDF generation with Chrome (issue #185, pr #201 and #202)
+  - faster PDF generation
+  - support for ES2015, SVGs...
+- Special pages for exercices up to 30 (pr #200)
+
+## Development changes
+
+- Added eslint with AirBnB conventions
+
 # 2.6.0 (2017-06-06)
 
-# Features
+## Features
 
 - Added build args to specify path to slides and exercices (issue #189, pr #193)
 
