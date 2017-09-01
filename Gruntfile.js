@@ -13,6 +13,9 @@ module.exports = function gruntConfig(grunt) {
   const version = `${date}#${git.short()}`;
   const frameworkPath = __dirname;
 
+  const slidesFolder = grunt.option('slides-folder') || 'Slides';
+  const labsFolder = grunt.option('labs-folder') || 'CahierExercices';
+
   function resolveNpmModulesPath(npmModulePath) {
     try {
       fs.accessSync(pathIfNpm2(npmModulePath));
@@ -35,7 +38,7 @@ module.exports = function gruntConfig(grunt) {
     dist: 'dist',
     connect: {
       options: {
-        base: [frameworkPath, 'Slides/', pathIfNpm2(''), pathIfNpm3('')],
+        base: [frameworkPath, `${slidesFolder}/`, pathIfNpm2(''), pathIfNpm3('')],
         hostname: '0.0.0.0',
         port,
       },
@@ -68,10 +71,10 @@ module.exports = function gruntConfig(grunt) {
         livereload: 32729,
       },
       content: {
-        files: ['Slides/**/*.md', 'Slides/slides.json'],
+        files: [`${slidesFolder}/**/*.md`, `${slidesFolder}slides.json`],
       },
       ressources: {
-        files: 'Slides/ressources/**',
+        files: `${slidesFolder}/ressources/**`,
       },
       reveal: {
         files: `${frameworkPath}/reveal/**`,
@@ -113,7 +116,7 @@ module.exports = function gruntConfig(grunt) {
           {
             expand: true,
             dot: true,
-            cwd: 'Slides',
+            cwd: slidesFolder,
             dest: '<%= dist %>',
             src: [
               './**',
@@ -305,14 +308,14 @@ module.exports = function gruntConfig(grunt) {
 
     let parts;
     try {
-      parts = require(path.resolve(frameworkPath, '..', '..', 'CahierExercices', 'parts.json'));
+      parts = require(path.resolve(frameworkPath, '..', '..', labsFolder, 'parts.json'));
     } catch (e) {
       parts = ['Cahier.md'];
     }
     const cssPath = path.resolve(frameworkPath, 'styleCahierExercice.css');
     const highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css');
     const pdfPath = `PDF/${cahierExercicesPdfName}.pdf`;
-    const files = parts.map(f => `CahierExercices/${f}`);
+    const files = parts.map(f => `${labsFolder}/${f}`);
 
     console.log('Using CSS file', cssPath);
     console.log('Using highlightPath file', highlightPath);
@@ -324,8 +327,8 @@ module.exports = function gruntConfig(grunt) {
 
       const transform = through(function preprocessMdStream(data) {
         const out = `${data
-            .replace(/!\[([^\]]*)][\s]*\(([^)]*)\)/g, (match, p1, p2) => `![${p1}](${path.resolve('CahierExercices', p2)})`)
-            .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${path.resolve('CahierExercices', p2)}"${p3}>`)
+            .replace(/!\[([^\]]*)][\s]*\(([^)]*)\)/g, (match, p1, p2) => `![${p1}](${path.resolve(labsFolder, p2)})`)
+            .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${path.resolve(labsFolder, p2)}"${p3}>`)
             .replace(/\{Titre-Formation}/g, () => configFormation.name)
            }\n`;
         this.queue(out);

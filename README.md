@@ -20,6 +20,9 @@ Le framework des formations est un package npm à part entière. Il est importé
   "dependencies": {
     "grunt": "^0.4.5",
     "zenika-formation-framework": "X.Y.Z"
+  },
+  "script": {
+    "deploy": "zenika-formation-deploy"
   }
 ```
 
@@ -52,6 +55,16 @@ Le fichier de style utilisé est `./node_modules/zenika-formation-framework/styl
 
 ## Commandes et utilisation
 
+### Launch/build arguments
+
+The following args are available to customize the build:
+- `slides-folder` to define the folder name containing the slides (useful when the training is translated in different languages)
+  - Defaults to `Slides`
+- `labs-folder` to define the folder name containing the labs (useful when the training is translated in different languages)
+  - Defaults to `CahierExercices`
+- `port` to define the port of the HTTP server
+  - Defaults to `8000`
+
 ### deploy.js
 
 Permet d'installer et d'utiliser l'outil `gcloud` de Google pour déployer sur AppEngine un projet statique.
@@ -61,9 +74,12 @@ GAE_SERVICE_ACCOUNT=email de service
 GAE_KEY_FILE_CONTENT=clé au format json
 ```
 
+Ce script est utilisé par les formations pour se déployer via `npm run deploy`.
+
 ### ic.js
 
-Permet d'initialiser un projet CircleCI à partir d'un repository GitHub.
+Permet d'initialiser (ou ré-initialiser) un projet CircleCI à partir d'un repository GitHub.
+
 Nécessite 3 variables d'environnement:
 ```
 CIRCLE_TOKEN=token circle
@@ -91,7 +107,20 @@ De base, tous les builds sont repertoriés sur Slack dans le channel `#ic-format
 Pour cela, aller dans CircleCI > Settings du projet > Chat Notifications et indiquer dans le panel Slack `https://hooks.slack.com/services/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`
 
 NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-pwa/edit#hooks`
-
+  
 ## Troobleshooting
 
 Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)
+
+## Publish a release
+
+- Choose the version number.
+  - If the release requires changes in depending projects: bump the major version.
+  - If the release changes an expected behavior (eg rendering differences) or adds new behaviors: bump the minor version.
+  - Otherwise, bump the patch version.
+  - As depending projects use a caret semver range (on purpose) and are rebuilt upon every framework release, it is critical to not break depending projects on minor or patch releases.
+- Edit the changelog to add the new release.
+- Run `npm version [major|minor|patch]`.
+- Run `git push`.
+- Run `npm publish` (requires authorization from the `zenika` npm user, which you may contact to obtain those rights).
+  - Publication will trigger all GitHub projects starting with `Zenika/formation-` to rebuild and redeploy.

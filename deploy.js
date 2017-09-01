@@ -9,7 +9,7 @@ if (require.main === module) {
   const gcloudSdkVersion = '135.0.0';
   const serviceAccount = process.env.GAE_SERVICE_ACCOUNT;
   const gcloudProject = 'zen-formations';
-  const gcloudService = process.env.npm_package_config_deploy_name;
+  const gcloudService = process.env.npm_package_name;
   const currentBranch = process.env.CURRENT_BRANCH;
 
   if (!serviceAccount || !currentBranch) {

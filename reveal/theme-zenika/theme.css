@@ -333,6 +333,36 @@ body {
 .reveal section.page-tp20:after {
   content: "TP20";
 }
+.reveal section.page-tp21:after {
+  content: "TP21";
+}
+.reveal section.page-tp22:after {
+  content: "TP22";
+}
+.reveal section.page-tp23:after {
+  content: "TP23";
+}
+.reveal section.page-tp24:after {
+  content: "TP24";
+}
+.reveal section.page-tp25:after {
+  content: "TP25";
+}
+.reveal section.page-tp26:after {
+  content: "TP26";
+}
+.reveal section.page-tp27:after {
+  content: "TP27";
+}
+.reveal section.page-tp28:after {
+  content: "TP28";
+}
+.reveal section.page-tp29:after {
+  content: "TP29";
+}
+.reveal section.page-tp30:after {
+  content: "TP30";
+}
 
 .reveal section.page-demo {
   background: transparent center center no-repeat url('./images/demo.png');
