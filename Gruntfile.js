@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const git = require('git-rev-sync');
-const generatePdfWithChrome = require('./pdf/generate-pdf-with-chrome');
+const { generatePdfAt, generatePdfFromHtml } = require('./pdf/generate-pdf-with-chrome');
 
 module.exports = function gruntConfig(grunt) {
   const port = grunt.option('port') || 8000;
@@ -298,13 +298,12 @@ module.exports = function gruntConfig(grunt) {
 
   grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch']);
 
-  grunt.registerTask('generateCahierExercice', function generateCahierExercice() {
+  grunt.registerTask('generateCahierExercice', async function generateCahierExercice() {
     const done = this.async();
 
-    const markdownpdf = require('markdown-pdf');
-    const split = require('split');
-    const through = require('through');
-    const duplexer = require('duplexer');
+    const Remarkable = require('remarkable');
+    const base64img = require('base64-img');
+    const hljs = require('highlight.js');
 
     let parts;
     try {
@@ -314,59 +313,68 @@ module.exports = function gruntConfig(grunt) {
     }
     const cssPath = path.resolve(frameworkPath, 'styleCahierExercice.css');
     const highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css');
-    const pdfPath = `PDF/${cahierExercicesPdfName}.pdf`;
-    const files = parts.map(f => `${labsFolder}/${f}`);
+    const files = parts.map(file => path.resolve(labsFolder, file));
 
     console.log('Using CSS file', cssPath);
     console.log('Using highlightPath file', highlightPath);
     console.log('Using md sources files', files);
 
-
-    function preprocessMd() {
-      const splitter = split();
-
-      const transform = through(function preprocessMdStream(data) {
-        const out = `${data
-            .replace(/!\[([^\]]*)][\s]*\(([^)]*)\)/g, (match, p1, p2) => `![${p1}](${path.resolve(labsFolder, p2)})`)
-            .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${path.resolve(labsFolder, p2)}"${p3}>`)
-            .replace(/\{Titre-Formation}/g, () => configFormation.name)
-           }\n`;
-        this.queue(out);
+    try {
+      const markdownContent = files.map(file => fs.readFileSync(file)).join('\n\n');
+      const cssContent = fs.readFileSync(cssPath);
+      const highlightJsCssContent = fs.readFileSync(highlightPath);
+      const remarkable = new Remarkable({ html: true,
+        highlight(str, lang) {
+          if (lang && hljs.getLanguage(lang)) {
+            try {
+              return hljs.highlight(lang, str).value;
+            } catch (err) {
+              // ignore
+            }
+          }
+          try {
+            return hljs.highlightAuto(str).value;
+          } catch (err) {
+            // ignore
+          }
+          return ''; // use external default escaping
+        },
       });
-
-      splitter.pipe(transform);
-
-      return duplexer(splitter, transform);
+      const htmlContent = remarkable.render(markdownContent)
+        .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
+        .replace(/\{Titre-Formation}/g, () => configFormation.name);
+      console.log(htmlContent);
+      const htmlContentWithStyles = `
+        ${htmlContent}
+        <style>
+          ${cssContent}
+          ${highlightJsCssContent}
+        </style>
+      `;
+      const pdfContent = await generatePdfFromHtml(htmlContentWithStyles, {
+        format: 'A4',
+        margin: {
+          top: '8mm',
+          right: '8mm',
+          bottom: '8mm',
+          left: '8mm',
+        },
+      });
+      grunt.file.write(`PDF/${cahierExercicesPdfName}.pdf`, pdfContent, { encoding: 'base64' });
+      done();
+    } catch (err) {
+      grunt.log.error(err);
+      done(false);
     }
-
-    markdownpdf({
-      cssPath,
-      highlightCssPath: highlightPath,
-      preProcessMd: preprocessMd,
-      remarkable: { html: true },
-      cwd: frameworkPath,
-    })
-      .concat.from(files)
-      .to(pdfPath,
-      () => {
-        console.log(`PDF généré: ${pdfPath}`);
-        done();
-      });
   });
 
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
     const done = this.async();
     try {
-      const pdf = await generatePdfWithChrome(`http://localhost:${port}?print-pdf`, {
+      const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf`, {
         landscape: true,
         printBackground: true,
         format: 'A4',
-        margin: {
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        },
       });
       grunt.file.write(`PDF/${slidesPdfName}.pdf`, pdf, { encoding: 'base64' });
       done();

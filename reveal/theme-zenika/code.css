@@ -1,108 +1,108 @@
 pre code {
   display: block;
-  padding: 0.5em;
+  padding: 0.hljs-5em;
   background: #FBFBFB;
   color: #111;
 }
 
-pre .keyword,
-pre .tag,
-pre .css .class,
-pre .css .id,
-pre .lisp .title,
-pre .nginx .title,
-pre .request,
-pre .status,
-pre .clojure .attribute {
+pre .hljs-keyword,
+pre .hljs-tag,
+pre .hljs-css .hljs-class,
+pre .hljs-css .hljs-id,
+pre .hljs-lisp .hljs-title,
+pre .hljs-nginx .hljs-title,
+pre .hljs-request,
+pre .hljs-status,
+pre .hljs-clojure .hljs-attribute {
   color: #b30c37;
 }
 
-pre .django .template_tag,
-pre .django .variable,
-pre .django .filter .argument {
+pre .hljs-django .hljs-template_tag,
+pre .hljs-django .hljs-variable,
+pre .hljs-django .hljs-filter .hljs-argument {
   color: black;
 }
 
-pre .number,
-pre .date {
+pre .hljs-number,
+pre .hljs-date {
   color: #C4490D;
 }
 
-pre .dos .envvar,
-pre .dos .stream,
-pre .variable,
-pre .apache .sqbracket {
+pre .hljs-dos .hljs-envvar,
+pre .hljs-dos .hljs-stream,
+pre .hljs-variable,
+pre .hljs-apache .hljs-sqbracket {
   color: black;
 }
 
-pre .dos .flow,
-pre .diff .change,
-pre .python .exception,
-pre .python .built_in,
-pre .literal,
-pre .tex .special {
+pre .hljs-dos .hljs-flow,
+pre .hljs-diff .hljs-change,
+pre .hljs-python .hljs-exception,
+pre .hljs-python .hljs-built_in,
+pre .hljs-literal,
+pre .hljs-tex .hljs-special {
   color: black;
 }
 
-pre .diff .chunk,
-pre .subst {
+pre .hljs-diff .hljs-chunk,
+pre .hljs-subst {
   color: black;
 }
 
-pre .dos .keyword,
-pre .python .decorator,
-pre .title,
-pre .haskell .type,
-pre .diff .header,
-pre .ruby .class .parent,
-pre .apache .tag,
-pre .nginx .built_in,
-pre .tex .command,
-pre .prompt {
+pre .hljs-dos .hljs-keyword,
+pre .hljs-python .hljs-decorator,
+pre .hljs-title,
+pre .hljs-haskell .hljs-type,
+pre .hljs-diff .hljs-header,
+pre .hljs-ruby .hljs-class .hljs-parent,
+pre .hljs-apache .hljs-tag,
+pre .hljs-nginx .hljs-built_in,
+pre .hljs-tex .hljs-command,
+pre .hljs-prompt {
   color: black;
 }
 
-pre .dos .winutils,
-pre .ruby .symbol,
-pre .ruby .symbol .string,
-pre .ruby .string {
+pre .hljs-dos .hljs-winutils,
+pre .hljs-ruby .hljs-symbol,
+pre .hljs-ruby .hljs-symbol .hljs-string,
+pre .hljs-ruby .hljs-string {
   color: black;
 }
 
-pre .diff .deletion,
-pre .string,
-pre .tag .value,
-pre .preprocessor,
-pre .built_in,
-pre .sql .aggregate,
-pre .javadoc,
-pre .smalltalk .class,
-pre .smalltalk .localvars,
-pre .smalltalk .array,
-pre .css .rules .value,
-pre .attr_selector,
-pre .pseudo,
-pre .apache .cbracket,
-pre .tex .formula {
+pre .hljs-diff .hljs-deletion,
+pre .hljs-string,
+pre .hljs-tag .hljs-value,
+pre .hljs-preprocessor,
+pre .hljs-built_in,
+pre .hljs-sql .hljs-aggregate,
+pre .hljs-javadoc,
+pre .hljs-smalltalk .hljs-class,
+pre .hljs-smalltalk .hljs-localvars,
+pre .hljs-smalltalk .hljs-array,
+pre .hljs-css .hljs-rules .hljs-value,
+pre .hljs-attr_selector,
+pre .hljs-pseudo,
+pre .hljs-apache .hljs-cbracket,
+pre .hljs-tex .hljs-formula {
   color: #4BAC0C;
 }
 
-pre .shebang,
-pre .diff .addition,
-pre .comment,
-pre .java .annotation,
-pre .template_comment,
-pre .pi,
-pre .doctype {
+pre .hljs-shebang,
+pre .hljs-diff .hljs-addition,
+pre .hljs-comment,
+pre .hljs-java .hljs-annotation,
+pre .hljs-template_comment,
+pre .hljs-pi,
+pre .hljs-doctype {
   color: #098458;
 }
 
-pre .coffeescript .javascript,
-pre .javascript .xml,
-pre .tex .formula,
-pre .xml .javascript,
-pre .xml .vbscript,
-pre .xml .css,
-pre .xml .cdata {
-  opacity: 0.5;
+pre .hljs-coffeescript .hljs-javascript,
+pre .hljs-javascript .hljs-xml,
+pre .hljs-tex .hljs-formula,
+pre .hljs-xml .hljs-javascript,
+pre .hljs-xml .hljs-vbscript,
+pre .hljs-xml .hljs-css,
+pre .hljs-xml .hljs-cdata {
+  opacity: 0.hljs-5;
 }
