@@ -7,8 +7,11 @@ projects use Node 6.
 
 ## Migrating
 
+- Modify `package.json` to require version `^3.0.0` of the framework.
 - Modify `circle.yml` and set the Node.js version to the latest version of the
 version 8 line. Example: `8.4.0`.
+
+See the diff [here](https://github.com/Zenika/Formation--Modele/pull/124/files).
 
 # 2.7.0 (2017-09-01) *unpublished because of breaking change, see 3.0.0*
 
