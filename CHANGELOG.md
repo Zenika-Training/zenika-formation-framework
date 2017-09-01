@@ -1,4 +1,16 @@
-# 2.7.0 (2017-09-01)
+# 3.0.0 (2017-09-01)
+
+## Breaking changes
+
+- New Gruntfile uses async functions, which require Node 7.10.1+. Most depending
+projects use Node 6.
+
+## Migrating
+
+- Modify `circle.yml` and set the Node.js version to the latest version of the
+version 8 line. Example: `8.4.0`.
+
+# 2.7.0 (2017-09-01) *unpublished because of breaking change, see 3.0.0*
 
 ## Features
 
@@ -9,7 +21,7 @@
 
 ## Development changes
 
-- Added eslint with AirBnB conventions
+- Added eslint with AirBnB styleguide
 
 # 2.6.0 (2017-06-06)
 
