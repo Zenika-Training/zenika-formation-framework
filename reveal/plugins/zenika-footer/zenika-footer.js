@@ -1,28 +1,28 @@
-Reveal.addEventListener('ready', function() {
-  'use strict';
+/* global Reveal */
 
-  function forEachSlide(action) {
-    function forEach(nodes, action) { Array.prototype.forEach.call(nodes, action); }
-    var chapters = document.querySelectorAll('.reveal .slides > section');
-    forEach(chapters, function(chapter, chapterIndex) {
-      var slides = chapter.querySelectorAll('section');
-      forEach(slides, function(slide, slideIndex) {
-        action(slide, chapterIndex, slideIndex);
+Reveal.addEventListener('ready', () => {
+  function forEachSlide(slideIteratee) {
+    function forEach(nodes, nodeIteratee) { Array.prototype.forEach.call(nodes, nodeIteratee); }
+    const chapters = document.querySelectorAll('.reveal .slides > section');
+    forEach(chapters, (chapter, chapterIndex) => {
+      const slides = chapter.querySelectorAll('section');
+      forEach(slides, (slide, slideIndex) => {
+        slideIteratee(slide, chapterIndex, slideIndex);
       });
     });
   }
 
   function footer(footerClass, footerContent) {
-    var footer = document.createElement('footer');
-    footer.classList.add(footerClass);
-    footer.innerHTML = footerContent;
-    return footer;
+    const footerElement = document.createElement('footer');
+    footerElement.classList.add(footerClass);
+    footerElement.innerHTML = footerContent;
+    return footerElement;
   }
 
   function getSlideNumber(chapterIndex, slideIndex) {
-    if (chapterIndex == 0) return '';
-    if (slideIndex == 0) return chapterIndex.toString();
-    return chapterIndex.toString() + ' - ' + slideIndex.toString();
+    if (chapterIndex === 0) return '';
+    if (slideIndex === 0) return chapterIndex.toString();
+    return `${chapterIndex.toString()} - ${slideIndex.toString()}`;
   }
 
   function addSlideNumber(slide, chapterIndex, slideIndex) {
@@ -30,8 +30,8 @@ Reveal.addEventListener('ready', function() {
   }
 
   function addCopyright(slide, chapterIndex, slideIndex) {
-    if (slideIndex == 0) return;
-    slide.appendChild(footer('copyright', '&copy; Copyright ' + new Date().getFullYear() + ' Zenika. All rights reserved'));
+    if (slideIndex === 0) return;
+    slide.appendChild(footer('copyright', `&copy; Copyright ${new Date().getFullYear()} Zenika. All rights reserved`));
   }
 
   forEachSlide(addSlideNumber);

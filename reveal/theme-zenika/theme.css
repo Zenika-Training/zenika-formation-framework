@@ -220,7 +220,7 @@ body {
 .slides section:first-child::after {
     color: white;
     font-size: 13px;
-    content: "VERSION";
+    content: "2017-09-01#b550551";
     position: absolute;
     bottom: 5mm;
     right: 5mm;
@@ -247,7 +247,7 @@ body {
 }
 
 .reveal section.page-questions {
-  background: transparent center center no-repeat url('./images/questions.svg');
+  background: white center center no-repeat url('./images/questions.svg');
   background-size: 60%;
 }
 

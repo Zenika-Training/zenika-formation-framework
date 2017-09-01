@@ -1,26 +1,33 @@
-(function (window, document, Promise, Reveal) {
+/* global Reveal, Prism */
+/*
+eslint no-param-reassign: [
+  "error",
+  { "props": true, "ignorePropertyModificationsFor": ["window", "Prism"] }
+]
+*/
 
-  var config = {
-    revealTheme: '/reveal/theme-zenika/'
+(function run(window, document, Promise, Reveal) {
+  const config = {
+    revealTheme: '/reveal/theme-zenika/',
   };
 
   fileExists('reveal.js/css/reveal.min.css')
-    .then(function () {
+    .then(() => {
       // NPM 3
       config.revealModule = 'reveal.js/';
       config.prismModule = 'prismjs/';
       console.log('NPM 3 detected.');
     })
-    .catch(function () {
+    .catch(() => {
       // NPM 2
       config.revealModule = 'node_modules/reveal.js/';
       config.prismModule = 'node_modules/prismjs/';
       console.log('NPM 2 detected.');
     })
-    .then(function(){
+    .then(() => {
       Promise.all([
         applyPrintStylesheets(),
-        insertSlides()
+        insertSlides(),
       ]).then(runReveal);
     });
 
@@ -59,7 +66,7 @@
         },
         87: function wKey() {
           cycleWideModes();
-        }
+        },
       },
       margin: 0,
       maxScale: 2.0,
@@ -68,41 +75,45 @@
 
       // Optional libraries used to extend on reveal.js
       dependencies: [
-        { src: config.revealModule + 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        { src: config.prismModule + 'prism.js', condition: function() { return true; }, callback: function() {
-          window.hljs = {
-            highlightAuto : function(code, lang) {
-              var defaultLanguage = Prism.languages[lang] || Prism.languages.clike;
-              return { value: Prism.highlight(code, defaultLanguage) };
-            }
-          };
-        } },
-        { src: config.prismModule + 'components/prism-bash.js', condition: function() { return true; }, callback: function() {
-          Prism.languages.shell = Prism.languages.bash;
-        }},
-        { src: config.prismModule + 'components/prism-clike.js', condition: function() { return true; }},
-        { src: config.prismModule + 'components/prism-go.js', condition: function() { return true; }},
-        { src: config.prismModule + 'components/prism-java.js', condition: function() { return true; }},
-        { src: config.prismModule + 'components/prism-json.js', condition: function() { return true; }},
-        { src: config.prismModule + 'components/prism-typescript.js', condition: function() { return true; }},
-        { src: config.prismModule + 'components/prism-scala.js', condition: function() { return true; }},
-        { src: config.revealModule + 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: config.revealModule + 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-        { src: config.revealModule + 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-        { src: config.revealModule + 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-        { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition: function() { return !!document.body.classList; } }
-      ]
+        { src: `${config.revealModule}lib/js/classList.js`, condition() { return !document.body.classList; } },
+        { src: `${config.prismModule}prism.js`,
+          condition() { return true; },
+          callback() {
+            window.hljs = {
+              highlightAuto(code, lang) {
+                const defaultLanguage = Prism.languages[lang] || Prism.languages.clike;
+                return { value: Prism.highlight(code, defaultLanguage) };
+              },
+            };
+          } },
+        { src: `${config.prismModule}components/prism-bash.js`,
+          condition() { return true; },
+          callback() {
+            Prism.languages.shell = Prism.languages.bash;
+          } },
+        { src: `${config.prismModule}components/prism-clike.js`, condition() { return true; } },
+        { src: `${config.prismModule}components/prism-go.js`, condition() { return true; } },
+        { src: `${config.prismModule}components/prism-java.js`, condition() { return true; } },
+        { src: `${config.prismModule}components/prism-json.js`, condition() { return true; } },
+        { src: `${config.prismModule}components/prism-typescript.js`, condition() { return true; } },
+        { src: `${config.prismModule}components/prism-scala.js`, condition() { return true; } },
+        { src: `${config.revealModule}plugin/markdown/marked.js`, condition() { return !!document.querySelector('[data-markdown]'); } },
+        { src: `${config.revealModule}plugin/markdown/markdown.js`, condition() { return !!document.querySelector('[data-markdown]'); } },
+        { src: `${config.revealModule}plugin/zoom-js/zoom.js`, async: true, condition() { return !!document.body.classList; } },
+        { src: `${config.revealModule}plugin/notes/notes.js`, async: true, condition() { return !!document.body.classList; } },
+        { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition() { return !!document.body.classList; } },
+      ],
     });
   }
 
-  function selectWidth(queryParams) {
+  function selectWidth() {
     if (queryParameterIsPresent(window.location.search, '16x9')) return 1413; // 16:9
     else if (queryParameterIsPresent(window.location.search, '16x10')) return 1272; // 16:10
-    else return 1124; // ~4:3
+    return 1124; // ~4:3
   }
 
   function cycleWideModes() {
-    var queryString = window.location.search;
+    let queryString = window.location.search;
     if (queryParameterIsPresent(queryString, '16x9')) {
       queryString = removeQueryParameter(queryString, '16x9');
       queryString = addQueryParameter(queryString, '16x10');
@@ -126,15 +137,15 @@
   }
 
   function hasRemoteQueryParameter() {
-    return queryParameterIsPresent(window.location.search, 'remote')
+    return queryParameterIsPresent(window.location.search, 'remote');
   }
 
   function enableRemoteMode() {
-    window.location.search = addQueryParameter(window.location.search, 'remote')
+    window.location.search = addQueryParameter(window.location.search, 'remote');
   }
 
   function disableRemoteMode() {
-    window.location.search = removeQueryParameter(window.location.search, 'remote')
+    window.location.search = removeQueryParameter(window.location.search, 'remote');
   }
 
   function queryParameterIsPresent(queryString, queryParameter) {
@@ -143,25 +154,23 @@
 
   function addQueryParameter(queryString, queryParameter) {
     return queryString + (queryString.match(/\?/)
-      ? '&' + queryParameter
-      : '?' + queryParameter);
+      ? `&${queryParameter}`
+      : `?${queryParameter}`);
   }
 
   function removeQueryParameter(queryString, queryParameter) {
     return queryString.replace(
       queryParameterRegexp(queryParameter),
-      function (match, before, after) {
-        return after ? before : '';
-      });
+      (match, before, after) => (after ? before : ''));
   }
 
   function queryParameterRegexp(queryParameter) {
-    return new RegExp('([?&])' + queryParameter + '(&|$)');
+    return new RegExp(`([?&])${queryParameter}(&|$)`);
   }
 
   function appendStylesheet(head, stylesheets) {
-    stylesheets.forEach(function (stylesheet) {
-      var linkElement = document.createElement('link');
+    stylesheets.forEach((stylesheet) => {
+      const linkElement = document.createElement('link');
       linkElement.rel = 'stylesheet';
       linkElement.type = 'text/css';
       linkElement.href = stylesheet;
@@ -176,28 +185,27 @@
   }
 
   function applyPrintStylesheets() {
-    return new Promise(function (resolve) {
-      var head = document.getElementsByTagName('head')[0];
-      appendStylesheet(head, [config.prismModule + 'themes/prism.css']);
-      appendStylesheetWhenUrlMatches(head, /print-pdf/gi, [config.revealModule + 'css/print/pdf.css', config.revealTheme + 'pdf.css']);
-      appendStylesheetWhenUrlMatches(head, /edition/gi, [config.revealTheme + 'edition.css']);
+    return new Promise((resolve) => {
+      const head = document.getElementsByTagName('head')[0];
+      appendStylesheet(head, [`${config.prismModule}themes/prism.css`]);
+      appendStylesheetWhenUrlMatches(head, /print-pdf/gi, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}pdf.css`]);
+      appendStylesheetWhenUrlMatches(head, /edition/gi, [`${config.revealTheme}edition.css`]);
       resolve();
     });
   }
 
   function insertSlides() {
-    return new Promise(function (resolve, reject) {
-
-      var request = new XMLHttpRequest();
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
 
       console.log('Insert slides');
 
-      request.onload = function () {
-        var slideContainer = document.querySelector('.slides');
+      request.onload = function onLoad() {
+        const slideContainer = document.querySelector('.slides');
 
-        function slideLoader(path){
+        function slideLoader(path) {
           console.log('path:', path);
-          var chapter = document.createElement('section');
+          const chapter = document.createElement('section');
           chapter.dataset.markdown = path;
           chapter.dataset.vertical = '^\r?\n\r?\n\r?\n';
           chapter.dataset.notes = '^Notes :';
@@ -211,7 +219,7 @@
         resolve(slideContainer);
       };
 
-      request.onerror = function (event) {
+      request.onerror = function onError(event) {
         console.error(event);
         reject('Erreur chargement des slides.');
       };
@@ -222,9 +230,9 @@
   }
 
   function fileExists(url) {
-    return new Promise(function (resolve, reject) {
-      var request = new XMLHttpRequest();
-      request.onload = function () {
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.onload = function onLoad() {
         console.log('onload', request.status);
         if (request.status === 200) {
           resolve(request.response);
@@ -232,7 +240,7 @@
           reject('File inacessible');
         }
       };
-      request.onerror = function (event) {
+      request.onerror = function onError(event) {
         reject('File inacessible');
         console.log(event);
       };
@@ -240,6 +248,4 @@
       request.send();
     });
   }
-
-
-})(window, document, Promise, Reveal);
+}(window, document, Promise, Reveal));
