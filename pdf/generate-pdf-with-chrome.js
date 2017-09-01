@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
  * @returns {Promise<string>} PDF content in base64
  */
 async function generatePdf(url, options) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
   await page.goto(url);
   await page.waitForFunction('window.Reveal.isReady()', {
