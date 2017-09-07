@@ -263,7 +263,7 @@ body {
 
 }
 .reveal section [class^="page-tp"]:after {
-  display: inline-block;
+  display: block;
   color: #af1e3a;
   font-size: 50px;
   font-weight: bold;
