@@ -258,7 +258,7 @@ body {
   height: 80%;
 }
 .reveal section [class^="page-tp"] {
-  background: transparent center center no-repeat url('./images/tp.svg');
+  background: white center center no-repeat url('./images/tp.svg');
   background-size: 60%;
 
 }
