@@ -1,3 +1,13 @@
+# 3.1.0 (2017-09-27)
+
+## Features
+
+- special slides for labs are now in English
+
+## Fixes
+
+- special slides for labs do not show the lab number on Chrome 61
+
 # 3.0.0 (2017-09-01)
 
 ## Breaking changes
