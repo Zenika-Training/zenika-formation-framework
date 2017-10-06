@@ -126,7 +126,7 @@ Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Trouble
   - Go to `https://hub.docker.com/r/zenika/formation-framework/` (log in to get access).
   - Go to the "Build Settings" tab.
   - Trigger a build for `master`.
-  - Trigger a build for the git tag just was created for the new version, with a Docker tag of the same name.
-  - Trigger a build for the git tag just was created for the new version, with a Docker tag named after the major version only (e.g. `v3`, `v14`).
+  - Trigger a build for the git tag that was created for the new version, with a Docker tag of the same name.
+  - Trigger a build for the same git tag, bit this time with a Docker tag named after the major version only (e.g. `v3`, `v14`).
 - Run `npm publish` (requires authorization from the `zenika` npm user, which you may contact to obtain those rights).
   - Publication will trigger all GitHub projects starting with `Zenika/formation-` to rebuild and redeploy.
