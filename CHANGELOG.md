@@ -10,18 +10,21 @@
 
 # 3.0.0 (2017-09-01)
 
+Includes everything listed under 2.7.0.
+
 ## Breaking changes
 
 - New Gruntfile uses async functions, which require Node 7.10.1+. Most depending
 projects use Node 6.
+- PDF generation with Chrome cannot run on CircleCI (some low-level libs are missing) so CI now generates PDF using Docker. This change impacts the build configuration of depending projects and the `run.sh` script hosted by depending projects.
 
 ## Migrating
 
-- Modify `package.json` to require version `^3.0.0` of the framework (like [this](https://github.com/Zenika/Formation--Modele/pull/124/commits/69d3dbc6ea9d86d9eefec9f1885d08124d913253)).
-- Modify `circle.yml` and set the Node.js version to the latest version of the
-version 8 line. Example: `8.4.0` (like [this](https://github.com/Zenika/Formation--Modele/pull/124/commits/9a89ef33af42e508670eb516dceb7f05787d9154)).
+You should apply [this commit](https://github.com/Zenika/Formation--Modele/commit/e2e9b0f306b02fdcc53bc775aeb12ea2d1b998bf). To ease the task, you may want to add [Formation--Modele](https://github.com/Zenika/Formation--Modele) ras a remote to your project and cherry-pick the commit.
 
-# 2.7.0 (2017-09-01) *unpublished because of breaking change, see 3.0.0*
+# 2.7.0 (2017-09-01)
+
+:warning: This version was unpublished because of breaking changes, see 3.0.0.
 
 ## Features
 
