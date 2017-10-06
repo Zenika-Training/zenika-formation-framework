@@ -99,7 +99,7 @@ $./ic.js formation-pwa
 
 ### rebuild-all.js
 
-Force une reconstruction de tous les projets suivis sur CircleCI. Nécessite la variable d'environnement `CIRCLE_TOKEN`. Ce script est appelé après la publication du framework sur npm. Dans ce cadre la variable d'environnement peut être spécifiée dans une fichier `.env`.
+Forces all CircleCI projects which name starts with `formation-` to rebuild. This script calls [`ic.js`](#icjs], it requires the same environment variables. `rebuild-all.js` is run after the publication of a new framework version so that all depending projects are rebuilt and redeployed with the new version (assuming they use a caret semver range with the same major version that was just published).
 
 ### Intégration Slack _Non disponible en API_
 
@@ -128,5 +128,10 @@ Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Trouble
   - Trigger a build for `master`.
   - Trigger a build for the git tag that was created for the new version, with a Docker tag of the same name.
   - Trigger a build for the same git tag, bit this time with a Docker tag named after the major version only (e.g. `v3`, `v14`).
-- Run `npm publish` (requires authorization from the `zenika` npm user, which you may contact to obtain those rights).
-  - Publication will trigger all GitHub projects starting with `Zenika/formation-` to rebuild and redeploy.
+- Prepare your environment for publication.
+  - Ensure the required environment variables for [`ic.js`](#icjs) are set.
+    - Either through a [`.dotenv` file](https://www.npmjs.com/package/dotenv)
+    - Or through the command-line
+  - Ensure you are logged in to npm (`npm login`) with a user that has publication rights to the `zenika-formation-framework` package. You may request those rights by contacting the [zenika](https://www.npmjs.com/~zenika) npm user.
+- Run `npm publish`.
+  - Publication will automatically run [`rebuild-all.js`](#rebuild-alljs).
