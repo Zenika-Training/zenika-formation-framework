@@ -12,10 +12,12 @@
 
 Includes everything listed under 2.7.0.
 
+:warning: requires Node.js 8.2.1+ to run!
+
 ## Breaking changes
 
-- New Gruntfile uses async functions, which require Node 7.10.1+. Most depending
-projects use Node 6.
+- New Gruntfile uses async functions and trailing commas in argument lists, which require Node 8.2.1+. Most depending
+projects use Node 6 and have to update their build configuration.
 - PDF generation with Chrome cannot run on CircleCI (some low-level libs are missing) so CI now generates PDF using Docker. This change impacts the build configuration of depending projects and the `run.sh` script hosted by depending projects.
 
 ## Migrating
