@@ -22,7 +22,7 @@ projects use Node 6 and have to update their build configuration.
 
 ## Migrating
 
-You should apply [this commit](https://github.com/Zenika/Formation--Modele/commit/e2e9b0f306b02fdcc53bc775aeb12ea2d1b998bf). To ease the task, you may want to add [Formation--Modele](https://github.com/Zenika/Formation--Modele) has a remote to your project and cherry-pick the commit.
+You should apply [this commit](https://github.com/Zenika/Formation--Modele/commit/e2e9b0f306b02fdcc53bc775aeb12ea2d1b998bf) and [this commit](https://github.com/Zenika/Formation--Modele/commit/e2577c48bc9707957d9dc772d20131a12695f824). To ease the task, you may want to add [Formation--Modele](https://github.com/Zenika/Formation--Modele) has a remote to your project and cherry-pick the commits.
 
 # 2.7.0 (2017-09-01)
 
