@@ -8,7 +8,7 @@ body {
 
 .slides section > section:not([class^=page-]),
 .slides section > section[class^=page-title] {
-  background: white;
+  background-color: white;
 }
 
 .reveal .slides section section {
