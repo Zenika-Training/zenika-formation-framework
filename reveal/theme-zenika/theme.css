@@ -121,6 +121,16 @@ body {
   content: '';
 }
 
+.reveal h1::after {
+  background-image: url('./images/zenika-triangles-many-left.png'), url('./images/zenika-triangles-many-right.png');
+  background-repeat: no-repeat, no-repeat;
+  background-position: left 50%, right 50%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: '';
+}
+
 .reveal h2,
 .reveal h3 {
   padding: 50px 0;
