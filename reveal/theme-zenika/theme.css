@@ -21,6 +21,7 @@ body {
   --table-secondary-borders: var(--default-border-size) solid var(--grey);
   --content-block-vertical-margin: 15px;
   --footer-vertical-margin: 15px;
+  --main-content-horizontal-padding: 85px;
 }
 
 .reveal {
@@ -40,7 +41,7 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 85px;
+  padding: 0 var(--main-content-horizontal-padding);
 }
 
 .reveal .slides section section {
@@ -122,8 +123,7 @@ body {
 
 .reveal h2,
 .reveal h3 {
-  margin: 50px 0;
-  padding: 0;
+  padding: 50px 0;
   text-align: left;
   font-size: 40pt;
 }

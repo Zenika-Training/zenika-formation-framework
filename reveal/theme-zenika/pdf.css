@@ -6,21 +6,15 @@ body {
   size: A4 landscape;
 }
 
-@media print {
-  .page-title ul {
-    display: none;
-  }
-}
-
-.reveal section.page-title h1 {
-  display: block;
-  padding-top: 20%;
+.slides section > section:not([class^=page-]),
+.slides section > section[class^=page-title] {
+  background: white;
 }
 
 .reveal .slides section section {
   height: 209mm !important;
   min-height: 209mm !important;
-  padding: 0 70px !important;
+  padding: 0 var(--main-content-horizontal-padding) !important;
 }
 
 .reveal .slides section {
@@ -32,7 +26,7 @@ body {
 }
 
 .reveal .slides pre > code {
-  font-family: "Inconsolata" !important;
+  font-family: var(--code-font-family) !important;
 }
 
 .reveal .master-toc-return {
@@ -42,14 +36,4 @@ body {
 .reveal strong,
 .reveal em {
     font-weight: bold;
-}
-
-/* Disables SVG decorations when printing to PDF because PhantomJS does not support that very well. */
-
-.slides section > section:not([class^=page-]) {
-    background: white no-repeat url('./images/slide-background.png');
-}
-
-.reveal section.page-title {
-    background: #af1e3a no-repeat url('./images/slide-background-white.png');
 }
