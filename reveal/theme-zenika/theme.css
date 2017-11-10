@@ -151,7 +151,8 @@ body {
 }
 
 .reveal li {
-  margin: 0.8em 0 0 0;
+  margin-top: 0.8em;
+  margin-left: inherit;
 }
 
 .reveal code {
@@ -227,6 +228,10 @@ body {
 
 .reveal section.page-title ul {
   margin-top: 620px;
+}
+
+.reveal section.toc-2-columns ul {
+  column-count: 2;
 }
 
 .reveal section.page-questions {
