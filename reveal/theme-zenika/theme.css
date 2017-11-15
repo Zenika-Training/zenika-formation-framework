@@ -45,7 +45,7 @@ body {
 }
 
 .reveal .slides section section {
-  margin-left: -70px;
+  margin-left: calc(-1 * var(--main-content-horizontal-padding));
 }
 
 .reveal.overview .slides section {
