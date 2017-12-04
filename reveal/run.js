@@ -102,6 +102,7 @@ eslint no-param-reassign: [
         { src: `${config.revealModule}plugin/zoom-js/zoom.js`, async: true, condition() { return !!document.body.classList; } },
         { src: `${config.revealModule}plugin/notes/notes.js`, async: true, condition() { return !!document.body.classList; } },
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition() { return !!document.body.classList; } },
+        { src: `${config.revealModule}plugin/math/math.js`, async: true },
       ],
     });
   }
