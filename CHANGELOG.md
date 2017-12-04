@@ -1,3 +1,9 @@
+# 3.2.0 (2017-12-04)
+
+## Features
+
+- mathjax support (issue #218, pr #219)
+
 # 3.1.0 (2017-09-27)
 
 ## Features
