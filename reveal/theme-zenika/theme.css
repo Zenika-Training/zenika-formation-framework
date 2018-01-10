@@ -220,7 +220,7 @@ body {
 .slides section:first-child::after {
     color: white;
     font-size: 13px;
-    content: "2017-09-01#b550551";
+    content: "VERSION";
     position: absolute;
     bottom: 5mm;
     right: 5mm;
