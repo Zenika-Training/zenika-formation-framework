@@ -10,6 +10,9 @@
     "global-require": "off",
     "import/no-dynamic-require": "off",
     "no-console": "off",
-    "no-use-before-define": ["error", { "functions": false }]
+    "no-use-before-define": ["error", { "functions": false }],
+    "semi": ["ERROR", "never"],
+    "no-unreachable": "ERROR",
+    "comma-dangle": "off"
   }
 }
