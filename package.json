@@ -31,7 +31,7 @@
     "headjs": "^1.0.3",
     "highlight.js": "^9.12.0",
     "html-webpack-plugin": "^2.30.1",
-    "markdown-image-loader": "^1.0.4",
+    "markdown-image-loader": "^1.0.5",
     "prismjs": "^1.6.0",
     "puppeteer": "^0.10.1",
     "remarkable": "^1.7.1",
