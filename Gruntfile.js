@@ -1,37 +1,37 @@
-const fs = require('fs');
-const path = require('path');
-const git = require('git-rev-sync');
-const { generatePdfAt, generatePdfFromHtml } = require('./pdf/generate-pdf-with-chrome');
+const fs = require('fs')
+const path = require('path')
+const git = require('git-rev-sync')
+const { generatePdfAt, generatePdfFromHtml } = require('./pdf/generate-pdf-with-chrome')
 
 module.exports = function gruntConfig(grunt) {
-  const port = grunt.option('port') || 8000;
-  const configFormation = grunt.file.readJSON('package.json');
-  const prefixPdfName = `Zenika-Formation${configFormation.name ? `-${configFormation.name}` : ''}`;
-  const slidesPdfName = `${prefixPdfName}-Slides`;
-  const cahierExercicesPdfName = `${prefixPdfName}-CahierExercices`;
-  const date = new Date().toISOString().slice(0, 10);
-  const version = `${date}#${git.short()}`;
-  const frameworkPath = __dirname;
+  const port = grunt.option('port') || 8000
+  const configFormation = grunt.file.readJSON('package.json')
+  const prefixPdfName = `Zenika-Formation${configFormation.name ? `-${configFormation.name}` : ''}`
+  const slidesPdfName = `${prefixPdfName}-Slides`
+  const cahierExercicesPdfName = `${prefixPdfName}-CahierExercices`
+  const date = new Date().toISOString().slice(0, 10)
+  const version = `${date}#${git.short()}`
+  const frameworkPath = __dirname
 
-  const slidesFolder = grunt.option('slides-folder') || 'Slides';
-  const labsFolder = grunt.option('labs-folder') || 'CahierExercices';
+  const slidesFolder = grunt.option('slides-folder') || 'Slides'
+  const labsFolder = grunt.option('labs-folder') || 'CahierExercices'
 
   function resolveNpmModulesPath(npmModulePath) {
     try {
-      fs.accessSync(pathIfNpm2(npmModulePath));
-      return pathIfNpm2(npmModulePath);
+      fs.accessSync(pathIfNpm2(npmModulePath))
+      return pathIfNpm2(npmModulePath)
     } catch (e) {
       // let's try npm3
     }
-    return pathIfNpm3(npmModulePath);
+    return pathIfNpm3(npmModulePath)
   }
 
   function pathIfNpm2(npmModulePath) {
-    return path.resolve(frameworkPath, 'node_modules', npmModulePath);
+    return path.resolve(frameworkPath, 'node_modules', npmModulePath)
   }
 
   function pathIfNpm3(npmModulePath) {
-    return path.resolve(frameworkPath, '..', npmModulePath);
+    return path.resolve(frameworkPath, '..', npmModulePath)
   }
 
   grunt.initConfig({
@@ -98,7 +98,7 @@ module.exports = function gruntConfig(grunt) {
             src: 'index.html',
             dest: 'slides.html',
             rename(dest) {
-              return `${frameworkPath}/${dest}`;
+              return `${frameworkPath}/${dest}`
             },
           }, {
             expand: true,
@@ -106,7 +106,7 @@ module.exports = function gruntConfig(grunt) {
             src: 'summary.html',
             dest: 'index.html',
             rename(dest) {
-              return `${frameworkPath}/${dest}`;
+              return `${frameworkPath}/${dest}`
             },
           },
         ],
@@ -185,7 +185,7 @@ module.exports = function gruntConfig(grunt) {
               'index.html',
             ],
             rename(dest) {
-              return `${dest}/slides.html`;
+              return `${dest}/slides.html`
             },
           },
           {
@@ -196,7 +196,7 @@ module.exports = function gruntConfig(grunt) {
               'summary.html',
             ],
             rename(dest) {
-              return `${dest}/index.html`;
+              return `${dest}/index.html`
             },
           },
           {
@@ -291,66 +291,66 @@ module.exports = function gruntConfig(grunt) {
     'grunt-contrib-copy/tasks',
     'grunt-filerev/tasks',
     'grunt-filerev-replace/tasks',
-  ].map(resolveNpmModulesPath).forEach(grunt.loadTasks);
+  ].map(resolveNpmModulesPath).forEach(grunt.loadTasks)
 
-  grunt.registerTask('package', ['sed', 'justPdf', 'clean:dist', 'copy:dist', 'filerev-all']);
-  grunt.registerTask('filerev-all', ['filerev', 'filerev_replace']);
+  grunt.registerTask('package', ['sed', 'justPdf', 'clean:dist', 'copy:dist', 'filerev-all'])
+  grunt.registerTask('filerev-all', ['filerev', 'filerev_replace'])
 
-  grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch']);
+  grunt.registerTask('displaySlides', ['sed', 'connect:server', 'watch'])
 
   grunt.registerTask('generateCahierExercice', async function generateCahierExercice() {
-    const done = this.async();
+    const done = this.async()
 
-    const Remarkable = require('remarkable');
-    const base64img = require('base64-img');
-    const hljs = require('highlight.js');
+    const Remarkable = require('remarkable')
+    const base64img = require('base64-img')
+    const hljs = require('highlight.js')
 
-    let parts;
+    let parts
     try {
-      parts = require(path.resolve(frameworkPath, '..', '..', labsFolder, 'parts.json'));
+      parts = require(path.resolve(frameworkPath, '..', '..', labsFolder, 'parts.json'))
     } catch (e) {
-      parts = ['Cahier.md'];
+      parts = ['Cahier.md']
     }
-    const cssPath = path.resolve(frameworkPath, 'styleCahierExercice.css');
-    const highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css');
-    const files = parts.map(file => path.resolve(labsFolder, file));
+    const cssPath = path.resolve(frameworkPath, 'styleCahierExercice.css')
+    const highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css')
+    const files = parts.map(file => path.resolve(labsFolder, file))
 
-    console.log('Using CSS file', cssPath);
-    console.log('Using highlightPath file', highlightPath);
-    console.log('Using md sources files', files);
+    console.log('Using CSS file', cssPath)
+    console.log('Using highlightPath file', highlightPath)
+    console.log('Using md sources files', files)
 
     // from https://github.com/jonschlinkert/remarkable#syntax-highlighting
     function highlight(str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(lang, str).value;
+          return hljs.highlight(lang, str).value
         } catch (err) {
           // ignore
         }
       }
       try {
-        return hljs.highlightAuto(str).value;
+        return hljs.highlightAuto(str).value
       } catch (err) {
         // ignore
       }
-      return ''; // use external default escaping
+      return '' // use external default escaping
     }
 
     try {
-      const markdownContent = files.map(file => fs.readFileSync(file)).join('\n\n');
-      const cssContent = fs.readFileSync(cssPath);
-      const highlightJsCssContent = fs.readFileSync(highlightPath);
-      const remarkable = new Remarkable({ html: true, highlight });
+      const markdownContent = files.map(file => fs.readFileSync(file)).join('\n\n')
+      const cssContent = fs.readFileSync(cssPath)
+      const highlightJsCssContent = fs.readFileSync(highlightPath)
+      const remarkable = new Remarkable({ html: true, highlight })
       const htmlContent = remarkable.render(markdownContent)
         .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
-        .replace(/\{Titre-Formation}/g, () => configFormation.name);
+        .replace(/\{Titre-Formation}/g, () => configFormation.name)
       const htmlContentWithStyles = `
         ${htmlContent}
         <style>
           ${cssContent}
           ${highlightJsCssContent}
         </style>
-      `;
+      `
       const pdfContent = await generatePdfFromHtml(htmlContentWithStyles, {
         format: 'A4',
         margin: {
@@ -359,37 +359,37 @@ module.exports = function gruntConfig(grunt) {
           bottom: '8mm',
           left: '8mm',
         },
-      });
-      grunt.file.write(`PDF/${cahierExercicesPdfName}.pdf`, pdfContent, { encoding: 'base64' });
-      done();
+      })
+      grunt.file.write(`PDF/${cahierExercicesPdfName}.pdf`, pdfContent, { encoding: 'base64' })
+      done()
     } catch (err) {
-      grunt.log.error(err);
-      done(false);
+      grunt.log.error(err)
+      done(false)
     }
-  });
+  })
 
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
-    const done = this.async();
+    const done = this.async()
     try {
       const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf`, {
         landscape: true,
         printBackground: true,
         format: 'A4',
-      });
-      grunt.file.write(`PDF/${slidesPdfName}.pdf`, pdf, { encoding: 'base64' });
-      done();
+      })
+      grunt.file.write(`PDF/${slidesPdfName}.pdf`, pdf, { encoding: 'base64' })
+      done()
     } catch (err) {
-      grunt.log.error(err);
-      done(false);
+      grunt.log.error(err)
+      done(false)
     }
-  });
+  })
 
 
-  grunt.registerTask('generateSlidesPDF', ['connect:print', 'doGenerateSlidesPDF']);
+  grunt.registerTask('generateSlidesPDF', ['connect:print', 'doGenerateSlidesPDF'])
 
-  grunt.registerTask('justPdf', ['generateSlidesPDF', 'generateCahierExercice']);
+  grunt.registerTask('justPdf', ['generateSlidesPDF', 'generateCahierExercice'])
 
-  grunt.registerTask('pdf', ['sed', 'justPdf']);
+  grunt.registerTask('pdf', ['sed', 'justPdf'])
 
-  grunt.registerTask('default', ['displaySlides']);
-};
+  grunt.registerTask('default', ['displaySlides'])
+}

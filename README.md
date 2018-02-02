@@ -1,3 +1,25 @@
+
+# Notes temporaires de la branche webpack
+
+* faire un checkout du framework de formation zenika, tirer la branche `webpack`
+* lier la dépendance au framework de formation :
+
+```sh
+npm link ../zenika-formation-framework
+```
+
+Todo / issues :
+
+* [x] supprimer les dépendances à webpack des projets de formation pour qu'elles ne soient que dans le framework de formation
+* [x] affecter le nom de la formation dans le head.title de la page web
+* [x] affecter le numéro de version dans le css
+* [ ] les images incluses "à la html" (pour pouvoir inclure du stylage CSS inline) dans les .md ne sont pas gérées
+  * [ ] celles incluses dans les titres de niveau 1 posent pb à cause du stylage `height: 90%;`
+
+Questions :
+
+* le numéro de version concatène une date et un n° commit : est-ce celui de la formation ou du framework de formation ?
+
 # Zenika Formation Framework
 
 Utilisé par toutes nos formations, comme sur le [Modèle](https://github.com/Zenika/Formation--Modele)
@@ -35,8 +57,8 @@ Le code de Reveal, ainsi que le thème utilisé, se trouve dans le framework de 
 
 ### Architecture
 
-Pour une formation F donnée, 
-le framework se trouve dans le répertoire `./node_modules/zenika-formation-framework/`, le contenu des slides dans `./Slides/`. 
+Pour une formation F donnée,
+le framework se trouve dans le répertoire `./node_modules/zenika-formation-framework/`, le contenu des slides dans `./Slides/`.
 Le serveur utilise 2 baseDir qui sont `./node_modules/zenika-formation-framework/`, puis `./Slides/`.
 Ainsi, il est possible d'utiliser des ressources dans le contenu des slides (dans les fichiers `./Slides/*.md`) avec un chemin relatif simple.
 
@@ -107,7 +129,7 @@ De base, tous les builds sont repertoriés sur Slack dans le channel `#ic-format
 Pour cela, aller dans CircleCI > Settings du projet > Chat Notifications et indiquer dans le panel Slack `https://hooks.slack.com/services/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`
 
 NB: Url directe pour le paramétrage `https://circleci.com/gh/Zenika/formation-pwa/edit#hooks`
-  
+
 ## Troobleshooting
 
 Dans le [wiki](https://github.com/Zenika/zenika-formation-framework/wiki/Troubleshooting)

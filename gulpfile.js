@@ -1,51 +1,51 @@
 
 
-const fs = require('fs');
-const path = require('path');
-const del = require('del');
-const gulp = require('gulp');
-const g = require('gulp-load-plugins')();
-const browserSync = require('browser-sync').create();
+const fs = require('fs')
+const path = require('path')
+const del = require('del')
+const gulp = require('gulp')
+const g = require('gulp-load-plugins')()
+const browserSync = require('browser-sync').create()
 
 /*
  * Configuration
  */
 
-const packageConfiguration = JSON.parse(fs.readFileSync('./package.json'));
-const prefixPdfName = `Zenika-Formation${packageConfiguration.name ? `-${packageConfiguration.name}` : ''}`;
+const packageConfiguration = JSON.parse(fs.readFileSync('./package.json'))
+const prefixPdfName = `Zenika-Formation${packageConfiguration.name ? `-${packageConfiguration.name}` : ''}`
 const fwkConfig = {
   port: 8000,
   slidesPdfName: `${prefixPdfName}-Slides`,
   cahierExercicesPdfName: `${prefixPdfName}-CahierExercices`,
   frameworkPath: __dirname,
   outputPath: './build',
-};
+}
 
 /**
  * Clean build file
  */
 gulp.task('clean', () => {
-  del.sync([fwkConfig.outputPath]);
-});
+  del.sync([fwkConfig.outputPath])
+})
 
 /**
  * Construction du dossier de build
  */
-gulp.task('build', ['copybase', 'copyreveal', 'copyslides', 'copyIndex', 'copySummary', 'copyAppYaml']);
+gulp.task('build', ['copybase', 'copyreveal', 'copyslides', 'copyIndex', 'copySummary', 'copyAppYaml'])
 
 gulp.task('copyIndex', () =>
   // Remplacement du placeholder par le nom de la formation
    gulp.src(path.join(fwkConfig.frameworkPath, 'index.html'))
     .pipe(g.replace(/(FORMATION_NAME)/g, fwkConfig.slidesPdfName))
     .pipe(g.rename('slides.html'))
-    .pipe(gulp.dest(fwkConfig.outputPath)));
+    .pipe(gulp.dest(fwkConfig.outputPath)))
 
 gulp.task('copySummary', () => gulp.src([path.join(fwkConfig.frameworkPath, 'summary.html')])
     .pipe(g.rename('index.html'))
-    .pipe(gulp.dest(fwkConfig.outputPath)));
+    .pipe(gulp.dest(fwkConfig.outputPath)))
 
 gulp.task('copyAppYaml', () => gulp.src([path.join(fwkConfig.frameworkPath, 'app.yaml')])
-    .pipe(gulp.dest(fwkConfig.outputPath)));
+    .pipe(gulp.dest(fwkConfig.outputPath)))
 
 /**
  * Copie du contenu web du framework dans le dossier de build
@@ -57,7 +57,7 @@ gulp.task('copybase', ['clean'], () => gulp.src(
     path.join(fwkConfig.frameworkPath, 'favicon.png'),
     path.join(fwkConfig.frameworkPath, 'reveal*/**'),
   ])
-    .pipe(gulp.dest(fwkConfig.outputPath)));
+    .pipe(gulp.dest(fwkConfig.outputPath)))
 
 /**
  * Copie du contenu le Reveal.js dans le dossier de build
@@ -77,7 +77,7 @@ gulp.task('copyreveal', ['clean'], () => gulp.src(
     '!./node_modules/reveal.js/README.md',
     './node_modules/reveal.js/**/*',
   ])
-    .pipe(gulp.dest('./build/reveal.js')));
+    .pipe(gulp.dest('./build/reveal.js')))
 
 gulp.task('copyslides', ['clean'], () => gulp.src(
   [
@@ -85,7 +85,7 @@ gulp.task('copyslides', ['clean'], () => gulp.src(
     'Slides/slides.json',
     'Slides/ressources*/**',
   ])
-    .pipe(gulp.dest('./build/')));
+    .pipe(gulp.dest('./build/')))
 
 /**
  * Serve public folder and watch all changes
@@ -97,7 +97,7 @@ gulp.task('serve', ['build'], () => {
       baseDir: [fwkConfig.outputPath, './Slides'],
     },
     browser: ['chrome'],
-  });
+  })
 
   gulp.watch(
     [
@@ -106,10 +106,10 @@ gulp.task('serve', ['build'], () => {
       'Slides/ressources/**',
       path.join(fwkConfig.outputPath, 'reveal/**'),
       path.join(fwkConfig.outputPath, 'index.html'),
-    ], browserSync.reload);
-});
+    ], browserSync.reload)
+})
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve'])
 
 // TODO
 // package

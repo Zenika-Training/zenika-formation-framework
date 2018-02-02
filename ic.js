@@ -2,12 +2,12 @@
 
 // or else the Gruntfile from the depending project will run the code!
 if (require.main === module) {
-  const request = require('request-promise-native');
-  const username = process.env.CIRCLE_TOKEN;
-  const password = '';
-  const auth = `Basic ${new Buffer(`${username}:${password}`).toString('base64')}`;
+  const request = require('request-promise-native')
+  const username = process.env.CIRCLE_TOKEN
+  const password = ''
+  const auth = `Basic ${new Buffer(`${username}:${password}`).toString('base64')}`
 
-  const projectName = process.argv[2] || require('./package.json').name;
+  const projectName = process.argv[2] || require('./package.json').name
 
   const firstCheckToken = {
     method: 'GET',
@@ -17,7 +17,7 @@ if (require.main === module) {
     },
     json: true,
     resolveWithFullResponse: false,
-  };
+  }
 
   const secondCreateProject = {
     method: 'POST',
@@ -26,7 +26,7 @@ if (require.main === module) {
       Authorization: auth,
     },
     json: true,
-  };
+  }
 
   const thirdSetEnvVariableGaeServiceAccount = {
     method: 'POST',
@@ -39,7 +39,7 @@ if (require.main === module) {
       value: process.env.GAE_SERVICE_ACCOUNT,
     },
     json: true,
-  };
+  }
 
   const thirdSetEnvVariableGaeKey = {
     method: 'POST',
@@ -52,7 +52,7 @@ if (require.main === module) {
       value: process.env.GAE_KEY_FILE_CONTENT,
     },
     json: true,
-  };
+  }
 
   const deleteCache = {
     method: 'DELETE',
@@ -61,7 +61,7 @@ if (require.main === module) {
       Authorization: auth,
     },
     json: true,
-  };
+  }
 
   const retryMasterBuild = () => ({
     method: 'POST',
@@ -70,22 +70,22 @@ if (require.main === module) {
       Authorization: auth,
     },
     json: true,
-  });
+  })
 
   request(firstCheckToken)
     .then(data => console.log(`👷 Welcome ${data.login}`))
     .then(() => request(secondCreateProject))
     .then((data) => {
-      if (!data.first_build) return console.log(`🚧 Project ${projectName} already exists`);
-      return console.log(`🚧 Project ${projectName} created`);
+      if (!data.first_build) return console.log(`🚧 Project ${projectName} already exists`)
+      return console.log(`🚧 Project ${projectName} created`)
     })
     .then(() => request(thirdSetEnvVariableGaeServiceAccount))
     .then(() => request(thirdSetEnvVariableGaeKey))
     .then(() => console.log('🔧 Env variables set!'))
     .then(() => console.log('💣 Clearing cache...'))
     .then(() => request(deleteCache))
-    .then(() => { console.log('✨ Re-building master'); })
+    .then(() => { console.log('✨ Re-building master') })
     .then(() => request(retryMasterBuild()))
     .then(() => console.log('💚 All is done! Wait for a green deployment'))
-    .catch(err => console.log('💩 AieAieAie!\n', err));
+    .catch(err => console.log('💩 AieAieAie!\n', err))
 }
