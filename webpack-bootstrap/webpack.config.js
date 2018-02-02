@@ -13,9 +13,9 @@ module.exports = {
     // vendor: ['./reveal/remark/index.js', './src/jit/jit-yc.js']
   },
   output: {
-    // filename: 'slides-[name].js',
+    filename: 'slides-[name].js',
     // path: path.join(__dirname, 'dist-webpack'),
-    // publicPath: '/'
+    publicPath: '/'
   },
   devServer: {
     port: 8080
@@ -24,19 +24,22 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'zenika-formation-framework/node_modules/style-loader',
+          'zenika-formation-framework/node_modules/css-loader'
+        ]
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        use: 'file-loader?name=[name].[ext]?outputPath=fonts/'
+        use: 'zenika-formation-framework/node_modules/file-loader?name=[name].[ext]?outputPath=fonts/'
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        use: 'file-loader?outputPath=img/'
+        use: 'zenika-formation-framework/node_modules/file-loader?outputPath=img/'
       },
       {
         test: /\.(md|markdown)$/,
-        use: 'markdown-image-loader'
+        use: 'zenika-formation-framework/node_modules/markdown-image-loader'
       }
     ]
   },

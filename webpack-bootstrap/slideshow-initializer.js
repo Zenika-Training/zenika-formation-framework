@@ -1,5 +1,5 @@
 
-/* global window document hljs */
+/* global window document hljs HEAD_TITLE */
 
 // library used by RevealJS to download dependency plugins (here: markdown and highlighting)
 require('headjs/dist/1.0.0/head.min.js')
@@ -17,9 +17,9 @@ require('../reveal/font-awesome/css/font-awesome.min.css')
 // require('./slides.css') // customize your CSS here
 
 // includes the plugins in the build, at the url expected by RevealJS
-require('file-loader?name=plugin/markdown/[name].[ext]!reveal.js/plugin/markdown/marked.js')
-require('file-loader?name=plugin/markdown/[name].[ext]!reveal.js/plugin/markdown/markdown.js')
-require('file-loader?name=plugin/highlight/[name].[ext]!reveal.js/plugin/highlight/highlight.js')
+require('file-loader?name=plugin/markdown/[name].[ext]!reveal.js/plugin/markdown/marked.js')// eslint-disable-line import/no-unresolved, import/no-extraneous-dependencies, import/no-webpack-loader-syntax
+require('file-loader?name=plugin/markdown/[name].[ext]!reveal.js/plugin/markdown/markdown.js')// eslint-disable-line import/no-unresolved, import/no-extraneous-dependencies, import/no-webpack-loader-syntax
+require('file-loader?name=plugin/highlight/[name].[ext]!reveal.js/plugin/highlight/highlight.js')// eslint-disable-line import/no-unresolved, import/no-extraneous-dependencies, import/no-webpack-loader-syntax
 
 const revealDefaultOptions = {
   // see https://github.com/hakimel/reveal.js#configuration
@@ -37,16 +37,19 @@ const revealDefaultOptions = {
 }
 
 module.exports = {
-  getInitializer(content) {
+  getInitializer({ mdContent }) {
     return function initialize(options = {}) {
       const revealOptions = Object.assign(
         {},
         revealDefaultOptions,
         options
       )
-      // loads the markdown content and starts the slideshow
-      window.document.getElementById('source').innerHTML = content
 
+      // loads the markdown content and starts the slideshow
+      window.document.getElementById('source').innerHTML = mdContent
+      window.document.title = HEAD_TITLE
+
+      // initializes the reveal.js slideshow
       Reveal.initialize(revealOptions)
     }
   }
