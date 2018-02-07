@@ -201,7 +201,8 @@ eslint no-param-reassign: [
         document.getElementById('theme').href = `${config.revealTheme}theme-2017.css`;
       }
       if (window.location.search.match(/print-pdf/gi)) {
-        appendStylesheet(head, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}pdf.css`]);
+        const themePdfStylesheet = window.location.search.match(/theme-2017/gi) ? 'pdf-2017.css' : 'pdf.css';
+        appendStylesheet(head, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}${themePdfStylesheet}`]);
       }
       if (window.location.search.match(/edition/gi)) {
         appendStylesheet(head, [`${config.revealTheme}edition.css`]);
