@@ -197,9 +197,8 @@ eslint no-param-reassign: [
       const head = document.getElementsByTagName('head')[0];
       appendStylesheet(head, [`${config.prismModule}themes/prism.css`]);
       if (window.location.search.match(/theme-2017/gi)) {
-        appendStylesheet(head, [`${config.revealTheme}theme-2017.css`]);
-      } else {
-        appendStylesheet(head, [`${config.revealTheme}theme.css`]);
+        // eslint-disable-next-line no-param-reassign
+        document.getElementById('theme').href = `${config.revealTheme}theme-2017.css`;
       }
       if (window.location.search.match(/print-pdf/gi)) {
         appendStylesheet(head, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}pdf.css`]);
