@@ -1,4 +1,29 @@
 @font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Light';
+  src: url('fonts/Roboto/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Architect's Daughter";
+  src: url('fonts/ArchitectsDaughter/ArchitectsDaughter.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans Bold';
+  src: url("fonts/Open_sans/OpenSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'OpenSans Regular';
+  src: url("fonts/Open_sans/OpenSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
   font-family: 'Inconsolata';
   src: url("fonts/Inconsolata/Inconsolata-Regular.ttf") format("truetype");
 }
@@ -9,23 +34,10 @@
 
 body {
   background: white;
-  --content-font-family: 'Calibri', sans-serif;
-  --header-font-family: 'Calibri Light', var(--content-font-family);
-  --table-font-family: 'Calibri Light', var(--content-font-family);
-  --code-font-family: 'Inconsolata', monospace;
-  --zenika-red: #b30c37;
-  --grey: #aaaaaa;
-  --default-border-size: 1px;
-  --default-border: var(--default-border-size) solid var(--zenika-red);
-  --table-primary-borders: var(--default-border);
-  --table-secondary-borders: var(--default-border-size) solid var(--grey);
-  --content-block-vertical-margin: 15px;
-  --footer-vertical-margin: 15px;
-  --main-content-horizontal-padding: 85px;
 }
 
 .reveal {
-  font-family: var(--content-font-family);
+  font-family: 'Arial', sans-serif;
   font-size: 28px;
   font-weight: normal;
   color: #333333;
@@ -41,15 +53,22 @@ body {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 var(--main-content-horizontal-padding);
+  padding: 0 70px;
 }
 
 .reveal .slides section section {
-  margin-left: calc(-1 * var(--main-content-horizontal-padding));
+  margin-left: -70px;
 }
 
 .reveal.overview .slides section {
   height: 650px;
+}
+
+.reveal .slides h2:after {
+  content: url('images/zenika-logo-small.png');
+  float: right;
+  margin-top: -14px;
+  margin-right: 20px;
 }
 
 .reveal .slide-background {
@@ -62,28 +81,30 @@ body {
   text-shadow: none;
 }
 
+.reveal .slides table, .reveal .slides table th, .reveal .slides table td {
+  border: 1px solid #696969;
+  border-collapse: collapse;
+}
+
 .reveal .slides table th, .reveal .slides table td {
   padding: 0px 10px;
 }
 
 .reveal .slides table {
-  margin: var(--content-block-vertical-margin) 0;
-  border-left: var(--table-primary-borders);
+  margin: 15px 0;
+  box-shadow: none;
+  border: 1px solid #b30c37;
+  border-left: 5px solid #b30c37;
   border-collapse: collapse;
-  font-family: var(--table-font-family);
 }
-
-.reveal .slides table th {
-  font-weight: normal;
-}
-
 .reveal .slides table tr td {
-  border: var(--table-secondary-borders);
+  border: 1px solid #AAAAAA;
 }
-
 .reveal .slides table tr th {
-  border: var(--table-secondary-borders);
-  border-bottom: var(--table-primary-borders);
+  border: 1px solid #AAAAAA;
+  border-bottom: 5px solid #b30c37;
+/*  background-color: #AAAAAA;*/
+  color : #000000;
 }
 
 .reveal .slides table.no-border,
@@ -97,8 +118,6 @@ body {
  *********************************************/
 
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-  font-family: var(--header-font-family);
-  text-transform: uppercase;
   hyphens: none;
   -ms-hyphens: none;
   -webkit-hyphens: none;
@@ -108,24 +127,23 @@ body {
   margin-top: 5%;
   width: 600px;
   float: right;
+  color: #b30c37;
   text-align: right;
-  font-size: 40pt;
+  font-family: "OpenSans Bold", sans-serif;
+  font-size: 50px;
   line-height: 130%;
-}
-
-.reveal h1::before {
-  background-image: url('./images/zenia-logo-white-shadow-no-text.png');
-  background-size: cover;
-  width: 200px;
-  height: 200px;
-  content: '';
 }
 
 .reveal h2,
 .reveal h3 {
-  padding: 50px 0;
+  margin: 0 -40px;
+  padding: 40px 0 40px 20px;
+  color: #b30c37;
   text-align: left;
-  font-size: 40pt;
+  font-family: "OpenSans Bold", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
 }
 
 .reveal h2 small,
@@ -138,23 +156,22 @@ body {
  *********************************************/
 
 .reveal em {
-  color: var(--zenika-red);
+  color: #b30c37;
   font-style: normal;
 }
 
 .reveal strong {
-  color: var(--zenika-red);
+  color: #b30c37;
   font-style: italic;
   font-weight: normal;
 }
 
 .reveal li {
-  margin-top: 0.8em;
-  margin-left: inherit;
+  margin: 0.8em 0 0 0;
 }
 
 .reveal code {
-  color: var(--zenika-red);
+  color: #b30c37;
 }
 
 .reveal blockquote p:first-child, .reveal blockquote p:last-child {
@@ -171,10 +188,10 @@ body {
  *********************************************/
 
 .reveal pre {
-  margin: var(--content-block-vertical-margin) 0;
+  margin: 15px 0;
   box-shadow: none;
-  border-left: 1px solid var(--zenika-red);
-  padding-left: 10px;
+  border: 1px solid #b30c37;
+  border-left: 5px solid #b30c37;
   width:100%;
   white-space: pre-wrap;
 }
@@ -182,22 +199,18 @@ body {
 .reveal h2 + pre,
 .reveal h3 + pre { /* Whole-slide code block */
   border: none;
-  padding-left: 0;
 }
 
 .reveal pre > code, .reveal .code {
   color: black;
   max-height: none;
-  font-family: var(--code-font-family);
+  font-family: 'Inconsolata', monospace;
   font-size: 24px;
   line-height: normal;
 }
 
 .slides section > section:not([class^=page-]) {
-  background-image: url('./images/zenika-triangles-4.png'), url('./images/zenika-logo-red-shadow-no-text.png');
-  background-position: left top, right 5% bottom 5%;
-  background-repeat: no-repeat, no-repeat;
-  background-size: auto, 100px 100px;
+  background: transparent no-repeat url('./images/slide-background.svg');
 }
 
 /*********************************************
@@ -213,6 +226,10 @@ body {
     right: 5mm;
 }
 
+.reveal section.page-title {
+  background: #af1e3a no-repeat url('./images/slide-background-white.svg');
+}
+
 .reveal section.page-title h1 {
   height: 90%;
   display: flex;
@@ -221,15 +238,12 @@ body {
   justify-content: center;
   margin: auto;
   text-align: center;
+  color: white;
   float: none;
 }
 
 .reveal section.page-title ul {
   margin-top: 620px;
-}
-
-.reveal section.toc-2-columns ul {
-  column-count: 2;
 }
 
 .reveal section.page-questions {
@@ -250,7 +264,7 @@ body {
 }
 .reveal section [class^="page-tp"]:after {
   display: block;
-  color: var(--zenika-red);
+  color: #af1e3a;
   font-size: 50px;
   font-weight: bold;
   width: 100%;
@@ -360,20 +374,24 @@ body {
  *********************************************/
 
 .reveal a:not(.image) {
-  color: var(--zenika-red);
+  color: #b30c37;
   text-decoration: none;
+  -webkit-transition: color .15s ease;
+  -moz-transition: color .15s ease;
+  -ms-transition: color .15s ease;
+  -o-transition: color .15s ease;
   transition: color .15s ease;
 }
 
 .reveal a:not(.image):hover {
-  color: var(--zenika-red);
+  color: #b30c37;
   text-shadow: none;
   border: none;
 }
 
 .reveal .roll span:after {
   color: white;
-  background: var(--zenika-red);
+  background: #b30c37;
 }
 
 .reveal .slides .toc a {
@@ -407,38 +425,38 @@ body {
 
 .reveal .controls div.navigate-left,
 .reveal .controls div.navigate-left.enabled {
-  border-right-color: var(--zenika-red);
+  border-right-color: #b30c37;
 }
 
 .reveal .controls div.navigate-right,
 .reveal .controls div.navigate-right.enabled {
-  border-left-color: var(--zenika-red);
+  border-left-color: #b30c37;
 }
 
 .reveal .controls div.navigate-up,
 .reveal .controls div.navigate-up.enabled {
-  border-bottom-color: var(--zenika-red);
+  border-bottom-color: #b30c37;
 }
 
 .reveal .controls div.navigate-down,
 .reveal .controls div.navigate-down.enabled {
-  border-top-color: var(--zenika-red);
+  border-top-color: #b30c37;
 }
 
 .reveal .controls div.navigate-left.enabled:hover {
-  border-right-color: var(--zenika-red);
+  border-right-color: #b30c37;
 }
 
 .reveal .controls div.navigate-right.enabled:hover {
-  border-left-color: var(--zenika-red);
+  border-left-color: #b30c37;
 }
 
 .reveal .controls div.navigate-up.enabled:hover {
-  border-bottom-color: var(--zenika-red);
+  border-bottom-color: #b30c37;
 }
 
 .reveal .controls div.navigate-down.enabled:hover {
-  border-top-color: var(--zenika-red);
+  border-top-color: #b30c37;
 }
 
 /*********************************************
@@ -450,7 +468,11 @@ body {
 }
 
 .reveal .progress span {
-  background: var(--zenika-red);
+  background: #b30c37;
+  -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -ms-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
+  -o-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
 }
 
@@ -460,14 +482,14 @@ body {
 
 .reveal footer, .reveal .slides footer {
   position: absolute;
-  bottom: var(--footer-vertical-margin);
+  bottom: 15px;
   font-size: 12px;
   opacity: 0.5;
 }
 
 .reveal .master-toc-return {
   left: 15px;
-  bottom: var(--footer-vertical-margin);
+  bottom: 15px;
   font-size: 20px;
   z-index: 1000;
 }
@@ -488,7 +510,7 @@ body {
  *********************************************/
 
 .reveal .alert {
-  padding: var(--content-block-vertical-margin);
+  padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
