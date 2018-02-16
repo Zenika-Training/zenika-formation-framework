@@ -24,7 +24,7 @@ if (require.main === module) {
           const urlSegments = project.vcs_url.split('/');
           return urlSegments[urlSegments.length - 1];
         })
-        .filter(project => project.startsWith('formation-'));
+        .filter(project => project.startsWith('formation-') || project.startsWith('training-') || project.endsWith('-training'));
       console.log(`rebuilding ${projectsToRebuild.length} projects`);
       projectsToRebuild.forEach((project) => {
         console.log(project);
