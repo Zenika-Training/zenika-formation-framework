@@ -67,6 +67,9 @@ eslint no-param-reassign: [
         87: function wKey() {
           cycleWideModes();
         },
+        84: function wKey() {
+          cycleThemes();
+        },
       },
       margin: 0,
       maxScale: 2.0,
@@ -126,6 +129,16 @@ eslint no-param-reassign: [
     window.location.search = queryString;
   }
 
+  function cycleThemes() {
+    let queryString = window.location.search;
+    if (queryParameterIsPresent(queryString, 'theme-2017')) {
+      queryString = removeQueryParameter(queryString, 'theme-2017');
+    } else {
+      queryString = addQueryParameter(queryString, 'theme-2017');
+    }
+    window.location.search = queryString;
+  }
+
   function isRemoteMode() {
     return Reveal.isOverview()
       ? false
@@ -179,18 +192,21 @@ eslint no-param-reassign: [
     });
   }
 
-  function appendStylesheetWhenUrlMatches(head, regexp, stylesheets) {
-    if (window.location.search.match(regexp)) {
-      appendStylesheet(head, stylesheets);
-    }
-  }
-
   function applyPrintStylesheets() {
     return new Promise((resolve) => {
       const head = document.getElementsByTagName('head')[0];
       appendStylesheet(head, [`${config.prismModule}themes/prism.css`]);
-      appendStylesheetWhenUrlMatches(head, /print-pdf/gi, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}pdf.css`]);
-      appendStylesheetWhenUrlMatches(head, /edition/gi, [`${config.revealTheme}edition.css`]);
+      if (window.location.search.match(/theme-2017/gi)) {
+        // eslint-disable-next-line no-param-reassign
+        document.getElementById('theme').href = `${config.revealTheme}theme-2017.css`;
+      }
+      if (window.location.search.match(/print-pdf/gi)) {
+        const themePdfStylesheet = window.location.search.match(/theme-2017/gi) ? 'pdf-2017.css' : 'pdf.css';
+        appendStylesheet(head, [`${config.revealModule}css/print/pdf.css`, `${config.revealTheme}${themePdfStylesheet}`]);
+      }
+      if (window.location.search.match(/edition/gi)) {
+        appendStylesheet(head, [`${config.revealTheme}edition.css`]);
+      }
       resolve();
     });
   }
