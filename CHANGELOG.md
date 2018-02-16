@@ -1,3 +1,13 @@
+# 3.3.0 (2017-02-16)
+
+## Features
+
+- new theme available; old theme is still the default, press 't' on the web slides to switch themes
+
+## Fixes
+
+- version tag in PDFs is correct again
+
 # 3.2.0 (2017-12-04)
 
 ## Features
