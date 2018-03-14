@@ -1,4 +1,10 @@
-# 3.3.0 (2017-02-16)
+# 3.3.1 (2018-03-14)
+
+## Fixes
+
+- fix missing labs and question images (pr #230)
+
+# 3.3.0 (2018-02-16)
 
 ## Features
 
