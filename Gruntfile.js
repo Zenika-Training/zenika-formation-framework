@@ -15,6 +15,7 @@ module.exports = function gruntConfig(grunt) {
 
   const slidesFolder = grunt.option('slides-folder') || 'Slides';
   const labsFolder = grunt.option('labs-folder') || 'CahierExercices';
+  const locale = grunt.option('locale') || 'fr';
 
   function resolveNpmModulesPath(npmModulePath) {
     try {
@@ -38,7 +39,7 @@ module.exports = function gruntConfig(grunt) {
     dist: 'dist',
     connect: {
       options: {
-        base: [frameworkPath, `${slidesFolder}/`, pathIfNpm2(''), pathIfNpm3('')],
+        base: [frameworkPath, `${slidesFolder}/${locale}/`, `${slidesFolder}/`, pathIfNpm2(''), pathIfNpm3('')],
         hostname: '0.0.0.0',
         port,
       },
@@ -307,13 +308,16 @@ module.exports = function gruntConfig(grunt) {
 
     let parts;
     try {
-      parts = require(path.resolve(frameworkPath, '..', '..', labsFolder, 'parts.json'));
+      parts = require(path.resolve(process.cwd(), labsFolder, 'parts.json'));
     } catch (e) {
       parts = ['Cahier.md'];
     }
     const cssPath = path.resolve(frameworkPath, 'styleCahierExercice.css');
     const highlightPath = path.resolve(frameworkPath, 'reveal', 'theme-zenika', 'code.css');
-    const files = parts.map(file => path.resolve(labsFolder, file));
+    const files = parts.map((file) => {
+      const localizedPath = path.resolve(labsFolder, locale, file);
+      return fs.existsSync(localizedPath) ? localizedPath : path.resolve(labsFolder, file);
+    });
 
     console.log('Using CSS file', cssPath);
     console.log('Using highlightPath file', highlightPath);
