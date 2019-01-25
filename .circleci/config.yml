@@ -1,0 +1,76 @@
+version: 2
+
+jobs:
+
+  install-dependencies:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            - dependencies-
+      - run:
+          name: Download dependencies
+          command: npm install --quiet
+      - save_cache:
+          paths: [node_modules]
+          key: dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: ./
+          paths: [node_modules]
+
+  build:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - setup_remote_docker
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Generate static site
+          command: npm start sed clean:dist filerev-all
+      # See https://circleci.com/docs/2.0/building-docker-images/#mounting-folders
+      - run:
+          name: Generate PDFs
+          command: |
+            docker create -v /data --name data-container alpine:3.4 /bin/true
+            docker cp . data-container:/data
+            docker run --volumes-from data-container zenika/formation-framework:v3 grunt pdf
+            docker cp data-container:/data/PDF PDF
+      - run:
+          name: Copy artifacts to /dist
+          command: npm start copy:dist
+      - persist_to_workspace:
+          root: ./
+          paths: [dist]
+
+  deploy:
+    docker:
+      - image: google/cloud-sdk:206.0.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run: echo $GAE_KEY_FILE_CONTENT > gcloud-service-key.json
+      - run: gcloud auth activate-service-account --key-file=gcloud-service-key.json
+      - run: gcloud config set project zen-formations
+      - run: gcloud config set app/use_appengine_api false
+      - run: gcloud config set app/promote_by_default false
+      - run: gcloud app deploy --version $CIRCLE_BRANCH --quiet dist/app.yaml
+
+workflows:
+  version: 2
+
+  build-and-deploy:
+    jobs:
+      - install-dependencies
+      - build:
+          requires: [install-dependencies]
+      - deploy:
+          requires: [build]
+          filters:
+            branches:
+              only: master

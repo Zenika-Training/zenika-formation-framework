@@ -20,5 +20,5 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 indent_size = 2
 
-[{*.json,*.js,*.css}]
+[{*.json,*.js,*.css,*.yml}]
 indent_size = 2
