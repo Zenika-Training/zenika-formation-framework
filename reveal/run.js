@@ -34,7 +34,7 @@ eslint no-param-reassign: [
   function runReveal() {
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
+    const defaultOptions = {
       controls: true,
       progress: true,
       history: true,
@@ -107,7 +107,16 @@ eslint no-param-reassign: [
         { src: 'reveal/plugins/zenika-footer/zenika-footer.js', condition() { return !!document.body.classList; } },
         { src: `${config.revealModule}plugin/math/math.js`, async: true },
       ],
-    });
+    };
+
+
+    fileExists('/framework/index.js')
+        .then((script) => {
+          /* eslint no-eval: "off", no-undef: "off" */
+          eval(script);
+          Reveal.initialize(overrideOptions(defaultOptions));
+        })
+        .catch(() => Reveal.initialize(defaultOptions));
   }
 
   function selectWidth() {

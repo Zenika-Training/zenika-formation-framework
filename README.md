@@ -33,6 +33,24 @@ Le framework utilisé pour les slides est [Reveal.js](https://github.com/hakimel
 
 Le code de Reveal, ainsi que le thème utilisé, se trouve dans le framework de formation. Le contenu des slides, spécifique à chaque formation se trouve dans le repository dédié de chacune des formations utilisant le framework. Ainsi, chaque formation peut choisir la version du framework qu'elle souhaite utiliser, et les modifications de thème peuvent facilement être prises en compte dans chaque formation via `npm`.
 
+Vous pouvez également surcharger les options de la librairie `Reveal` utilisé par le framework. Pour cela, il faut ajouter un fichier `framework/index.js` dans le répertoire `Slides`. Voici un exemple de fichier : 
+
+```javascript
+window.overrideOptions = function(defaultOptions){
+    return {
+      ...defaultOptions,
+      dependencies: [
+        ...defaultOptions.dependencies,
+        { src: 'framework/Chart.min.js', condition() { return true; } },
+        { src: 'framework/csv2chart.js', condition() { return true; } },
+      ]
+    }
+  }
+```
+
+Dans le code ci-dessous, j'ajoute les dépendances `Chart.min.js` et `csv2chart.js` afin de pouvoir faire des graphes directement dans les slides. Ces deux fichiers javascript seront également dans le répertoire `framework` précédemment créé. 
+
+
 ### Architecture
 
 Pour une formation F donnée, 
