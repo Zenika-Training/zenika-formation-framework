@@ -112,7 +112,7 @@ eslint no-param-reassign: [
 
     fileExists('/framework/index.js')
         .then((script) => {
-          /* eslint no-eval: "off", no-undef: "off" */
+          // eslint-disable-next-line no-eval
           eval(script);
           Reveal.initialize(overrideOptions(defaultOptions));
         })
