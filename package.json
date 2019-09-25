@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "base64-img": "^1.0.3",
-    "browser-sync": "^2.9.8",
+    "browser-sync": "^2.26.7",
     "del": "^2.2.2",
     "duplexer": "^0.1.1",
     "git-rev-sync": "^1.8.0",

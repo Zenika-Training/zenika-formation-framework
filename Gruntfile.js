@@ -126,19 +126,28 @@ module.exports = function gruntConfig(grunt) {
           {
             expand: true,
             dot: true,
-            cwd: 'PDF',
-            dest: '<%= dist %>/pdf',
+            cwd: labsFolder,
+            dest: '<%= dist %>/TP',
             src: [
-              '*.pdf',
+              './**',
             ],
           },
           {
             expand: true,
-            cwd: frameworkPath,
-            dest: '<%= dist %>',
+            dot: true,
+            cwd: 'TP',
+            dest: '<%= dist %>/TP',
             src: [
-              'styleCahierExercice.css',
-              'reveal/**',
+              './**',
+            ],
+          },
+          {
+            expand: true,
+            dot: true,
+            cwd: 'PDF',
+            dest: '<%= dist %>/pdf',
+            src: [
+              '*.pdf',
             ],
           },
           {
@@ -265,6 +274,7 @@ module.exports = function gruntConfig(grunt) {
     filerev: {
       markdown: { src: 'dist/**/*.md' },
       ressources: { src: 'dist/ressources/**' },
+      resources: { src: 'dist/resources/**' },
       slidesJson: { src: 'dist/slides.json' },
       runJs: { src: 'dist/reveal/run.js' },
     },
@@ -273,7 +283,7 @@ module.exports = function gruntConfig(grunt) {
         assets_root: 'dist',
       },
       compiled_assets: {
-        src: ['dist/slides.html', 'dist/slides*.json', 'dist/**/*.md'],
+        src: ['dist/slides.html', 'dist/CahierExercices.html', 'dist/slides*.json', 'dist/**/*.md'],
       },
       views: {
         options: {
@@ -346,15 +356,32 @@ module.exports = function gruntConfig(grunt) {
       const highlightJsCssContent = fs.readFileSync(highlightPath);
       const remarkable = new Remarkable({ html: true, highlight });
       const htmlContent = remarkable.render(markdownContent)
-        .replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
         .replace(/\{Titre-Formation}/g, () => configFormation.description || configFormation.name);
+      const htmlContentForPdf = htmlContent.replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
+
       const htmlContentWithStyles = `
-        ${htmlContent}
+        ${htmlContentForPdf}
         <style>
           ${cssContent}
           ${highlightJsCssContent}
         </style>
       `;
+      const htmlContentDist = `<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>${configFormation.description || configFormation.name}</title>
+    <link href="styleCahierExercice.css"/>
+    <link href="code.css"/>
+  </head>
+  <body>
+    ${htmlContent}
+  </body>
+</html>
+      `;
+      console.log('Write HTML index.html');
+      grunt.file.copy(cssPath, 'TP/styleCahierExercice.css');
+      grunt.file.copy(highlightPath, 'TP/code.css');
+      grunt.file.write('TP/index.html', htmlContentDist);
       const pdfContent = await generatePdfFromHtml(htmlContentWithStyles, {
         format: 'A4',
         margin: {
