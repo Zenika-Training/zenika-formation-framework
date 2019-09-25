@@ -275,6 +275,7 @@ module.exports = function gruntConfig(grunt) {
       markdown: { src: 'dist/**/*.md' },
       ressources: { src: 'dist/ressources/**' },
       resources: { src: 'dist/resources/**' },
+      tp: { src: 'dist/TP/ressources/**' },
       slidesJson: { src: 'dist/slides.json' },
       runJs: { src: 'dist/reveal/run.js' },
     },
@@ -283,7 +284,7 @@ module.exports = function gruntConfig(grunt) {
         assets_root: 'dist',
       },
       compiled_assets: {
-        src: ['dist/slides.html', 'dist/CahierExercices.html', 'dist/slides*.json', 'dist/**/*.md'],
+        src: ['dist/slides.html', 'dist/TP/index.html', 'dist/slides*.json', 'dist/**/*.md'],
       },
       views: {
         options: {
@@ -370,8 +371,8 @@ module.exports = function gruntConfig(grunt) {
   <head>
     <meta charset="utf-8">
     <title>${configFormation.description || configFormation.name}</title>
-    <link href="styleCahierExercice.css"/>
-    <link href="code.css"/>
+    <link href="ressources/styleCahierExercice.css" rel="stylesheet"/>
+    <link href="ressources/code.css" rel="stylesheet"/>
   </head>
   <body>
     ${htmlContent}
@@ -379,8 +380,8 @@ module.exports = function gruntConfig(grunt) {
 </html>
       `;
       console.log('Write HTML index.html');
-      grunt.file.copy(cssPath, 'TP/styleCahierExercice.css');
-      grunt.file.copy(highlightPath, 'TP/code.css');
+      grunt.file.copy(cssPath, 'TP/ressources/styleCahierExercice.css');
+      grunt.file.copy(highlightPath, 'TP/ressources/code.css');
       grunt.file.write('TP/index.html', htmlContentDist);
       const pdfContent = await generatePdfFromHtml(htmlContentWithStyles, {
         format: 'A4',
