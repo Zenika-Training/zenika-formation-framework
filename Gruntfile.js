@@ -357,7 +357,7 @@ module.exports = function gruntConfig(grunt) {
       const remarkable = new Remarkable({ html: true, highlight });
       const htmlContent = remarkable.render(markdownContent)
         .replace(/\{Titre-Formation}/g, () => configFormation.description || configFormation.name);
-      const htmlContentForPdf = htmlContent.replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`)
+      const htmlContentForPdf = htmlContent.replace(/<img (.*)src=["|']([^"']*)["|'](.*)>/g, (match, p1, p2, p3) => `<img ${p1}src="${base64img.base64Sync(path.resolve(labsFolder, p2))}"${p3}>`);
 
       const htmlContentWithStyles = `
         ${htmlContentForPdf}
