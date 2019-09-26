@@ -125,6 +125,15 @@ module.exports = function gruntConfig(grunt) {
           },
           {
             expand: true,
+            cwd: frameworkPath,
+            dest: '<%= dist %>',
+            src: [
+              'styleCahierExercice.css',
+              'reveal/**',
+            ],
+          },
+          {
+            expand: true,
             dot: true,
             cwd: labsFolder,
             dest: '<%= dist %>/TP',
