@@ -136,7 +136,7 @@ module.exports = function gruntConfig(grunt) {
             expand: true,
             dot: true,
             cwd: labsFolder,
-            dest: '<%= dist %>/TP',
+            dest: '<%= dist %>/labs',
             src: [
               './**',
             ],
@@ -144,8 +144,8 @@ module.exports = function gruntConfig(grunt) {
           {
             expand: true,
             dot: true,
-            cwd: 'TP',
-            dest: '<%= dist %>/TP',
+            cwd: 'labs',
+            dest: '<%= dist %>/labs',
             src: [
               './**',
             ],
@@ -284,7 +284,7 @@ module.exports = function gruntConfig(grunt) {
       markdown: { src: 'dist/**/*.md' },
       ressources: { src: 'dist/ressources/**' },
       resources: { src: 'dist/resources/**' },
-      tp: { src: 'dist/TP/ressources/**' },
+      labs: { src: 'dist/labs/ressources/**' },
       slidesJson: { src: 'dist/slides.json' },
       runJs: { src: 'dist/reveal/run.js' },
     },
@@ -293,7 +293,7 @@ module.exports = function gruntConfig(grunt) {
         assets_root: 'dist',
       },
       compiled_assets: {
-        src: ['dist/slides.html', 'dist/TP/index.html', 'dist/slides*.json', 'dist/**/*.md'],
+        src: ['dist/slides.html', 'dist/labs/index.html', 'dist/slides*.json', 'dist/**/*.md'],
       },
       views: {
         options: {
@@ -389,9 +389,9 @@ module.exports = function gruntConfig(grunt) {
 </html>
       `;
       console.log('Write HTML index.html');
-      grunt.file.copy(cssPath, 'TP/ressources/styleCahierExercice.css');
-      grunt.file.copy(highlightPath, 'TP/ressources/code.css');
-      grunt.file.write('TP/index.html', htmlContentDist);
+      grunt.file.copy(cssPath, 'labs/ressources/styleCahierExercice.css');
+      grunt.file.copy(highlightPath, 'labs/ressources/code.css');
+      grunt.file.write('labs/index.html', htmlContentDist);
       const pdfContent = await generatePdfFromHtml(htmlContentWithStyles, {
         format: 'A4',
         margin: {
