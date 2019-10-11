@@ -44,8 +44,7 @@
   },
   "scripts": {
     "lint": "eslint --fix *.js reveal/**/*.js",
-    "preversion": "npm run lint",
-    "postpublish": "node -r dotenv/config rebuild-all"
+    "preversion": "npm run lint"
   },
   "pre-commit": [
     "lint"
