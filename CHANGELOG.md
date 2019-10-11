@@ -1,3 +1,14 @@
+# 3.4.0 (2019-10-11)
+
+## Features
+
+- ✨ support reveal option overriding (#243)
+- ✨ add highlighting for yaml, ini, shell-session (#245)
+- ✨ publish lab exercices on training-material.zenika.com (#247)
+- 💄 make code in blocks wrap in lab exercices
+- ✨ support locale-specific material (#238)
+- ✨ use package.description as title in lab exercices if available
+
 # 3.3.1 (2018-03-14)
 
 ## Fixes
