@@ -114,9 +114,13 @@ eslint no-param-reassign: [
         .then((script) => {
           // eslint-disable-next-line no-eval
           eval(script);
+          // eslint-disable-next-line no-undef
           Reveal.initialize(overrideOptions(defaultOptions));
         })
-        .catch(() => Reveal.initialize(defaultOptions));
+        .catch((err) => {
+          console.warn('There was an error while running the override option script (framework/index.js)', err);
+          Reveal.initialize(defaultOptions);
+        });
   }
 
   function selectWidth() {
