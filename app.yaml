@@ -25,6 +25,13 @@ handlers:
   upload: slides.html(.*)
   expiration: "0d 5m"
   login: required
+  
+# re-direct to labs.html
+- url: /labs/index.html(.*)
+  static_files: labs/index.html
+  upload: labs/index.html(.*)
+  expiration: "0d 5m"
+  login: required
 
 - url: /(.*\.md)
   static_files: \1
