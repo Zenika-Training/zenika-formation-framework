@@ -1,3 +1,9 @@
+# 3.4.1 (2019-12-06)
+
+## Fixes
+
+- 🐛 fix deployment of lab exercices on training-material.zenika.com
+
 # 3.4.0 (2019-10-11)
 
 ## Features
