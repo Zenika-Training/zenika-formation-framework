@@ -47,7 +47,7 @@ module.exports = function gruntConfig(grunt) {
         options: {
           livereload: 32729,
           open: {
-            target: `http://localhost:${port}`,
+            target: `http://localhost:${port}/?theme-2017`,
             // appName: 'chrome' // commenté temps de faire la bonne mécanique cross-OS
           },
         },
@@ -415,7 +415,7 @@ module.exports = function gruntConfig(grunt) {
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
     const done = this.async();
     try {
-      const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf`, {
+      const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf&theme-2017`, {
         landscape: true,
         printBackground: true,
         format: 'A4',
