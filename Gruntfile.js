@@ -16,6 +16,7 @@ module.exports = function gruntConfig(grunt) {
   const slidesFolder = grunt.option('slides-folder') || 'Slides';
   const labsFolder = grunt.option('labs-folder') || 'CahierExercices';
   const locale = grunt.option('locale') || 'fr';
+  const theme = grunt.option('old-theme') ? '' : 'theme-2017'
 
   function resolveNpmModulesPath(npmModulePath) {
     try {
@@ -47,7 +48,7 @@ module.exports = function gruntConfig(grunt) {
         options: {
           livereload: 32729,
           open: {
-            target: `http://localhost:${port}`,
+            target: `http://localhost:${port}/?${theme}`,
             // appName: 'chrome' // commenté temps de faire la bonne mécanique cross-OS
           },
         },
@@ -415,7 +416,7 @@ module.exports = function gruntConfig(grunt) {
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
     const done = this.async();
     try {
-      const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf`, {
+      const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf&${theme}`, {
         landscape: true,
         printBackground: true,
         format: 'A4',
