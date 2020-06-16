@@ -414,7 +414,6 @@ module.exports = function gruntConfig(grunt) {
   });
 
   grunt.registerTask('doGenerateSlidesPDF', async function doGenerateSlidesPDF() {
-    const theme = grunt.option('old-theme') ? '' : 'theme-2017'
     const done = this.async();
     try {
       const pdf = await generatePdfAt(`http://localhost:${port}?print-pdf&${theme}`, {
