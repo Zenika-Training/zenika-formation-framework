@@ -16,7 +16,7 @@ module.exports = function gruntConfig(grunt) {
   const slidesFolder = grunt.option('slides-folder') || 'Slides';
   const labsFolder = grunt.option('labs-folder') || 'CahierExercices';
   const locale = grunt.option('locale') || 'fr';
-  const theme = grunt.option('old-theme') ? '' : 'theme-2017'
+  const theme = grunt.option('old-theme') ? '' : 'theme-2017';
 
   function resolveNpmModulesPath(npmModulePath) {
     try {
