@@ -3,16 +3,26 @@
   src: url("fonts-2017/Inconsolata/Inconsolata-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url("fonts-2017/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url("fonts-2017/Source_Sans_Pro/SourceSansPro-Regular.ttf") format("truetype");
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 
 body {
   background: white;
-  --content-font-family: 'Calibri', sans-serif;
-  --header-font-family: 'Calibri Light', var(--content-font-family);
-  --table-font-family: 'Calibri Light', var(--content-font-family);
-  --code-font-family: 'Inconsolata', monospace;
+  --content-font-family: 'Source Sans Pro', 'Calibri', sans-serif;
+  --header-font-family: 'Montserrat', 'Calibri Light', var(--content-font-family);
+  --table-font-family: 'Source Sans Pro', 'Calibri Light', var(--content-font-family);
+  --code-font-family: Menlo, Monaco, 'Courier New', 'Inconsolata', monospace;
   --zenika-red: #b30c37;
   --grey: #aaaaaa;
   --default-border-size: 1px;
@@ -154,6 +164,7 @@ body {
 }
 
 .reveal code {
+  font-family: var(--code-font-family);
   color: var(--zenika-red);
 }
 
@@ -189,7 +200,7 @@ body {
   color: black;
   max-height: none;
   font-family: var(--code-font-family);
-  font-size: 24px;
+  font-size: 22px;
   line-height: normal;
 }
 
@@ -532,6 +543,10 @@ body {
 .reveal .fa {
   font-family: 'FontAwesome';
   font-style: normal;
+}
+
+.reveal pre code {
+  padding: 0;
 }
 
 /** contournement bug chrome et ff qui affichent un fond noir lors du passage en fullscreen : cf https://github.com/hakimel/reveal.js/issues/1386#issuecomment-225379825 */
