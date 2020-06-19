@@ -139,6 +139,11 @@ body {
   font-size: 40pt;
 }
 
+.reveal h2::after {
+  content: '.';
+  color: #b51432;
+}
+
 .reveal h2 small,
 .reveal h3 small {
   vertical-align: bottom;
