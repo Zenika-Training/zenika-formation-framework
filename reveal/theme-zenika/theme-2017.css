@@ -124,11 +124,12 @@ body {
 }
 
 .reveal h1::before {
-  background-image: url('./images-2017/zenia-logo-white-shadow-no-text.png');
+  background-image: url('./images-2017/zenika-logo-red-no-shadow-no-text.png');
   background-size: cover;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   content: '';
+  margin-bottom: 20px;
 }
 
 .reveal h2,
@@ -205,10 +206,10 @@ body {
 }
 
 .slides section > section:not([class^=page-]) {
-  background-image: url('./images-2017/zenika-triangles-4.png'), url('./images-2017/zenika-logo-red-shadow-no-text.png');
-  background-position: left top, right 5% bottom 5%;
+  background-image: url('./images-2017/zenika-liseret-rouge.png'), url('./images-2017/zenika-logo-red-no-shadow.png');
+  background-position: top, right 5% bottom 5%;
   background-repeat: no-repeat, no-repeat;
-  background-size: auto, 100px 100px;
+  background-size: auto, 75px 75px;
 }
 
 /*********************************************
