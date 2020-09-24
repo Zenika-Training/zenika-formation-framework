@@ -12,6 +12,10 @@ RUN apt-get update && \
     libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
     ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
 
+COPY pdf/noto-conf/NotoColorEmoji.ttf /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+COPY pdf/noto-conf/noto-color.conf /etc/fonts/conf.d/10-noto-color.conf
+RUN chmod 644 /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf && fc-cache -f -v
+
 # Install grunt
 WORKDIR /data
 RUN npm install --quiet grunt@^0.4.5 && \
